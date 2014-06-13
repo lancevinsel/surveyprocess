@@ -153,7 +153,7 @@
 #
 # Codes not in the list pass through unchanged
 #####################################################################################
-%pointCodes = (  # ABC -> 123
+%idot_point_codes = (  # ABC -> 123
  #"XXX" => "XXX",
  "AEM" => "930", # AG Electric Main
  #"AGE" => "674", # Shoulder Aggregate Edge
@@ -2121,7 +2121,7 @@ $lastFigname="";
 $curIsString=0;
 $lastWasString=0;
 $comment=""; #lv added
-$Icode=""; #lv added (Process01)
+$idot_code=""; #lv added (Process01)
 $hold = "";
 $noLineCounter=1;
 
@@ -2152,154 +2152,139 @@ open(OUT3,">${filename}_ptln.cor");
 open(OUT4,">${filename}_cell.cor");
 # open(OUT5,">${filename}_qc_spots.cor");
 # open(OUT6,">${filename}_topo.cor");
-# if ($#ARGV>0) {
-#  $_nextAutogenPtNum=$ARGV[1];
-# }
-# else {
-#  $_nextAutogenPtNum=100000;
-# }
 while (<IN>) {
  $curIsString=0;
- @in = split(/,/, substr(uc, 0, -1), 5); #note: the substr forces text to be uppercase; the split creates:
-   #$in[0] = point number
-   #$in[1] = northing
-   #$in[2] = easting
-   #$in[3] = elevation
-   #$in[4] = full description (3 Letter Code-Line Number-Line Code-Comment)
- my @fsplit = split(/\s+/,$in[4],2); #added lv - this separates the Codes from the Comments
-   #using the first whitespace as the separator so:
-   #$fsplit[0] = 3 Letter Code-Line Number-Line Code
-   #$fsplit[1] = the Comment
- my @ssplit = ($fsplit[0] =~ /(\w+)*(\W*)/); #added lv - this separtes the 3 Letter Code and 
-   # line number from the line coding symbol
-   # \w is alpha or numeric - \W is non alpha or numeric:
-   # $ssplit[0] = the 3 Letter Code and Line Number
-   # $ssplit[1] = the Line Code 
- $tok[0] = $ssplit[1]; #added lv:
-   # $tok[0} = the Line Code
- $tok[1] = "$ssplit[0] $fsplit[1]"; #added lv:
-   # $tok[1] = the code and the comment, no line code
- my @csplit = ($ssplit[0] =~ /(\w\w\w)(\d*)/); # this is for QAQC
-   # $csplit[0] = 3 letter code
-   # $csplit[1] = line number 
- if (length($fsplit[1])>0) {##############lv
-  $fsplit[1]="\;$fsplit[1]"; ########lv - adds the semi-colon before the Comment
+ @in = split(/,/, substr(uc, 0, -1), 5); # note: the substr forces text to be uppercase; the split creates the @in array
+                                         # delimited by comma
+ $pt_no = $in[0]
+ $northing = $in[1]
+ $easting = $in[2]
+ $elevation = $in[3]
+ $full_code_comment = $in[4]
+ my @firstsplit = split(/\s+/,$full_code_comment,2); # added lv - this separates the Codes from the Comments
+                                                     # using the first whitespace as the separator so:
+   #$firstsplit[0] = 3 Letter Code-Line Number-Line Code
+   $full_code = $firstsplit[0]
+   #$firstsplit[1] = the Comment
+   $comment = $firstsplit[1]
+ my @secondsplit = ($full_code =~ /(\w+)*(\W*)/); # added lv - this separates the 3 Letter Code and 
+                                                  # line number from the line coding symbol
+                                                  # \w is alpha or numeric - \W is non alpha or numeric:
+   $three_letter_code_line_no = $secondsplit[0]
+   $line_code= $secondsplit[1]
+ my @thirdsplit = ($three_letter_code_line_no =~ /(\w\w\w)(\d*)/); # this is for QAQC
+   $three_letter_code = $thirdsplit[0]
+   $line_no = $thirdsplit[1]
+ if (length($comment)>0) {##############lv
+  $comment="\;$comment"; ########lv - adds the semi-colon before the Comment
  }
- $Icode=$pointCodes{$csplit[0]}; ## if the three letter code matches any of the codes 
+ $idot_code=$idot_point_codes{$three_letter_code}; ## if the three letter code matches any of the codes 
 
 ##############Test Section 
 #print OUT1 "alksdf;alkdj   $pointCodes{$csplit[0]}\n";
-#print OUT5 "\n\n\n\in[0] point number      = $in[0]\n";                            
+#print OUT5 "\n\n\n\in[0] point number      = $pt_no\n";                            
 #print OUT5 "in[4] full code & comment      = $in[4]\n";                            
 #print OUT5 "fsplit[0] full code no comment = $fsplit[0]\n";                        
-#print OUT5 "fsplit[1] comment              = $fsplit[1]\n";                        
+#print OUT5 "fsplit[1] comment              = $comment\n";                        
 #print OUT5 "ssplit[0] code and line no.    = $ssplit[0]\n";                        
 #print OUT5 "ssplit[1] line code            = $ssplit[1]\n";                        
 #print OUT5 "tok[0] line code               = $tok[0]\n";                           
 #print OUT5 "tok[1] code, line no., comment = $tok[1]\n";                           
 #print OUT5 "csplit[0] alpha code           = $csplit[0]\n";                        
-#print OUT5 "csplit[1] line number          = $csplit[1]\n";                        
+#print OUT5 "csplit[1] line number          = $line_no\n";                        
 #print OUT5 "hold                           = $hold\n";                             
 #print OUT5 "c linecode                     = $c\n"; 
-#print OUT5 "Icode idot code, line no.      = $Icode\n\n";                     
-        #####################
-        #Material type prefix
-        if  (exists ($typePrefix{$csplit[0]})) {
-          $prefix = $typePrefix{$csplit[0]};
-          $csplit[1] = "$prefix$csplit[1]";
+#print OUT5 "Icode idot code, line no.      = $idot_code\n\n";                     
+#####################
+# Material type prefix - this fixes the problem where EOA1 and EOB1 both become 6681 in IDOT code
+# this adds a prefix so that EOA1 becomes 66811 and EOB1 becomes 66821
+ if  (exists ($typePrefix{$three_letter_code})) {
+   $prefix = $typePrefix{$three_letter_code};
+   $line_no  = "$prefix$line_no";
  }
- ########################################
- #NoLine fix
- if  (exists ($noLine{$csplit[0]})) {
-          $csplit[1] = $noLineCounter;
-          $noLineCounter = $noLineCounter + 1;
+########################################
+# NoLine fix - this fixes the problem where IDOT codes are supposed to not have lines 
+# but they do anyway
+ if  (exists ($noLine{$three_letter_code})) {
+   $line_no = $noLineCounter;
+   $noLineCounter = $noLineCounter + 1;
  }                                                                             
- ########################################Begin sorting and printing
- #################################################  
- if  (exists ($bridgeCodes{$csplit[0]}))
+########################################Begin sorting and printing
+#################################################  
+ if  (exists ($bridgeCodes{$three_letter_code}))
    {
-   if ($c = $idotcommands{$tok[0]})
+   if ($c = $idotcommands{$line_code})
      {
-     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n"; 
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n"; 
+     print OUT2 "$pt_no,$northing,$easting,$elevation,$idot_code$line_no$comment,$c\n"; 
+     print OUT1 "$pt_no,$northing,$easting,$elevation,$idot_code$line_no$comment,$c\n"; 
      }
    else
      {
-     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";  
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";  
+     print OUT2 "$pt_no,$northing,$easting,$elevation,$idot_code$line_no$comment,\n";  
+     print OUT1 "$pt_no,$northing,$easting,$elevation,$idot_code$line_no$comment,\n";  
      }
    }
- elsif (exists ($symbolCodes{$Icode}))  # Check against symbolCodes list for cells 
+ elsif (exists ($symbolCodes{$idot_code}))  # Check against symbolCodes list for cells 
    {
-   if ($c = $idotcommands{$tok[0]})
+   if ($c = $idotcommands{$line_code})
      {
-     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n"; 
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n"; 
+     print OUT4 "$pt_no,$northing,$easting,$elevation,$idot_code$line_no$comment,$c\n"; 
+     print OUT1 "$pt_no,$northing,$easting,$elevation,$idot_code$line_no$comment,$c\n"; 
      }
    else
      {
-     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
+     print OUT4 "$pt_no,$northing,$easting,$elevation,$idot_code$line_no$comment,\n";
+     print OUT1 "$pt_no,$northing,$easting,$elevation,$idot_code$line_no$comment,\n";
      }
    } 
- elsif (exists ($lineCodes{$Icode}))
+ elsif (exists ($lineCodes{$idot_code}))
    {
-   if ($c = $idotcommands{$tok[0]})
+   if ($c = $idotcommands{$line_code})
      {
-     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n"; 
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n"; 
+     print OUT3 "$pt_no,$northing,$easting,$elevation,$idot_code$line_no$comment,$c\n"; 
+     print OUT1 "$pt_no,$northing,$easting,$elevation,$idot_code$line_no$comment,$c\n"; 
      }
    else
      {
-     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
+     print OUT3 "$pt_no,$northing,$easting,$elevation,$idot_code$line_no$comment,\n";
+     print OUT1 "$pt_no,$northing,$easting,$elevation,$idot_code$line_no$comment,\n";
      }
    }
 
- 
- 
- 
-
 ####################### TEST SECTION                               
-#print OUT5 "in[0] point number             = $in[0]\n";            
-#print OUT5 "in[1] northing                 = $in[1]\n";            
-#print OUT5 "in[2] easting                  = $in[2]\n";            
-#print OUT5 "in[3] elevation                = $in[3]\n";            
+#print OUT5 "in[0] point number             = $pt_no\n";            
+#print OUT5 "in[1] northing                 = $northing\n";            
+#print OUT5 "in[2] easting                  = $easting\n";            
+#print OUT5 "in[3] elevation                = $elevation\n";            
 #print OUT5 "in[4] full code & comment      = $in[4]\n";            
 #print OUT5 "fsplit[0] full code no comment = $fsplit[0]\n";        
-#print OUT5 "fsplit[1] comment              = $fsplit[1]\n";        
+#print OUT5 "fsplit[1] comment              = $comment\n";        
 #print OUT5 "ssplit[0] code and line no.    = $ssplit[0]\n";        
 #print OUT5 "ssplit[1] line code            = $ssplit[1]\n";        
-#print OUT5 "tok[0] line code               = $tok[0]\n";           
+#print OUT5 "tok[0] line code               = $line_code\n";           
 #print OUT5 "tok[1] code, line no., comment = $tok[1]\n";
 #print OUT5 "csplit[0] alpha code           = $csplit[0]\n";
-#print OUT5 "csplit[1] line number          = $csplit[1]\n";  
+#print OUT5 "csplit[1] line number          = $line_no\n";  
 #print OUT1 "hold                           = $hold\n";            
 #print OUT5 "c linecode                     = $c\n";                
-#print OUT5 "Icode idot code, line no.      = $Icode\n\n\n\n\n";           
-
+#print OUT5 "Icode idot code, line no.      = $idot_code\n\n\n\n\n";           
  
- #prepare for next loop
+#prepare for next loop
  if ($curIsString) {
-  $activeStrings{$figname}=1; #make sure the list contains an entry for this string
+   $activeStrings{$figname}=1; #make sure the list contains an entry for this string
  }
  $lastWasString=$curIsString;
  $lastFigname=$figname;
- $lastPtNum=$in[0];
+ $lastPtNum=$pt_no;
  $figname="";
  $comment="";  #### added lv 
- $Icode="";
+ $idot_code="";
  $prefix="";  
    
    
- $fsplit[0]="";       
- $fsplit[1]="";       
- $ssplit[0]="";       
- $ssplit[1]="";       
- $tok[0]="";          
- $tok[1]="";          
- $csplit[0]="";        
- $csplit[1]="";        
+ $comment="";       
+ $line_code="";          
+ $line_no="";        
         
 
 }
