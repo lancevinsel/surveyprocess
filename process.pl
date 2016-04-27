@@ -2208,24 +2208,24 @@ while (<IN>) {
 	#------------------------------Begin sorting and printing
 	if  (exists ($bridgeCodes{$idotCode})) {
 		if ($processLineCode ne "") {
-			print OUT2 "$pointNo,$northing,$easting,$elevation,$processLineCode $idotCode$lineNo,$finalComment\n";
-			print OUT1 "$pointNo,$northing,$easting,$elevation,$processLineCode $idotCode$lineNo,$finalComment\n";
+			print OUT2 "$pointNo,$northing,$easting,$elevation,$idotCode$lineNo $processLineCode,$finalComment\n";
+			print OUT1 "$pointNo,$northing,$easting,$elevation,$idotCode$lineNo $processLineCode,$finalComment\n";
 		} else {
 			print OUT2 "$pointNo,$northing,$easting,$elevation,$idotCode$lineNo,$finalComment\n";
 			print OUT1 "$pointNo,$northing,$easting,$elevation,$idotCode$lineNo,$finalComment\n";
 		}
 	} elsif (exists ($symbolCodes{$idotCode})) {
 		if ($processLineCode ne "") {
-			print OUT4 "$pointNo,$northing,$easting,$elevation,$processLineCode $idotCode$lineNo,$finalComment\n";
-			print OUT1 "$pointNo,$northing,$easting,$elevation,$processLineCode $idotCode$lineNo,$finalComment\n";
+			print OUT4 "$pointNo,$northing,$easting,$elevation,$idotCode$lineNo $processLineCode,$finalComment\n";
+			print OUT1 "$pointNo,$northing,$easting,$elevation,$idotCode$lineNo $processLineCode,$finalComment\n";
 		} else {
 			print OUT4 "$pointNo,$northing,$easting,$elevation,$idotCode$lineNo,$finalComment\n";
 			print OUT1 "$pointNo,$northing,$easting,$elevation,$idotCode$lineNo,$finalComment\n";
 		}
 	} elsif (exists ($lineCodes{$idotCode})) {
 		if ($processLineCode ne "") {
-			print OUT3 "$pointNo,$northing,$easting,$elevation,$processLineCode $idotCode$lineNo,$finalComment\n";
-			print OUT1 "$pointNo,$northing,$easting,$elevation,$processLineCode $idotCode$lineNo,$finalComment\n";
+			print OUT3 "$pointNo,$northing,$easting,$elevation,$idotCode$lineNo $processLineCode,$finalComment\n";
+			print OUT1 "$pointNo,$northing,$easting,$elevation,$idotCode$lineNo $processLineCode,$finalComment\n";
 		} else {
 			print OUT3 "$pointNo,$northing,$easting,$elevation,$idotCode$lineNo,$finalComment\n";
 			print OUT1 "$pointNo,$northing,$easting,$elevation,$idotCode$lineNo,$finalComment\n";
