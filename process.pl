@@ -163,6 +163,7 @@
 #####################################################################################
 %pointCodes = (  # ABC -> 123
  #"XXX" => "XXX",
+ "ACU" => "930", # Air Conditioning Unit
  "AEM" => "930", # AG Electric Main
  "AGE" => "246", #H Shoulder Aggregate Edge
  "B62" => "516", # Curb B6-24 Top Back - depreciated
@@ -256,6 +257,7 @@
  "DCB" => "652", # ver12 - Driveway/Commercial BIT/HMA
  "DCC" => "652", # ver12 - Driveway/Commercial Concrete
  "DCG" => "652", # ver12 - Driveway/Commercial Ground - Field Entrance
+ "DCK" => "353", # Deck
  "DCR" => "652", # ver12 - Driveway/Commercial Brick
  "DFA" => "654", # ver12 - Driveway/Field Aggregate
  "DFB" => "654", # ver12 - Driveway/Field BIT/HMA
@@ -288,6 +290,10 @@
  "FNC" => "375", #H Fence
  "FND" => "100", #H
  "FNG" => "381", #H Gate Post
+ "FNL" => "37L", # Fence - Chain Link
+ "FNV" => "37V", # Fence - Vinyl
+ "FNW" => "37W", # Fence - Wire
+ "FNX" => "37X", # Fence - Barbed Wire
  "FOU" => "352", #H Foundation /Column on Hoelsher
  "GND" => "144", #H
  "GRL" => "273", # Guard Rail
