@@ -1,165 +1,4 @@
 #!/bin/perl
-#---------------------------------------
-#
-# ProMtoH_XX.pl
-# Fork of process.pl - convert MPS codes to Hoelscher codes
-#
-#
-#----------------------------------------
-#
-# ProMtoH_21.pl
-# 20140804
-# took out the line number - csplit[1]
-#
-#----------------------------------------
-# process_20.pl
-# 20140321
-#
-#---------------------------------------------
-# process_19.pl
-# 20131107
-# Modified
-# MHM
-# MHN
-# VLB
-# VLW
-# VLG
-# BBG
-# BBW
-#----------------------------------------
-# process_18.pl
-# 20130621
-# Change *_QA_lines.cor and *_QA_spots.cor to *_PtLn.cor
-# Change *_QA_symbols.cor to *_cell.cor
-# Remove all QA output files
-# Removed the DTM file
-# added:
-#   RPF = point of frog - 1" point
-#   RPS = point of switch
-#   RSW = switch box
-# Goals:
-# rename variables
-# add cathodic protection
-#
-####################################
-# process_17.pl
-# 20130322
-# added:
-#     VNG Gas Vent
-#     PDF Pedestal Fiber Optic
-#     HHF Handhole Fiber Optic
-#     HHV Handhole TV
-#     HHR Traffic Signal Handhole
-#     HHE Handhole Electric
-# change HHT from traffic signal handhole to Handhole Traffic
-#     MHS Manhole Traffic Fiber Optic
-############################################
-##################################
-# process_16.pl 20130116
-# added BWC - Bridge Deck Sidewalk Concrete - BSW is depreciated
-# added BSS - Bridge Structural Steel
-# added BSC - Bridge Scupper
-# added BDP - Bridge Deck Plate
-# change BPA from 624 to 633 and eliminated 'required Comment'"PARAPET'
-# depreciated edge of pavement/edge of shoulder combinations used on IL-83 (fail). ERB-EWC.
-# depreciated RNW Runway
-# depreciated 667 as IDOT code for crown (CRB/CRC) using breakline 607 with material comments for
-  # pavement areas with no stripeing - use stripeing as breakline where possible
-# Crown now has material types: CNB = HMA, CNC = CONC, etc. - see 667 above
-# I'm going to stop using the B6B codes and start using CRB on all curbs unless they are
-  # odd (not B6.12 or B6.24).  Use the IDOT codes of odd curbs. - LV - The B6B and B62 will still
-  # work.
-# Changed BBA/BBB/BBC/BBR from 619 to 621 so that spots land on the Topo_BridgeStructures level
-# added BUC - Building Commercial - BLD is being depreciated
-# added BUP - Building Public - BLD is being depreciated
-# added BUR - Building Residential - BLD is being depreciated
-# changed RR centerline from CLR to RCL
-# added BRR the base of a Barrier Wall
-# added SBW Splice Box Water - weird sprinkler system above ground splice box at US-14 in Mt. Pleasant
-###################################
-#####################################
-# PROCESS_15.pl
-# added SNN - Warning Sign - Sanitary
-# added SNW - Warning Sign - Water
-########################
-#####################################
-# PROCESS_14.pl
-#   added RCK - Rock or Boulder
-########################
-#-----------------------
-# PROCESS_13.PL
-#  ADDED SWA,B,C,R
-# ADDED SBT - SPLICE BOX TELEPHONE
-# added PDE - Pedestal Electric\
-# ADDED BBA, BBB, BBC, BBR - BRIDGE DECK AGG, BIT, CONC, BRICK
-# ADDED BSW - BRIDGE SIDEWALK
-
-#
-####################################
-#----------------------------
-# Process_12.pl
-# added:
-#  LNB = Lane Lines - HMA/BIT
-#  LNC = Lance Lines - Conc
-#  TOE = Toe of Slope
-#  TOP = Top of Slope
-#  RIP = Riprap
-#  DCA = Driveway/Commercial Aggregate
-#  DCB = Driveway/Commercial BIT/HMA
-#  DCC = Driveway/Commercial Concrete
-#  DCG = Driveway/Commercial Ground
-#  DCR = Driveway/Commercial Brick
-#  DFA = Driveway/Field Aggregate
-#  DFB = Driveway/Field BIT/HMA
-#  DFC = Driveway/Field Concrete
-#  DFG = Driveway/Field Ground
-#  DFR = Driveway/Field Brick
-#  DPA = Driveway/Private-Residential Aggregate
-#  DPB = Driveway/Private-Residential BIT/HMA
-#  DPC = Driveway/Private-Residential Concrete
-#  DPG = Driveway/Private-Residential Ground
-#  DPR = Driveway/Private-Residential Brick
-########################################
-#-----------------------
-# Process_11.pl 20111028
-#
-# Added: FOU = Foundation
-#
-########################
-# Process_10.pl 20110729
-#
-# Process_8 had many improvements - however I also migrated to "Mapping Codes"
-# (instead of "Line Codes") as an option in Geopak.  Using the "Mapping Codes" I was
-# finally able to get the curves to work. These codes also needed to be at the beginning of
-# code like BL*EOP1.
-#
-# But the Mapping Code option forced the lines to be created in
-# point number order.  This caused problems in processing.  It ignored
-# the order of the points in the ASCII file.
-# For example, say you missed an EOP1 shot on a cross section and went back to it at the
-# next set up.
-# Now to draw that line correctly using the "Line Coding" option you can reorder the records in
-# the ASCII file like:
-# 1,1000,1000,EOP1,L
-# 2,1000,1010,EOP1,
-# 40,1000,1020,EOP1,
-# 3,1000,1030,EOP1,
-#
-# In the "Mapping Codes" option, the order of the ASCII file is ignored and the EOP1 are sorted
-# so that the line goes 1,2,3,40.
-#
-# This was too big of a complication to screw with; we would need to RENUMBER points to
-# get the line to draw correctly.
-# So this version has the latest code changes (MPS_IDOTCodes_V02_15.xlsx) and reverts back to
-# processing with the "Line Coding" option.
-#
-##############################################################################
-#
-#########################################################################
-# The following array maps keys used by Field Surveyors
-#
-#
-# Codes not in the list pass through unchanged
 #####################################################################################
 %pointCodes = (  # ABC -> 123
  #"XXX" => "XXX",
@@ -245,13 +84,13 @@
  "CNT" => "225", # Traffic Signal Cantilever/Mast Arm
  "COL" => "352", #H Column
  "CPH" => "100", #H Control Point - modified v6
- "CRB" => "26C", #H Curb Top - Generic
+ "CRB" => "263", #H Curb Top - Generic
  "CRN" => "667", # Depreciated see CNA-CNR
  "CRP" => "804", # Crop Line
  "CRW" => "274", #H Crosswalk
  "CUB" => "942", # Culvert - Box
  "CUE" => "302",
- "CUP" => "96X", #H Culvert
+ "CUP" => "962", #H Culvert
  "DAM" => "369",
  "DCA" => "652", # ver12 - Driveway/Commercial Aggregate
  "DCB" => "652", # ver12 - Driveway/Commercial BIT/HMA
@@ -278,11 +117,11 @@
  "DSP" => "946", # Downspout
  "DTH" => "151", #H Ditch Flowline
  "DTP" => "359", # Ditch - Paved - Centerline
- "EOA" => "24A", #H Edge of pavement - aggregate
- "EOB" => "24B", #H Edge of pavement - bit/hma
- "EOC" => "24C", #H Edge of pavement - concrete
+ "EOA" => "247", #H Edge of pavement - aggregate
+ "EOB" => "241", #H Edge of pavement - bit/hma
+ "EOC" => "243", #H Edge of pavement - concrete
  "EOL" => "678", # Edge of Lanes - added v6
- "EOR" => "24R", #H Edge of pavement - Brick
+ "EOR" => "242", #H Edge of pavement - Brick
  #"EOP" => "668", # Edge of pavement
  "FES" => "948",
  "FFL" => "354", #H Finish Floor/Threshold Elevation
@@ -290,14 +129,14 @@
  "FNC" => "375", #H Fence
  "FND" => "100", #H
  "FNG" => "381", #H Gate Post
- "FNL" => "37L", # Fence - Chain Link
- "FNV" => "37V", # Fence - Vinyl
- "FNW" => "37W", # Fence - Wire
- "FNX" => "37X", # Fence - Barbed Wire
+ "FNL" => "375", # Fence - Chain Link
+ "FNV" => "379", # Fence - Vinyl
+ "FNW" => "377", # Fence - Wire
+ "FNX" => "374", # Fence - Barbed Wire
  "FOU" => "352", #H Foundation /Column on Hoelsher
  "GND" => "144", #H
  "GRL" => "273", # Guard Rail
- "GUT" => "25C", #H Gutter/Flowline
+ "GUT" => "253", #H Gutter/Flowline
  "GUP" => "401", # Guy Pole
  "GUY" => "402", # Guy Wire
  "H2O" => "160", # Water Line
@@ -322,7 +161,7 @@
  "JUW" => "705", # JULIE Watermain Mark
  "LNB" => "678", # Lane Line - HMA
  "LNC" => "678", # Lane Line - CONC
- "LND" => "36X",
+ "LND" => "360",
  "LNM" => "274", #H Lane Mark - Stripeing
  "MBX" => "384", #H Hoelsher Mailbox
  "MCS" => "323", #H Misc. Concrete Slab
@@ -341,10 +180,10 @@
  "MTG" => "507", #H Meter - Gas
  "MTW" => "707", # Meter Water
  "NPS" => "274", #H No passing line
- "PAB" => "31B", # Patio - Bit
- "PAC" => "31C", # Patio - Concrete
- "PAN" => "31N", # Patio - Stone
- "PAR" => "31R", # Patio - Brick
+ "PAB" => "311", # Patio - Bit
+ "PAC" => "313", # Patio - Concrete
+ "PAN" => "317", # Patio - Stone
+ "PAR" => "312", # Patio - Brick
  "PBB" => "666", # A spot elevation on a bit bridge deck.
  "PBC" => "666", # A spot elevation on a conc bridge deck.
  "PDE" => "413", #H Pedestal Electric
@@ -383,13 +222,13 @@
  "RSG" => "513", # Riser/Feed - Gas
  "RST" => "613", # Riser/Feed - Telephone
  "RVT" => "606",
- "RWC" => "34C", #H Retaining Wall - Concrete
- "RWI" => "34I", #H Retaining Wall - Iron/Steel
+ "RWC" => "343", #H Retaining Wall - Concrete
+ "RWI" => "340", #H Retaining Wall - Iron/Steel
  "RWL" => "343", #H Retaining Wall
- "RWN" => "34N", #H Retaining Wall - Stone
- "RWM" => "34M", #H Retaining Wall - Masonry
- "RWR" => "34R", #H Retaining Wall - Brick
- "RWT" => "34T", #H Retaining Wall - Timber
+ "RWN" => "347", #H Retaining Wall - Stone
+ "RWM" => "342", #H Retaining Wall - Masonry
+ "RWR" => "342", #H Retaining Wall - Brick
+ "RWT" => "348", #H Retaining Wall - Timber
  "SBE" => "408", #H Splice Box Electric
  "SBR" => "223", # Traffic Signal Controller - changed v6
  "SBT" => "281", # SPLICE BOX TELEPHONE
@@ -398,8 +237,8 @@
  "SHA" => "246", # Shoulder - Aggregate
  "SHB" => "674", # Shoulder - Bituminous
  "SHC" => "674", # Shoulder - Concrete
- "SLB" => "32B", # Slab - Bit
- "SLC" => "32C", # Slab - Concrete
+ "SLB" => "321", # Slab - Bit
+ "SLC" => "323", # Slab - Concrete
  "SNC" => "373", # Sign - Commercial
  "SNE" => "418", # Sign - Electric Warning
  "SNF" => "350",
@@ -432,10 +271,10 @@
  "SPZ" => "118", # Other
  "STR" => "357", # Stairs/Porch
  "SWK" => "291",
- "SWA" => "33A", # SIDEWALK - AGG
- "SWB" => "33B", # SIDEWALK - BIT/HMA
- "SWC" => "33C", # SIDEWALK - CONC
- "SWR" => "33R", # SIDEWALK - BRICK
+ "SWA" => "337", # SIDEWALK - AGG
+ "SWB" => "331", # SIDEWALK - BIT/HMA
+ "SWC" => "333", # SIDEWALK - CONC
+ "SWR" => "332", # SIDEWALK - BRICK
  "TIL" => "304", # Tile
  "TNG" => "514", # Gas Tank
  "TOE" => "152", # Toe of Slope
