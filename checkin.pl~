@@ -5,67 +5,6 @@
 #
 #
 #----------------------------------------
-# checkin_21.pl
-# 20131107
-# added (modified):
-#      MHM Storm Manhole 351
-#      MHN Sanitary Manhole 337
-#      VLB Valve Box 342
-#      VLW Water Valve 343
-#      VLG Gas Valve 344
-#      BBG Gas Buffalo Box 319
-#      BBW Water Buffalo Box 320
-#####################################
-####################################
-# checkin_20.pl
-# 20130322
-# added:
-#     VNG Gas Vent
-#     PDF Pedestal Fiber Optic
-#     HHF Handhole Fiber Optic
-#     HHV Handhole TV
-#     HHR Handhole Traffic
-#     HHE Handhole Electric
-#     MHS Manhole Traffic Fiber Optic
-#     RPF Point of Frog
-#     RPS Point of Switch
-#     RSW Switch Box
-############################################
-##################################
-# checkin_19.pl 20130116
-# added BWC - Bridge Walk Concrete - BSW is depreciated
-# added BSS - Bridge Structural Steel 610
-# added BSC - Bridge Scupper
-# added BDP - Bridge Deck Plate
-# changed BPA from 624 to 633 and eliminated 'Required Comment' "PARAPET"
-# depreciated edge of pavement/edge of shoulder combinations used on IL-83 (fail). ERB-EWC.
-# depreciated RNW Runway
-# depreciated 667 as IDOT code for crown (CRB/CRC) using breakline 607 with material comments for
-#    pavement areas with no stripeing - use stripeing as breakline where possible
-# Crown now has material types: CNB = HMA, CNC = CONC, etc. - see 667 above
-# I'm going to stop using the B6B codes and start using CRB on all curbs unless they are
-#    odd (not B6.12 or B6.24).  Use the IDOT codes of odd curbs. - LV - The B6B and B62 will still
-#    work.
-# added BUC - Building Commercial - BLD is being depreciated
-# added BUP - Building Public - BLD is being depreciated
-# added BUR - Building Residential - BLD is being depreciated
-# Changed BBA/BBB/BBC/BBR from 619 to 621 so that spots land on the Topo_BridgeStructures level
-# changed RR centerline from CLR to RCL
-# added BRR Barrier Wall - base
-# added SBW for weird sprinkler system splice box on US14
-####################################
-##################################
-# checkin_18.pl
-# added B6F back in
-##################################
-#------------------------
-# ver checkin_15.pl
-#
-# added SWA,B,C,R
-# added WEL well
-# added BBA,BBB,BBC.BBR - Bridge Deck with AGG,BIT.Conc,Bridk
-# added BSW - Bridge Sidewalk
-# added RCK - Rock/boulder
 #
 %legalCodes = (
  "ACU" => "legal", # Air Conditioning Unit
@@ -84,11 +23,11 @@
  "BBA" => "legal", # Bridge Deck - AGG
  "BBB" => "legal", # Bridge Deck - BIT/HMA
  "BBC" => "legal", # Bridge Deck - Concrete
- #"BBG" => "legal", # Buffalo Box - Gas
+ "BBG" => "legal", # Buffalo Box - Gas
  "BBR" => "legal", # Bridge Deck - Bridk
  #"BBS" => "legal", # The bridge seat elevation.  For elevation only.  Usually collected
                    # with the "hook".
- #"BBW" => "legal", # Buffalo Box - Water
+ "BBW" => "legal", # Buffalo Box - Water
  #"BBU" => "legal", # Buffalo Box - Gas
  #"BBX" => "legal", # Buffalo Box - Water
  "BCB" => "legal", # The top front of any curb or median on a bridge.
@@ -123,7 +62,7 @@
  #"BRR" => "legal", # Barrier Wall - base
  #"BSC" => "legal", # Bridge Scupper
  "BSH" => "legal", # Bush / Shrub
- #"BSL" => "legal", # Bush line / Hedgerow
+ "BSL" => "legal", # Bush line / Hedgerow
  #"BSS" => "legal", # Bridge Structural Steel
  #"BSW" => "legal", # Bridge - Sidewalk - depreciated v19
  "BUC" => "legal", # Building - Commercial
@@ -134,6 +73,23 @@
   #"BWT" => "legal",
  "BWW" => "legal", # The outline of the face and sides of the wingwall.  A 3d line with
                    # points at each elevation change.
+ # Hoellsher Tree Codes
+ # These need to be changed manually in the .TXT file !!!!!!!
+ "C03" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "C06" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "C09" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "C12" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "C15" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "C18" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "C24" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "C30" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "C36" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "C42" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "C48" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "C54" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "C60" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "C66" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "C72" => "legal", # Deciduous Tree - last 2 character are size in inches
  "CBM" => "legal", # Catch Basin - Round Open
  "CDE" => "legal", #H Conduit - Electrical
  "CKH" => "legal", # Control Point Check - Horizontal
@@ -154,11 +110,28 @@
  "CUB" => "legal", # Culvert - Box
  #"CUE" => "legal", # Culvert - Elliptical
  "CUP" => "legal", # Culvert - Pipe
+ # Hoellsher Tree Codes
+ # These need to be changed manually in the .TXT file !!!!!!!
+ "D03" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "D06" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "D09" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "D12" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "D15" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "D18" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "D24" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "D30" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "D36" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "D42" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "D48" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "D54" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "D60" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "D66" => "legal", # Deciduous Tree - last 2 character are size in inches
+ "D72" => "legal", # Deciduous Tree - last 2 character are size in inches
  #"DAM" => "legal", # Levee/Dam Top
- #"DCA" => "legal", # Driveway/Commercial Aggregate
- #"DCB" => "legal", # Driveway/Commercial BIT/HMA
- #"DCC" => "legal", # Driveway/Commercial Concrete
- #"DCG" => "legal", # Driveway/Commercial Ground
+ "DCA" => "legal", # Driveway/Commercial Aggregate
+ "DCB" => "legal", # Driveway/Commercial BIT/HMA
+ "DCC" => "legal", # Driveway/Commercial Concrete
+ "DCG" => "legal", # Driveway/Commercial Ground
  "DCK" => "legal", # Deck
  "DCR" => "legal", # Driveway/Commercial Brick
  "DFA" => "legal", # Driveway/Field Aggregate
@@ -171,13 +144,11 @@
  "DPC" => "legal", # Driveway/Private-Residential Concrete
  "DPG" => "legal", # Driveway/Private-Residential Ground
  "DPR" => "legal", # Driveway/Private-Residential Brick
- #"DRB" => "legal", # Driveway/Entrance HMA
- #"DRV" => "legal", # Driveway/Entrance
- #"DRA" => "legal", # Driveway/Entrance Aggregate
- #"DRB" => "legal", # Driveway/Entrance HMA
- #"DRC" => "legal", # Driveway/Entrance Concrete
- #"DRG" => "legal", # Field Entrance
- #"DRR" => "legal", # Driveway/Entrance Brick
+ "DRA" => "legal", # Driveway/Entrance Aggregate
+ "DRB" => "legal", # Driveway/Entrance HMA
+ "DRC" => "legal", # Driveway/Entrance Concrete
+ "DRG" => "legal", # Field Entrance
+ "DRR" => "legal", # Driveway/Entrance Brick
  "DSP" => "legal", # Downspout
  "DTH" => "legal", # Ditch Flowline
  #"DTP" => "legal", # Paved Ditch Centerline
@@ -200,12 +171,15 @@
  #"FLW" => "legal",
  #"FLO" => "legal", # Flow Line / Ditch
  "FNC" => "legal", # Fence Line
- #"FND" => "legal", # Found Survey Evidence
+ "FND" => "legal", # Found Survey Evidence
+ "FNI" => "legal", # Fence - Iron
  "FNL" => "legal", # Fence - Chain Link
+ "FNT" => "legal", # Fence - Wood
  "FNV" => "legal", # Fence - Vinyl
  "FNW" => "legal", # Fence - Wire
  "FNX" => "legal", # Fence - Barbed Wire
  #"FOU" => "legal", # Foundation
+ "GCR" => "legal", # Building - Commercial - Brick
  "GND" => "legal", # Ground Shot
  "GRL" => "legal", # Guard Rail
  "GUP" => "legal", # Guy Pole
@@ -237,7 +211,7 @@
  "LND" => "legal", # Landscape Edge
  #"LNM" => "legal", # Lane Paint Mark
  "MBX" => "legal", # Mailbox
- #"MCS" => "legal", # Misc Concrete Slab
+ "MCS" => "legal", # Misc Concrete Slab
  #"MED" => "legal", # Top Front of Median
  #"MGR" => "legal",
  "MHE" => "legal", # Manhole Electrical
@@ -267,11 +241,11 @@
  "PLF" => "legal", # Flag Pole
  "PLT" => "legal", # Pole Light Only
  #"PMA" => "legal", # Spot - Aggregate
- #"PMB" => "legal", # Spot - HMA/BIT
- #"PMC" => "legal", # Spot - Concrete
- #"PMR" => "legal", # Spot - Brick
+ "PMB" => "legal", # Spot - HMA/BIT
+ "PMC" => "legal", # Spot - Concrete
+ "PMR" => "legal", # Spot - Brick
  #"PMT" => "legal",
- #"PPL" => "legal", # Pole Utility with Light
+ "PPL" => "legal", # Pole Utility with Light
  #"PPT" => "legal", # Pole Utility with Transformer
  #"PPU" => "legal", # Pole Utility
  "PUG" => "legal", # Gas Pump
@@ -301,7 +275,7 @@
  "RWM" => "legal", # Retaining Wall - Masonry
  "RWR" => "legal", # Retaining Wall - Brick
  "RWT" => "legal", # Retaining Wall - Timber
- #"SBE" => "legal", # Splice Box - Electrical
+ "SBE" => "legal", # Splice Box - Electrical
  "SBR" => "legal", # Splice Box - Traffic Signals
  #"SBT" => "legal", # Splice Box - Telephone
  "SBV" => "legal", # Splice Box - Television
@@ -315,7 +289,7 @@
  "SNE" => "legal", # Sign - Warning - UG Electric
  #"SNF" => "legal", # Sign - Warning - Fiber Optic
  "SNG" => "legal", # Sign - Warning - Gas
- #"SNL" => "legal", # Sign - For Line Coding
+ "SNL" => "legal", # Sign - For Line Coding
  "SNN" => "legal", # Sign - Warning - Sanitary Line
  "SNP" => "legal", # Sign - Warning - Petroleum
  "SNR" => "legal", # Sign - Traffic
@@ -353,7 +327,7 @@
  "TOP" => "legal", # Top of Slope
  "TRC" => "legal", # Tree - Coniferous
  "TRD" => "legal", # Tree - Deciduous
- #"TRF" => "legal", # Traffic Signal
+ "TRF" => "legal", # Traffic Signal
  #"TRL" => "legal", # Traffic Loop Detector
  #"THW" => "legal", # Thalweg - Lowest Point
  #"UND" => "legal", # Underdrain
@@ -365,7 +339,7 @@
  #"VNG" => "legal", # Vent - Gas
  "VNT" => "legal", # Vent - Gas
  "VNN" => "legal", # Vent - Sanitary
- #"WAL" => "legal", # Wall - Not Retaining
+ "WAL" => "legal", # Wall - Not Retaining
  "WDE" => "legal", # Wooded Edge
  "WEL" => "legal", # Well
  "WET" => "legal", # Wetland
@@ -560,7 +534,7 @@
  "BUC" => "Commercial", #H
  "BWC" => "SIDEWALK CONC",
  "BWL" => "BACKWALL",
- "CDE" => "Conduit" #H
+ "CDE" => "Conduit", #H
  "CNA" => "AGG",
  "CNB" => "HMA",
  "CNC" => "CONC",
