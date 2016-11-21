@@ -2080,10 +2080,12 @@ while (<IN>) {
        # print OUT6 "the line code is           $idotcommands{$tok[0]}\n";
 ###############################
   if ($c = $idotcommands{$tok[0]}) {
-     print OUT6 "$in[0],$in[1],$in[2],$in[3],$c $Icode$fsplit[1],\n";
+#     print OUT6 "$in[0],$in[1],$in[2],$in[3],$c $Icode$fsplit[1],\n";
+     print OUT6 "$in[0],$in[1],$in[2],$in[3],$c $Icode\n";
   }
   else  {
-     print OUT6 "$in[0],$in[1],$in[2],$in[3],$Icode$fsplit[1],\n";
+#     print OUT6 "$in[0],$in[1],$in[2],$in[3],$Icode$fsplit[1],\n";
+     print OUT6 "$in[0],$in[1],$in[2],$in[3],$Icode\n";
   }
  }
 
