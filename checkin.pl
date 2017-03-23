@@ -650,7 +650,6 @@
  "942" => "legal",
  "960" => "legal",
  "962" => "legal",
- "980" => "legal",
 );
 %requiredComments = (
  "ACU" => "AC UNIT",
