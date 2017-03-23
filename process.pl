@@ -2096,15 +2096,15 @@
 );
 ###############################################################################################3
 %idotcommands = (
- # "(" => "BL*", # Begin Line 20110615   removed process_09.pl
+  # "(" => "BL*", # Begin Line 20110615   removed process_09.pl
  # "%" => "OC*", # PC or PT 20110615     removed process_09.pl
  # "+" => "CL*", # Close Figure 20110615 removed process_09.pl
- "." => "B", # Begin Line
- "(" => "B", # Begin Line
- "-" => "BC", # Begin Curve
- "+" => "CLS", # Close Figure
- ")" => "E", # End Line
- ".." => "E", # End Line
+ "." => "L", # Begin Line
+ "(" => "L", # Begin Line
+ "-" => "C", # Begin Curve
+ "+" => "E", # Close Figure
+ ")" => "X", # End Line
+ ".." => "X", # End Line
  # "@" => "X", # End Line
  # "q" => "X", # End Line
 );
@@ -2456,39 +2456,39 @@ while (<IN>) {
    {
    if ($c = $idotcommands{$tok[0]})
      {
-     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c/$fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c/$fsplit[1]\n";
+     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n";
      }
    else
      {
-     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]/$fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]/$fsplit[1]\n";
+     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
      }
    }
  elsif (exists ($symbolCodes{$Icode}))  # Check against symbolCodes list for cells
    {
    if ($c = $idotcommands{$tok[0]})
      {
-     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c/$fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c/$fsplit[1]\n";
+     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n";
      }
    else
      {
-     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]/$fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]/$fsplit[1]\n";
+     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
      }
    }
  elsif (exists ($lineCodes{$Icode}))
    {
    if ($c = $idotcommands{$tok[0]})
      {
-     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c/$fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c/$fsplit[1]\n";
+     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n";
      }
    else
      {
-     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]/$fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]/$fsplit[1]\n";
+     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
      }
    }
 
