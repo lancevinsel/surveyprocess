@@ -2240,11 +2240,13 @@ while (<IN>) {
           $csplit[1] = "$prefix$csplit[1]";
  }
  ########################################
- #NoLine fix
- if  (exists ($noLine{$csplit[0]})) {
-          $csplit[1] = $noLineCounter;
-          $noLineCounter = $noLineCounter + 1;
- }
+ #NoLine fix 
+ # Removed this for ACAD.  This fixed a IDOT problem.  The SMD file 
+ # makes lines for some codes which are usually not codes
+ # if  (exists ($noLine{$csplit[0]})) {
+ # 	 $csplit[1] = $noLineCounter;
+ # 	 $noLineCounter = $noLineCounter + 1;
+ # }
  ########################################Begin sorting and printing
  #################################################
  if  (exists ($bridgeCodes{$csplit[0]}))
