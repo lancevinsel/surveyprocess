@@ -9,7 +9,7 @@
 #####################################################################################
 %pointCodes = (  # ABC -> 123
  #"XXX" => "XXX",
- "ACU" => "282", # Air Conditioning Unit
+ "ACU" => "ACU", # Air Conditioning Unit
  "AEM" => "930", # AG Electric Main
  #"AGE" => "674", # Shoulder Aggregate Edge
  "B62" => "516", # Curb B6-24 Top Back - depreciated
@@ -1795,6 +1795,7 @@
  "707" => "Cut Square",
 );
 %symbolCodes = ( # symbols in IDOTsmd
+ "ACU" => "AC Unit",
  "103" => "Traverse Station",
  "109" => "Horizontal Control Station",
  "200" => "Section Corner",
@@ -2219,20 +2220,20 @@ while (<IN>) {
  $Icode=$pointCodes{$csplit[0]}; ## if the three letter code matches any of the codes
 
 ##############Test Section
-#print OUT1 "alksdf;alkdj   $pointCodes{$csplit[0]}\n";
-#print OUT5 "\n\n\n\in[0] point number      = $in[0]\n";
-#print OUT5 "in[4] full code & comment      = $in[4]\n";
-#print OUT5 "fsplit[0] full code no comment = $fsplit[0]\n";
-#print OUT5 "fsplit[1] comment              = $fsplit[1]\n";
-#print OUT5 "ssplit[0] code and line no.    = $ssplit[0]\n";
-#print OUT5 "ssplit[1] line code            = $ssplit[1]\n";
-#print OUT5 "tok[0] line code               = $tok[0]\n";
-#print OUT5 "tok[1] code, line no., comment = $tok[1]\n";
-#print OUT5 "csplit[0] alpha code           = $csplit[0]\n";
-#print OUT5 "csplit[1] line number          = $csplit[1]\n";
-#print OUT5 "hold                           = $hold\n";
-#print OUT5 "c linecode                     = $c\n";
-#print OUT5 "Icode idot code, line no.      = $Icode\n\n";
+##print OUT1 "alksdf;alkdj   $pointCodes{$csplit[0]}\n";
+#print OUT1 "\n\n\n\in[0] point number      = $in[0]\n";
+#print OUT1 "in[4] full code & comment      = $in[4]\n";
+#print OUT1 "fsplit[0] full code no comment = $fsplit[0]\n";
+#print OUT1 "fsplit[1] comment              = $fsplit[1]\n";
+#print OUT1 "ssplit[0] code and line no.    = $ssplit[0]\n";
+#print OUT1 "ssplit[1] line code            = $ssplit[1]\n";
+#print OUT1 "tok[0] line code               = $tok[0]\n";
+#print OUT1 "tok[1] code, line no., comment = $tok[1]\n";
+#print OUT1 "csplit[0] alpha code           = $csplit[0]\n";
+#print OUT1 "csplit[1] line number          = $csplit[1]\n";
+##print OUT1 "hold                           = $hold\n";
+##print OUT1 "c linecode                     = $c\n";
+#print OUT1 "Icode idot code, line no.      = $Icode\n\n";
         #####################
         #Material type prefix
         if  (exists ($typePrefix{$csplit[0]})) {
