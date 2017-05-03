@@ -170,10 +170,10 @@
  "H2O" => "867", # Water Line
  "HHD" => "275", # Traffic Signal Handhole Double - added v6
  "HHE" => "274", # Handhole - Electric
- "HHF" => "274", # Handhole - Fiber Optic
- "HHT" => "274", # Handhole - Telephone
- "HHR" => "274", # Handhole - Traffic Signal Handhole
- "HHV" => "274", # Handhole - Cable TV
+ "HHF" => "HHF", # Handhole - Fiber Optic
+ "HHT" => "HHT", # Handhole - Telephone
+ "HHR" => "HHR", # Handhole - Traffic Signal Handhole
+ "HHV" => "HHV", # Handhole - Cable TV
  "HWL" => "311",
  "HYD" => "323",
  "INL" => "339", # Inlet
@@ -194,15 +194,15 @@
  "MBX" => "400",
  "MCS" => "297", # Misc. Concrete Slab
  "MED" => "578", # Median
- "MHE" => "280", # Manhole Electric
- "MHF" => "346", # Manhole Fiber Optic
+ "MHE" => "MHE", # Manhole Electric
+ "MHF" => "MHF", # Manhole Fiber Optic
  "MHG" => "346", # Manhole Gas
  "MHS" => "346", # Manhole Traffic Fiber Optic
  "MHM" => "351", # Manhole Storm
  "MHN" => "337", # Manhole Sanitary
  "MHT" => "280", # Manhole Telephone/Communications
  "MHV" => "280", # Manhole Cable TV
- "MHW" => "346", # Manhole Water
+ "MHW" => "MHW", # Manhole Water
  "MSC" => "699", # Misc - added v6
  "MTE" => "330", # Meter - Electric
  "MTG" => "329", # Meter - Gas
@@ -278,7 +278,7 @@
  "SBE" => "282",
  "SBR" => "223", # Traffic Signal Controller - changed v6
  "SBT" => "281", # SPLICE BOX TELEPHONE
- "SBV" => "281", # SPLICE BOX TELEVISION
+ "SBV" => "SBV", # SPLICE BOX TELEVISION
  "SBW" => "281", # Splice Box for Sprinkler System
  "SHA" => "674", # Shoulder - Aggregate
  "SHB" => "674", # Shoulder - Bituminous
@@ -349,7 +349,7 @@
  "VLB" => "342", # Valve Box
  "VLG" => "344", # Gas Valve
  "VLE" => "344",
- "VLN" => "337", # Valve for sanitary force main
+ "VLN" => "VLN", # Valve for sanitary force main
  "VLW" => "343", # Water Valve By Hydrant
  "VNG" => "354", # Gas Vent Pipe
  "VNT" => "354",
@@ -1796,6 +1796,15 @@
 );
 %symbolCodes = ( # symbols in IDOTsmd
  "ACU" => "AC Unit",
+ "HHF" => "Handhole Fiber",
+ "HHT" => "Handhole Communications",
+ "HHR" => "Handhole Traffic",
+ "HHV" => "Handhole TV",
+ "MHE" => "Manhole Electric",
+ "MHF" => "Manhole Fiber",
+ "MHW" => "Manhole Water",
+ "SBV" => "Slice Box TV",
+ "VLN" => "Sanitary Valve-Force Main",
  "103" => "Traverse Station",
  "109" => "Horizontal Control Station",
  "200" => "Section Corner",
