@@ -2252,8 +2252,8 @@ while (<IN>) {
    {
    if ($c = $idotcommands{$tok[0]})
      {
-     print OUT2 "$in[0],$in[1],$in[2],$in[3],$c $Icode$csplit[1] $fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$c $Icode$csplit[1] $fsplit[1]\n";
+     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
      }
    else
      {
@@ -2265,8 +2265,8 @@ while (<IN>) {
    {
    if ($c = $idotcommands{$tok[0]})
      {
-     print OUT4 "$in[0],$in[1],$in[2],$in[3],$c $Icode$csplit[1] $fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$c $Icode$csplit[1] $fsplit[1]\n";
+     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
      }
    else
      {
@@ -2278,8 +2278,8 @@ while (<IN>) {
    {
    if ($c = $idotcommands{$tok[0]})
      {
-     print OUT3 "$in[0],$in[1],$in[2],$in[3],$c $Icode$csplit[1] $fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$c $Icode$csplit[1] $fsplit[1]\n";
+     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
      }
    else
      {
