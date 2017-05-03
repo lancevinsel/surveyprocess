@@ -2240,12 +2240,12 @@ while (<IN>) {
           $prefix = $typePrefix{$csplit[0]};
           $csplit[1] = "$prefix$csplit[1]";
  }
- ########################################
- #NoLine fix
- if  (exists ($noLine{$csplit[0]})) {
-          $csplit[1] = $noLineCounter;
-          $noLineCounter = $noLineCounter + 1;
- }
+# ########################################
+# #NoLine fix
+# if  (exists ($noLine{$csplit[0]})) {
+#          $csplit[1] = $noLineCounter;
+#          $noLineCounter = $noLineCounter + 1;
+# }
  ########################################Begin sorting and printing
  #################################################
  if  (exists ($bridgeCodes{$csplit[0]}))
