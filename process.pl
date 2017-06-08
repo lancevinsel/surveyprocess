@@ -8,21 +8,13 @@
 # Codes not in the list pass through unchanged
 #####################################################################################
 %pointCodes = (  # ABC -> 123
- #"XXX" => "XXX",
  "ACU" => "ACU", # Air Conditioning Unit
- "AEM" => "930", # AG Electric Main
- #"AGE" => "674", # Shoulder Aggregate Edge
- "B62" => "516", # Curb B6-24 Top Back - depreciated
- "B6B" => "509", # Curb B6-12 Top Back - depreciated
- "B6F" => "510", # Curb B6-12 Flowline #deleted v6 # added back v15 - depreciated
- #"B6T" => "508", # Curb B6-12 Top Front #deleted v6
  "BAB" => "615", # Bridge Abutment Cap Top.  The outline of the face,sides,
                   # and top of the abutment.  A 3d line.
  "BAL" => "613", # The outline of the face of the abutment and the face of the
                   # wingwalls.  A 2d line, usually collected prismless.
  "BAR" => "695", # Stop Bar
  "BAS" => "618", # Bridge Approach Slab
- #"BAT" => "615", # Bridge Abutment Top
  "BBA" => "619", # Bridge Deck - AGG - Spots only
  "BBB" => "619", # Bridge Deck - BIT - Spots only
  "BBC" => "619", # Bridge Deck - CONC - Spots only
@@ -30,17 +22,14 @@
  "BBR" => "619", # Bridge Deck - BRICK - Spots only
  "BBS" => "620", # Bridge Seat.  The bridge seat elevation.  For elevation only.  Usually collected
                   # with the "hook".
+ "BBV" => "619", # Bridge Deck - VINYL - Spots only
  "BBW" => "320", # Buffalo Box - Water
- #"BBX" => "320", # Water Buffalo Box
  "BCB" => "611", # Bridge Curb.  The top back of any curb or median on a bridge.
  "BDB" => "619", # Bridge Deck. The line of the bit bridge deck.  A 3d line.
  "BDC" => "619", # Bridge Deck. The line of the concrete bridge deck.  A 3d line.
- "BDP" => "619", # Bridge Deck Plate
  "BDT" => "619", # Bridge Desk Timber
- #"BDK" => "619", # Bridge Deck
  "BEX" => "623", # Bridge Expansion Joint.  A 3d line.
  "BHR" => "624", # Bridge Handrail
- "BLD" => "601", # v16 start of depreciation
  "BLC" => "626", # The bottom of the concrete bridge beams.  Usually taken at
                   # the beginning middle and end oof each span of the bridge beams.
                   # Usually only required on the outside (upstream and downstream) beams.
@@ -58,39 +47,28 @@
  "BPR" => "615", # Pier Cap.  The outline of the face, sides and top of the pier cap.  A 3d line.
  "BPT" => "631", # The pier cap elevation,  For elevation only.  Usually collected
                   # with the "hook".
- #"BRC" => "611", # Bridge Curb
  "BRK" => "607", # Breakline
  "BRR" => "579", # Barrier Wall
  "BSC" => "641", # Bridge Scupper
  "BSH" => "408",
  "BSL" => "412", # Bush Line/ Hedgerow added v6
  "BSS" => "633", # Bridge Structural Steel
- #"BSW" => "291", # Bridge Sidewalk - depreciated
- "BUC" => "600", # Building - Commercial
- "BUP" => "601", # Building - Public
- "BUR" => "602", # Building - Residential
- "BWC" => "619", # Bridge Deck Sidewalk Concrete
  "BWL" => "612", # Bridge Backwall The outline of the face and sides of the
                   # bridge back wall.  A 3d line.
- #"BWT" => "635", # Bridge Wing Wall Top Elevation
  "BWW" => "635", # The outline of the face and sides of the wingwall.  A 3d line with
                   # points at each elevation change.
  "CBM" => "307", # Catch Basin Grate
  "CKH" => "135",
  "CKV" => "134",
- "CLR" => "450", # RR centerline - depreciated
  "CNA" => "607", # Crown - AGG
  "CNB" => "607", # Crown - BIT/HMA - use stripeing as breakline where possible
  "CNC" => "607", # Crown - CONC - use stripeing as breakline where possible
- "CNR" => "607", # Crown - BRICK
  "CNP" => "683", # Canopy
  "CNT" => "225", # Traffic Signal Cantilever/Mast Arm
  "COL" => "609", # Column
  "CPH" => "103", # Control Point - modified v6
+ "CPT" => "???", # Cathodic Protection Test Station
  "CRB" => "501", # Curb Top - Conc - restored to original meaning 
-# "CRC" => "501", # Curb Top - Conc - removed after confused period
-# "CRN" => "501", # Curb Top - Stone - removed after confused period
- "CRN" => "667", # Crown Line - restored to original meaning
  "CRP" => "411", # Crop Line
  "CRW" => "279", # Crosswalk
  "CUB" => "303",
@@ -100,14 +78,12 @@
  "DCA" => "652", # ver12 - Driveway/Commercial Aggregate
  "DCB" => "652", # ver12 - Driveway/Commercial BIT/HMA
  "DCC" => "652", # ver12 - Driveway/Commercial Concrete
- "DCG" => "652", # ver12 - Driveway/Commercial Ground - Field Entrance
  "DCK" => "608", # Deck 
  "DCR" => "652", # ver12 - Driveway/Commercial Brick
  "DFA" => "654", # ver12 - Driveway/Field Aggregate
  "DFB" => "654", # ver12 - Driveway/Field BIT/HMA
- "DFC" => "654", # ver12 - Driveway/Field Concrete
- "DFG" => "654", # ver12 - Driveway/Field Ground - Field Entrance
- "DFR" => "654", # ver12 - Driveway/Field Brick
+ "DFG" => "654", # ver12 - Driveway/Field Ground
+ "DFO" => "654", # ver12 - Driveway/Field Oil & Chip 
  "DPA" => "656", # ver12 - Driveway/Private-Residential Aggregate
  "DPB" => "656", # ver12 - Driveway/Private-Residential BIT/HMA
  "DPC" => "656", # ver12 - Driveway/Private-Residential Concrete
