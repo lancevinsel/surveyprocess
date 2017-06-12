@@ -259,7 +259,6 @@
  "RRF" => "legal", # RR Point of Frog - 1" point
  "RRG" => "legal", # RR Crossing Gate
  "RRH" => "legal", # RR Switch Heater
- "RRM" => "legal", # RR Mile Post
  "RRP" => "legal", # RR Semaphore
  "RRR" => "legal", # RR Rail - Top
  "RRS" => "legal", # RR Point of Switch take shot on side of switch box
