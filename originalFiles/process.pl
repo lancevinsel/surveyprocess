@@ -1,209 +1,4 @@
 #!/bin/perl
-#----------------------------------------
-# process_22.pl
-# added various codes to maintain the detail of Hoelscher's code list
-# added	'N' - Stone/Rock
-# 	'O' - Oil and Chip
-# to Material Modifiers List
-# added Monitoring/Inspection Well 'MWL' IDOT 640
-# added a material modifier to Gutter GU*
-# added a material modifier to CURB "CR*" which causes a conflict with CRB which is our standard concrete back of curb code
-# 'curb bit' becomes CUB instead????
-# add RR mile Post 'RMP'
-# add RR switch heater 'RSH'
-# add RR tie 'RTI'
-# add RR derailer RDR
-# add additional modifier to building.  there are conflicts in the B** series due to bridge codes
-# so I'm moving Building codes to G**
-# G<OM> the first modifiier is the ownership.  This is needed for IDOT.  The second modifier is the material type
-# I added M as a material type for Masonry
-# added PA<M> for patio
-# added SL<M> for slab
-# added RW<M> for Retaining wall material type
-# added WA<M> for Wall material type
-# added ACU for air conditioning unit
-# added COL for column
-# added DCK for deck
-# added V for a material type for vinyl
-# Added a list of Survey Point types using a combination Hoelscher codes and IDOT codes SP<P>
-# A	Traverse Point
-# B	Axle
-# C	Cut Cross
-# D	Concrete Monument
-# E	Crimp Pipe
-# F	Bench Mark
-# G	GPS Monument
-# H	Control Point
-# I	Iron Pipe
-# J	Nail
-# k	Nail & Washer\shiner
-# L	PK Nail
-# M	Mag Nail
-# N	ROW Marker
-# O	RR Spike
-# P	Pole Barn Spike
-# Q	Stone
-# R	Cotton Picker Spindle
-# S	Hub
-# T	Cut Square
-# U	Rebar
-# V	Drill Hole
-# W	Brass Marker
-# X	Iron Rod/Pin
-# Y
-# Z	other
-# Removed the SPC - Special misc code - more confusion
-# Changed a few of the Railroad Related codes so that they all start with RR
-# Added some Railroad related codes too 
-# Added Riser/Feed for the Utilities RS*
-########################################
-#----------------------------------------
-#----------------------------------------
-# process_21.pl
-# add combined ASCII output with all points in one file
-#----------------------------------------
-#----------------------------------------
-# process_20.pl
-# fix bugs in bridge and point files
-# some points getting placed in both files
-# --------------------------------------------
-# process_19.pl
-# 20131107
-# Modified:
-# MHM
-# MHN
-# VLB
-# VLW
-# VLG
-# BBG
-# BBW
-#----------------------------------------
-# process_18.pl
-# 20130621
-# Change *_QA_lines.cor and *_QA_spots.cor to *_PtLn.cor
-# Change *_QA_symbols.cor to *_cell.cor
-# Remove all QA output files
-# Removed the DTM file
-# added:
-#   RPF = point of frog - 1" point
-#   RPS = point of switch
-#   RSW = switch box
-# Goals:
-# rename variables
-# add cathodic protection
-#
-####################################
-# process_17.pl
-# 20130322
-# added:
-#     VNG Gas Vent
-#     PDF Pedestal Fiber Optic
-#     HHF Handhole Fiber Optic
-#     HHV Handhole TV
-#     HHR Traffic Signal Handhole
-#     HHE Handhole Electric
-# change HHT from traffic signal handhole to Handhole Traffic
-#     MHS Manhole Traffic Fiber Optic
-############################################
-##################################
-# process_16.pl 20130116
-# added BWC - Bridge Deck Sidewalk Concrete - BSW is depreciated
-# added BSS - Bridge Structural Steel
-# added BSC - Bridge Scupper
-# added BDP - Bridge Deck Plate
-# change BPA from 624 to 633 and eliminated 'required Comment'"PARAPET'
-# depreciated edge of pavement/edge of shoulder combinations used on IL-83 (fail). ERB-EWC.
-# depreciated RNW Runway
-# depreciated 667 as IDOT code for crown (CRB/CRC) using breakline 607 with material comments for
-  # pavement areas with no stripeing - use stripeing as breakline where possible
-# Crown now has material types: CNB = HMA, CNC = CONC, etc. - see 667 above
-# I'm going to stop using the B6B codes and start using CRB on all curbs unless they are
-  # odd (not B6.12 or B6.24).  Use the IDOT codes of odd curbs. - LV - The B6B and B62 will still
-  # work.
-# Changed BBA/BBB/BBC/BBR from 619 to 621 so that spots land on the Topo_BridgeStructures level
-# added BUC - Building Commercial - BLD is being depreciated
-# added BUP - Building Public - BLD is being depreciated
-# added BUR - Building Residential - BLD is being depreciated
-# changed RR centerline from CLR to RCL
-# added BRR the base of a Barrier Wall
-# added SBW Splice Box Water - weird sprinkler system above ground splice box at US-14 in Mt. Pleasant
-###################################
-#####################################
-# PROCESS_15.pl
-# added SNN - Warning Sign - Sanitary
-# added SNW - Warning Sign - Water
-########################
-#####################################
-# PROCESS_14.pl
-#   added RCK - Rock or Boulder
-########################
-#-----------------------
-# PROCESS_13.PL
-#  ADDED SWA,B,C,R
-# ADDED SBT - SPLICE BOX TELEPHONE
-# added PDE - Pedestal Electric\
-# ADDED BBA, BBB, BBC, BBR - BRIDGE DECK AGG, BIT, CONC, BRICK
-# ADDED BSW - BRIDGE SIDEWALK
-
-#
-####################################
-#----------------------------
-# Process_12.pl
-# added:
-#  LNB = Lane Lines - HMA/BIT
-#  LNC = Lance Lines - Conc
-#  TOE = Toe of Slope
-#  TOP = Top of Slope
-#  RIP = Riprap
-#  DCA = Driveway/Commercial Aggregate
-#  DCB = Driveway/Commercial BIT/HMA
-#  DCC = Driveway/Commercial Concrete
-#  DCG = Driveway/Commercial Ground
-#  DCR = Driveway/Commercial Brick
-#  DFA = Driveway/Field Aggregate
-#  DFB = Driveway/Field BIT/HMA
-#  DFC = Driveway/Field Concrete
-#  DFG = Driveway/Field Ground
-#  DFR = Driveway/Field Brick
-#  DPA = Driveway/Private-Residential Aggregate
-#  DPB = Driveway/Private-Residential BIT/HMA
-#  DPC = Driveway/Private-Residential Concrete
-#  DPG = Driveway/Private-Residential Ground
-#  DPR = Driveway/Private-Residential Brick
-########################################
-#-----------------------
-# Process_11.pl 20111028
-#
-# Added: FOU = Foundation
-#
-########################
-# Process_10.pl 20110729
-#
-# Process_8 had many improvements - however I also migrated to "Mapping Codes"
-# (instead of "Line Codes") as an option in Geopak.  Using the "Mapping Codes" I was
-# finally able to get the curves to work. These codes also needed to be at the beginning of
-# code like BL*EOP1.
-#
-# But the Mapping Code option forced the lines to be created in
-# point number order.  This caused problems in processing.  It ignored
-# the order of the points in the ASCII file.
-# For example, say you missed an EOP1 shot on a cross section and went back to it at the
-# next set up.
-# Now to draw that line correctly using the "Line Coding" option you can reorder the records in
-# the ASCII file like:
-# 1,1000,1000,EOP1,L
-# 2,1000,1010,EOP1,
-# 40,1000,1020,EOP1,
-# 3,1000,1030,EOP1,
-#
-# In the "Mapping Codes" option, the order of the ASCII file is ignored and the EOP1 are sorted
-# so that the line goes 1,2,3,40.
-#
-# This was too big of a complication to screw with; we would need to RENUMBER points to
-# get the line to draw correctly.
-# So this version has the latest code changes (MPS_IDOTCodes_V02_15.xlsx) and reverts back to
-# processing with the "Line Coding" option.
-#
 ##############################################################################
 #
 #########################################################################
@@ -213,21 +8,13 @@
 # Codes not in the list pass through unchanged
 #####################################################################################
 %pointCodes = (  # ABC -> 123
- #"XXX" => "XXX",
- "ACU" => "282", # Air Conditioning Unit
- "AEM" => "930", # AG Electric Main
- #"AGE" => "674", # Shoulder Aggregate Edge
- "B62" => "516", # Curb B6-24 Top Back - depreciated
- "B6B" => "509", # Curb B6-12 Top Back - depreciated
- "B6F" => "510", # Curb B6-12 Flowline #deleted v6 # added back v15 - depreciated
- #"B6T" => "508", # Curb B6-12 Top Front #deleted v6
+ "ACU" => "ACU", # Air Conditioning Unit
  "BAB" => "615", # Bridge Abutment Cap Top.  The outline of the face,sides,
                   # and top of the abutment.  A 3d line.
  "BAL" => "613", # The outline of the face of the abutment and the face of the
                   # wingwalls.  A 2d line, usually collected prismless.
  "BAR" => "695", # Stop Bar
  "BAS" => "618", # Bridge Approach Slab
- #"BAT" => "615", # Bridge Abutment Top
  "BBA" => "619", # Bridge Deck - AGG - Spots only
  "BBB" => "619", # Bridge Deck - BIT - Spots only
  "BBC" => "619", # Bridge Deck - CONC - Spots only
@@ -235,18 +22,14 @@
  "BBR" => "619", # Bridge Deck - BRICK - Spots only
  "BBS" => "620", # Bridge Seat.  The bridge seat elevation.  For elevation only.  Usually collected
                   # with the "hook".
+ "BBV" => "619", # Bridge Deck - VINYL - Spots only
  "BBW" => "320", # Buffalo Box - Water
- #"BBX" => "320", # Water Buffalo Box
  "BCB" => "611", # Bridge Curb.  The top back of any curb or median on a bridge.
- "BCH" => "699", # Bench - like park bench
  "BDB" => "619", # Bridge Deck. The line of the bit bridge deck.  A 3d line.
  "BDC" => "619", # Bridge Deck. The line of the concrete bridge deck.  A 3d line.
- "BDP" => "619", # Bridge Deck Plate
  "BDT" => "619", # Bridge Desk Timber
- #"BDK" => "619", # Bridge Deck
  "BEX" => "623", # Bridge Expansion Joint.  A 3d line.
  "BHR" => "624", # Bridge Handrail
- "BLD" => "601", # v16 start of depreciation
  "BLC" => "626", # The bottom of the concrete bridge beams.  Usually taken at
                   # the beginning middle and end oof each span of the bridge beams.
                   # Usually only required on the outside (upstream and downstream) beams.
@@ -264,39 +47,28 @@
  "BPR" => "615", # Pier Cap.  The outline of the face, sides and top of the pier cap.  A 3d line.
  "BPT" => "631", # The pier cap elevation,  For elevation only.  Usually collected
                   # with the "hook".
- #"BRC" => "611", # Bridge Curb
  "BRK" => "607", # Breakline
  "BRR" => "579", # Barrier Wall
  "BSC" => "641", # Bridge Scupper
  "BSH" => "408",
  "BSL" => "412", # Bush Line/ Hedgerow added v6
  "BSS" => "633", # Bridge Structural Steel
- #"BSW" => "291", # Bridge Sidewalk - depreciated
- "BUC" => "600", # Building - Commercial
- "BUP" => "601", # Building - Public
- "BUR" => "602", # Building - Residential
- "BWC" => "619", # Bridge Deck Sidewalk Concrete
  "BWL" => "612", # Bridge Backwall The outline of the face and sides of the
                   # bridge back wall.  A 3d line.
- #"BWT" => "635", # Bridge Wing Wall Top Elevation
  "BWW" => "635", # The outline of the face and sides of the wingwall.  A 3d line with
                   # points at each elevation change.
  "CBM" => "307", # Catch Basin Grate
  "CKH" => "135",
  "CKV" => "134",
- "CLR" => "450", # RR centerline - depreciated
  "CNA" => "607", # Crown - AGG
  "CNB" => "607", # Crown - BIT/HMA - use stripeing as breakline where possible
  "CNC" => "607", # Crown - CONC - use stripeing as breakline where possible
- "CNR" => "607", # Crown - BRICK
  "CNP" => "683", # Canopy
  "CNT" => "225", # Traffic Signal Cantilever/Mast Arm
  "COL" => "609", # Column
  "CPH" => "103", # Control Point - modified v6
- "CRB" => "501", # Curb Top - Bit
- "CRC" => "501", # Curb Top - Conc
- "CRN" => "501", # Curb Top - Stone
-# "CRN" => "667", # Depreciated see CNA-CNR
+ "CPT" => "???", # Cathodic Protection Test Station
+ "CRB" => "501", # Curb Top - Conc - restored to original meaning 
  "CRP" => "411", # Crop Line
  "CRW" => "279", # Crosswalk
  "CUB" => "303",
@@ -306,14 +78,12 @@
  "DCA" => "652", # ver12 - Driveway/Commercial Aggregate
  "DCB" => "652", # ver12 - Driveway/Commercial BIT/HMA
  "DCC" => "652", # ver12 - Driveway/Commercial Concrete
- "DCG" => "652", # ver12 - Driveway/Commercial Ground - Field Entrance
  "DCK" => "608", # Deck 
  "DCR" => "652", # ver12 - Driveway/Commercial Brick
  "DFA" => "654", # ver12 - Driveway/Field Aggregate
  "DFB" => "654", # ver12 - Driveway/Field BIT/HMA
- "DFC" => "654", # ver12 - Driveway/Field Concrete
- "DFG" => "654", # ver12 - Driveway/Field Ground - Field Entrance
- "DFR" => "654", # ver12 - Driveway/Field Brick
+ "DFG" => "654", # ver12 - Driveway/Field Ground
+ "DFO" => "654", # ver12 - Driveway/Field Oil & Chip 
  "DPA" => "656", # ver12 - Driveway/Private-Residential Aggregate
  "DPB" => "656", # ver12 - Driveway/Private-Residential BIT/HMA
  "DPC" => "656", # ver12 - Driveway/Private-Residential Concrete
@@ -376,10 +146,10 @@
  "H2O" => "867", # Water Line
  "HHD" => "275", # Traffic Signal Handhole Double - added v6
  "HHE" => "274", # Handhole - Electric
- "HHF" => "274", # Handhole - Fiber Optic
- "HHT" => "274", # Handhole - Telephone
- "HHR" => "274", # Handhole - Traffic Signal Handhole
- "HHV" => "274", # Handhole - Cable TV
+ "HHF" => "HHF", # Handhole - Fiber Optic
+ "HHT" => "HHT", # Handhole - Telephone
+ "HHR" => "HHR", # Handhole - Traffic Signal Handhole
+ "HHV" => "HHV", # Handhole - Cable TV
  "HWL" => "311",
  "HYD" => "323",
  "INL" => "339", # Inlet
@@ -400,15 +170,15 @@
  "MBX" => "400",
  "MCS" => "297", # Misc. Concrete Slab
  "MED" => "578", # Median
- "MHE" => "280", # Manhole Electric
- "MHF" => "346", # Manhole Fiber Optic
+ "MHE" => "MHE", # Manhole Electric
+ "MHF" => "MHF", # Manhole Fiber Optic
  "MHG" => "346", # Manhole Gas
  "MHS" => "346", # Manhole Traffic Fiber Optic
  "MHM" => "351", # Manhole Storm
  "MHN" => "337", # Manhole Sanitary
  "MHT" => "280", # Manhole Telephone/Communications
  "MHV" => "280", # Manhole Cable TV
- "MHW" => "346", # Manhole Water
+ "MHW" => "MHW", # Manhole Water
  "MSC" => "699", # Misc - added v6
  "MTE" => "330", # Meter - Electric
  "MTG" => "329", # Meter - Gas
@@ -484,7 +254,7 @@
  "SBE" => "282",
  "SBR" => "223", # Traffic Signal Controller - changed v6
  "SBT" => "281", # SPLICE BOX TELEPHONE
- "SBV" => "281", # SPLICE BOX TELEVISION
+ "SBV" => "SBV", # SPLICE BOX TELEVISION
  "SBW" => "281", # Splice Box for Sprinkler System
  "SHA" => "674", # Shoulder - Aggregate
  "SHB" => "674", # Shoulder - Bituminous
@@ -554,8 +324,8 @@
  "UND" => "381", # Underdrain
  "VLB" => "342", # Valve Box
  "VLG" => "344", # Gas Valve
- "VLe" => "344",
- "VLN" => "337", # Valve for sanitary force main
+ "VLE" => "344",
+ "VLN" => "VLN", # Valve for sanitary force main
  "VLW" => "343", # Water Valve By Hydrant
  "VNG" => "354", # Gas Vent Pipe
  "VNT" => "354",
@@ -2001,6 +1771,16 @@
  "707" => "Cut Square",
 );
 %symbolCodes = ( # symbols in IDOTsmd
+ "ACU" => "AC Unit",
+ "HHF" => "Handhole Fiber",
+ "HHT" => "Handhole Communications",
+ "HHR" => "Handhole Traffic",
+ "HHV" => "Handhole TV",
+ "MHE" => "Manhole Electric",
+ "MHF" => "Manhole Fiber",
+ "MHW" => "Manhole Water",
+ "SBV" => "Slice Box TV",
+ "VLN" => "Sanitary Valve-Force Main",
  "103" => "Traverse Station",
  "109" => "Horizontal Control Station",
  "200" => "Section Corner",
@@ -2097,15 +1877,15 @@
 );
 ###############################################################################################3
 %idotcommands = (
-  # "(" => "BL*", # Begin Line 20110615   removed process_09.pl
+ # "(" => "BL*", # Begin Line 20110615   removed process_09.pl
  # "%" => "OC*", # PC or PT 20110615     removed process_09.pl
  # "+" => "CL*", # Close Figure 20110615 removed process_09.pl
- "." => "L", # Begin Line
- "(" => "L", # Begin Line
- "-" => "C", # Begin Curve
- "+" => "E", # Close Figure
- ")" => "X", # End Line
- ".." => "X", # End Line
+ "." => "B", # Begin Line
+ "(" => "B", # Begin Line
+ "-" => "BC", # Begin Curve
+ "+" => "CLS", # Close Figure
+ ")" => "E", # End Line
+ ".." => "E", # End Line
  # "@" => "X", # End Line
  # "q" => "X", # End Line
 );
@@ -2242,13 +2022,6 @@
  "SNC" => "1", # 423 - Sign - Commercial
  "TIL" => "1", # 304 - TILE
  "DSP" => "2", # 304 - DOWNSPOUT
- "CRB" => "1", # 501 - Curb Top - Bit
- "CRC" => "2", # 501 - Curb Top - Conc
- "CRN" => "3", # 501 - Curb Top - Stone
- "GUB" => "1", # 575 - Gutter/Flowline - HMA
- "GUC" => "2", # 575 - Gutter/Flowline - CONC
- "GUN" => "3", # 575 - Gutter/Flowline - Stone
- "GUT" => "4", # 575 - Gutter/Flowline
  "GCC" => "1", # 600 - Building - Commercial - Concrete
  "GCF" => "2", # 600 - Building - Commercial - Wood Frame
  "GCM" => "3", # 600 - Building - Commercial - Masonry
@@ -2426,77 +2199,77 @@ while (<IN>) {
  my @csplit = ($ssplit[0] =~ /(\w\w\w)(\d*)/); # this is for QAQC
    # $csplit[0] = 3 letter code
    # $csplit[1] = line number
- if (length($fsplit[1])>0) {##############lv
-  $fsplit[1]="\;$fsplit[1]"; ########lv - adds the semi-colon before the Comment
- }
+# if (length($fsplit[1])>0) {##############lv
+#  $fsplit[1]="\;$fsplit[1]"; ########lv - adds the semi-colon before the Comment
+# }
  $Icode=$pointCodes{$csplit[0]}; ## if the three letter code matches any of the codes
 
 ##############Test Section
-#print OUT1 "alksdf;alkdj   $pointCodes{$csplit[0]}\n";
-#print OUT5 "\n\n\n\in[0] point number      = $in[0]\n";
-#print OUT5 "in[4] full code & comment      = $in[4]\n";
-#print OUT5 "fsplit[0] full code no comment = $fsplit[0]\n";
-#print OUT5 "fsplit[1] comment              = $fsplit[1]\n";
-#print OUT5 "ssplit[0] code and line no.    = $ssplit[0]\n";
-#print OUT5 "ssplit[1] line code            = $ssplit[1]\n";
-#print OUT5 "tok[0] line code               = $tok[0]\n";
-#print OUT5 "tok[1] code, line no., comment = $tok[1]\n";
-#print OUT5 "csplit[0] alpha code           = $csplit[0]\n";
-#print OUT5 "csplit[1] line number          = $csplit[1]\n";
-#print OUT5 "hold                           = $hold\n";
-#print OUT5 "c linecode                     = $c\n";
-#print OUT5 "Icode idot code, line no.      = $Icode\n\n";
+##print OUT1 "alksdf;alkdj   $pointCodes{$csplit[0]}\n";
+#print OUT1 "\n\n\n\in[0] point number      = $in[0]\n";
+#print OUT1 "in[4] full code & comment      = $in[4]\n";
+#print OUT1 "fsplit[0] full code no comment = $fsplit[0]\n";
+#print OUT1 "fsplit[1] comment              = $fsplit[1]\n";
+#print OUT1 "ssplit[0] code and line no.    = $ssplit[0]\n";
+#print OUT1 "ssplit[1] line code            = $ssplit[1]\n";
+#print OUT1 "tok[0] line code               = $tok[0]\n";
+#print OUT1 "tok[1] code, line no., comment = $tok[1]\n";
+#print OUT1 "csplit[0] alpha code           = $csplit[0]\n";
+#print OUT1 "csplit[1] line number          = $csplit[1]\n";
+##print OUT1 "hold                           = $hold\n";
+##print OUT1 "c linecode                     = $c\n";
+#print OUT1 "Icode idot code, line no.      = $Icode\n\n";
         #####################
         #Material type prefix
         if  (exists ($typePrefix{$csplit[0]})) {
           $prefix = $typePrefix{$csplit[0]};
           $csplit[1] = "$prefix$csplit[1]";
  }
- ########################################
- #NoLine fix
- if  (exists ($noLine{$csplit[0]})) {
-          $csplit[1] = $noLineCounter;
-          $noLineCounter = $noLineCounter + 1;
- }
+# ########################################
+# #NoLine fix
+# if  (exists ($noLine{$csplit[0]})) {
+#          $csplit[1] = $noLineCounter;
+#          $noLineCounter = $noLineCounter + 1;
+# }
  ########################################Begin sorting and printing
  #################################################
  if  (exists ($bridgeCodes{$csplit[0]}))
    {
    if ($c = $idotcommands{$tok[0]})
      {
-     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n";
+     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
      }
    else
      {
-     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
+     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
      }
    }
  elsif (exists ($symbolCodes{$Icode}))  # Check against symbolCodes list for cells
    {
    if ($c = $idotcommands{$tok[0]})
      {
-     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n";
+     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
      }
    else
      {
-     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
+     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
      }
    }
  elsif (exists ($lineCodes{$Icode}))
    {
    if ($c = $idotcommands{$tok[0]})
      {
-     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],$c\n";
+     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
      }
    else
      {
-     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1]$fsplit[1],\n";
+     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
+     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
      }
    }
 
