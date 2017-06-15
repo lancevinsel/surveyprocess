@@ -1,7 +1,6 @@
-$cflag = "XXXcontrolXXX";
-$aflag = "XXXalphaXXX";
-$oflag = "XXXoutlierXXX";
-#####################
+use strict;
+use warnings;
+
 # Some Global Vars
 $figname="";
 $curPtNum="";
@@ -10,28 +9,25 @@ $lastFigname="";
 %activeStrings=();
 $curIsString=0;
 $lastWasString=0;
-$comment=""; #lv added
+$comment="";
 $globalcomment="";
 undef @ssplit;
-##### added lv to make comment $fsplit[1] available to processpoint()
-#####################
+$cflag = "XXXcontrolXXX";
+$aflag = "XXXalphaXXX";
+$oflag = "XXXoutlierXXX";
 
-
-
-
-
+# --------------------
 sub generateNextPtNum {
  return $_nextAutogenPtNum++;
 }
-##########
-####################################### Start of Main Program
+#------------------- Start of Main Program
 if ($#ARGV<0) {
  die "Syntax:\nperl fbk.pl <input file name> <start ptnum for new pts>\n";
 }
-$fname=$ARGV[0];
-$fname =~ s/\.[^.]*$//;
+$filename=$ARGV[0];
+$filename =~ s/\.[^.]*$//;
 open(IN,$ARGV[0]);
-open(OUT,">${fname}.csv");
+open(OUT,">${filename}.csv");
 if ($#ARGV>0) {
  $_nextAutogenPtNum=$ARGV[1];
 }
