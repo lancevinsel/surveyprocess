@@ -39,9 +39,13 @@ while (<IN>) {
  @in = split(/,/, substr(uc, 0, -1), 5); # forces text to be uppercase
  my @firstsplit = split(/\s+/,$in[4],2); # this separates the full code from the field comments
      #using the first whitespace as the separator.
-     $pointCode    = $firstsplit[0];
+#    print OUT "firstsplit[0] =		$firstsplit[0]\n";
+#    print OUT "firstsplit[1] =		$firstsplit[1]\n";
+     $MPSlineCode    = $firstsplit[0];
+#    print OUT "MPSlineCode =		$MPSlineCode\n";
      $fieldComment = $firstsplit[1];
- my @pointCodeSplit = ($pointCode =~ /(\w+)*(\W+)/);
+#    print OUT "fieldComment =		$fieldComment\n";
+ my @pointCodeSplit = ($MPSlineCode =~ /(\w+)*(\W+)/);
 #    print OUT "pointCodeSplit[0] = $pointCodeSplit[0]\n";
 #    print OUT "pointCodeSplit[1] = $pointCodeSplit[1]\n";
     if ($pointCodeSplit[1]) {
