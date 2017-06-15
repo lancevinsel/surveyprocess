@@ -36,15 +36,15 @@ else {
 }
 while (<IN>) {
  $curIsString=0;
- @in = split(/,/, substr(uc, 0, -1), 5); #note: forces text to be uppercase
- my @fsplit = split(/\s+/,$in[4],2); #added lv - this separates the code from the comments
-     #using the first? whitespace as the separator so $fplit[0] is the full code and $fsplit[1] = the comment
-        my @ssplit = ($fsplit[0] =~ /(\w+)*(\W+)/);
+ @in = split(/,/, substr(uc, 0, -1), 5); # forces text to be uppercase
+ my @firstsplit = split(/\s+/,$in[4],2); # this separates the code from the comments
+     #using the first? whitespace as the separator so $fplit[0] is the full code and $firstsplit[1] = the comment
+        my @ssplit = ($firstsplit[0] =~ /(\w+)*(\W+)/);
 #    print OUT "ssplit[0] = $ssplit[0]\n";
 #    print OUT "ssplit[1] = $ssplit[1]\n";
     if ($ssplit[1]) {
  } else {
-  $ssplit[0] = $fsplit[0];
+  $ssplit[0] = $firstsplit[0];
   $ssplit[1] = "";
  }
 # print OUT "ssplit[0] = $ssplit[0]\n";
@@ -54,20 +54,20 @@ while (<IN>) {
     # or numeric - \W is non alpha or numeric
     # $ssplit[0] is the code and line number; ssplit[1] is the line code
  $tok[0] = $ssplit[1]; #added lv - this is the line code
- $tok[1] = "$ssplit[0] $fsplit[1]"; #added lv - this is the code and the comment, no line code
+ $tok[1] = "$ssplit[0] $firstsplit[1]"; #added lv - this is the code and the comment, no line code
  # @tok = split(/\s+/, $in[4], 2);
  my @csplit = ($ssplit[0] =~ /(\w\w\w)(\d*)/);
 
 
 ########################test for comment
-# if (length($fsplit[1])>0) {##############lv  test for comment
-#  $fsplit[1]="\;$fsplit[1]";########lv
-#  $globalcomment = $fsplit[1]; #### added lv to make comment $fsplit[1] available to processpoint()
+# if (length($firstsplit[1])>0) {##############lv  test for comment
+#  $firstsplit[1]="\;$firstsplit[1]";########lv
+#  $globalcomment = $firstsplit[1]; #### added lv to make comment $firstsplit[1] available to processpoint()
 # }
 ##### 1.A. cHANGES TO fIELD cOMMENT idot MISC CODES
-# if ($fsplit[1] =~ /\d[3]/)  {
- if ($fsplit[1] =~ /\d\d\d/)  {
-#  print OUT "fsplit[1] = $fsplit[1]\n";
+# if ($firstsplit[1] =~ /\d[3]/)  {
+ if ($firstsplit[1] =~ /\d\d\d/)  {
+#  print OUT "firstsplit[1] = $firstsplit[1]\n";
 #  print OUT "var1 = $&\n";
   $possibleMiscCode = $&;
   $description = $IDOTmiscCodes{$possibleMiscCode};
@@ -75,12 +75,12 @@ while (<IN>) {
 #  print OUT "description = $description\n";
  }
  if ($description) {
-  $fieldComment = $fsplit[1];
+  $fieldComment = $firstsplit[1];
 #  print OUT "fieldcomment1 = $fieldComment\n";
   $fieldComment =~ s/$possibleMiscCode/$description/;
 #  print OUT "fieldcomment2 = $fieldComment\n";
  } else {
-  $fieldComment = $fsplit[1];
+  $fieldComment = $firstsplit[1];
 #  print OUT "fieldcomment3 = $fieldComment\n";
  }
 #####1.B sEARCH FOR DELETEABLE CODES
@@ -144,8 +144,8 @@ while (<IN>) {
 # print OUT "in[2] easting                  = $in[2]\n";
 # print OUT "in[3] elevation                = $in[3]\n";
 # print OUT "in[4] full code & comment      = $in[4]\n";
-# print OUT "fsplit[0] full code no comment = $fsplit[0]\n";
-# print OUT "fsplit[1] comment              = $fsplit[1]\n";
+# print OUT "firstsplit[0] full code no comment = $firstsplit[0]\n";
+# print OUT "firstsplit[1] comment              = $firstsplit[1]\n";
 # print OUT "ssplit[0] code and line no.    = $ssplit[0]\n";
 # print OUT "ssplit[1] line code            = $ssplit[1]\n";
 # print OUT "tok[0] line code               = $tok[0]\n";
@@ -178,11 +178,11 @@ while (<IN>) {
  $lastPtNum=$in[0];
  $figname="";
  $comment="";  #### added lv
- $globalcomment="";  #### added lv to make comment $fsplit[1] available to processpoint()
+ $globalcomment="";  #### added lv to make comment $firstsplit[1] available to processpoint()
  $ssplit[0]="";
- $fsplit[0]="";
+ $firstsplit[0]="";
  $ssplit[1]="";
- $fsplit[1]="";
+ $firstsplit[1]="";
  $csplit[0]="";
  $csplit[1]="";
  $possibleMiscCode="";
