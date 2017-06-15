@@ -11,7 +11,7 @@ $curIsString=0;
 $lastWasString=0;
 $comment="";
 $globalcomment="";
-undef @ssplit;
+undef @pointCodeSplit;
 $cflag = "XXXcontrolXXX";
 $aflag = "XXXalphaXXX";
 $oflag = "XXXoutlierXXX";
@@ -37,26 +37,28 @@ else {
 while (<IN>) {
  $curIsString=0;
  @in = split(/,/, substr(uc, 0, -1), 5); # forces text to be uppercase
- my @firstsplit = split(/\s+/,$in[4],2); # this separates the code from the comments
-     #using the first? whitespace as the separator so $fplit[0] is the full code and $firstsplit[1] = the comment
-        my @ssplit = ($firstsplit[0] =~ /(\w+)*(\W+)/);
-#    print OUT "ssplit[0] = $ssplit[0]\n";
-#    print OUT "ssplit[1] = $ssplit[1]\n";
-    if ($ssplit[1]) {
+ my @firstsplit = split(/\s+/,$in[4],2); # this separates the full code from the field comments
+     #using the first whitespace as the separator.
+     $pointCode    = $firstsplit[0];
+     $fieldComment = $firstsplit[1];
+ my @pointCodeSplit = ($pointCode =~ /(\w+)*(\W+)/);
+#    print OUT "pointCodeSplit[0] = $pointCodeSplit[0]\n";
+#    print OUT "pointCodeSplit[1] = $pointCodeSplit[1]\n";
+    if ($pointCodeSplit[1]) {
  } else {
-  $ssplit[0] = $firstsplit[0];
-  $ssplit[1] = "";
+  $pointCodeSplit[0] = $firstsplit[0];
+  $pointCodeSplit[1] = "";
  }
-# print OUT "ssplit[0] = $ssplit[0]\n";
-# print OUT "ssplit[1] = $ssplit[1]\n";
+# print OUT "pointCodeSplit[0] = $pointCodeSplit[0]\n";
+# print OUT "pointCodeSplit[1] = $pointCodeSplit[1]\n";
     #added lv - this separates the 3 letter and
     # line number from the line coding symbol; \w is alpha
     # or numeric - \W is non alpha or numeric
-    # $ssplit[0] is the code and line number; ssplit[1] is the line code
- $tok[0] = $ssplit[1]; #added lv - this is the line code
- $tok[1] = "$ssplit[0] $firstsplit[1]"; #added lv - this is the code and the comment, no line code
+    # $pointCodeSplit[0] is the code and line number; pointCodeSplit[1] is the line code
+ $tok[0] = $pointCodeSplit[1]; #added lv - this is the line code
+ $tok[1] = "$pointCodeSplit[0] $firstsplit[1]"; #added lv - this is the code and the comment, no line code
  # @tok = split(/\s+/, $in[4], 2);
- my @csplit = ($ssplit[0] =~ /(\w\w\w)(\d*)/);
+ my @csplit = ($pointCodeSplit[0] =~ /(\w\w\w)(\d*)/);
 
 
 ########################test for comment
@@ -109,28 +111,28 @@ while (<IN>) {
 
 
 #### 4 lINECODEl
- if ($ssplit[1] =~ /\.\./) {   #END LINE
+ if ($pointCodeSplit[1] =~ /\.\./) {   #END LINE
 #  print OUT "a;lskdjfl\n";
-#  print OUT "ssplit[1] = $ssplit[1]\n";
+#  print OUT "pointCodeSplit[1] = $pointCodeSplit[1]\n";
   $linecode = ")";
  }
- if ($ssplit[1] =~ /^\.$/) { #BEGIN LINE
+ if ($pointCodeSplit[1] =~ /^\.$/) { #BEGIN LINE
   $linecode = "(";
  }
- if ($ssplit[1] =~ /-/) { #PC or PT (substitiute for OC);Graef Curve 20110610
+ if ($pointCodeSplit[1] =~ /-/) { #PC or PT (substitiute for OC);Graef Curve 20110610
   $linecode = "%";
  }
- if ($ssplit[1] =~ /@/) { #END LINE
+ if ($pointCodeSplit[1] =~ /@/) { #END LINE
   $linecode = ")";
  }
- #if ($ssplit[1] =~ /-/) { #PC CURVE
+ #if ($pointCodeSplit[1] =~ /-/) { #PC CURVE
  # $linecode = "-";
  #}
- if ($ssplit[1] =~ /\+/) { #CLOSE FIGURE
+ if ($pointCodeSplit[1] =~ /\+/) { #CLOSE FIGURE
   $linecode = "+";
  }
  $comment = " $mcomment $fieldComment $commentFlag";
- $checkInCode = "$ssplit[0]$linecode$comment";
+ $checkInCode = "$pointCodeSplit[0]$linecode$comment";
  $checkInCode =~ s/  / /g;
  $checkInCode =~ s/  / /g;
 
@@ -146,8 +148,8 @@ while (<IN>) {
 # print OUT "in[4] full code & comment      = $in[4]\n";
 # print OUT "firstsplit[0] full code no comment = $firstsplit[0]\n";
 # print OUT "firstsplit[1] comment              = $firstsplit[1]\n";
-# print OUT "ssplit[0] code and line no.    = $ssplit[0]\n";
-# print OUT "ssplit[1] line code            = $ssplit[1]\n";
+# print OUT "pointCodeSplit[0] code and line no.    = $pointCodeSplit[0]\n";
+# print OUT "pointCodeSplit[1] line code            = $pointCodeSplit[1]\n";
 # print OUT "tok[0] line code               = $tok[0]\n";
 # print OUT "tok[1] code, line no., comment = $tok[1]\n";
 # print OUT "csplit[0] code                 = $csplit[0]\n";
@@ -179,9 +181,9 @@ while (<IN>) {
  $figname="";
  $comment="";  #### added lv
  $globalcomment="";  #### added lv to make comment $firstsplit[1] available to processpoint()
- $ssplit[0]="";
+ $pointCodeSplit[0]="";
  $firstsplit[0]="";
- $ssplit[1]="";
+ $pointCodeSplit[1]="";
  $firstsplit[1]="";
  $csplit[0]="";
  $csplit[1]="";
