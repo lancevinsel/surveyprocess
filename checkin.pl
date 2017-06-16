@@ -1,6 +1,7 @@
 use strict;
 use warnings;
-
+use lib "C:\git-repos\surveyprocess\modules";
+use lib "C:\git-repos\surveyprocess\lists";
 # Some Global Vars
 $figname="";
 $lastPtNum="";
@@ -67,26 +68,28 @@ while (<IN>) {
 		# print OUT "MPScode			= $MPScode\n";
 	$lineNumber = lineNumberSplit[1];
 		# print OUT "lineNumber			= $lineNumber\n";
+# need to parse the fullComment for:
+# 1.  IDOT misc code
+# 2.  multiCodeDelimiter - this probably needs to be done first  and a new point created for Geopak
+# 
 
-########################test for comment
-# if (length($fullComment)>0) {##############lv  test for comment
-#  $fullComment="\;$fullComment";########lv
-#  $globalcomment = $fullComment; #### added lv to make comment $fullComment available to processpoint()
-# }
-##### 1.A. cHANGES TO fIELD cOMMENT idot MISC CODES
-# if ($fullComment =~ /\d[3]/)  {
- if ($fullComment =~ /\d\d\d/)  {
-#  print OUT "fullComment = $fullComment\n";
-#  print OUT "var1 = $&\n";
-  $possibleMiscCode = $&;
-  $description = $IDOTmiscCodes{$possibleMiscCode};
-#  print OUT "possibleMiscCode = $possibleMiscCode\n";
-#  print OUT "description = $description\n";
- }
- if ($description) {
-  $fullComment = $fullComment;
-#  print OUT "fullComment1 = $fullComment\n";
-  $fullComment =~ s/$possibleMiscCode/$description/;
+	my @fullCommentSplit = (split(/\s+/,$fullComment,2); # This separates the full code by the first
+		# whitespace
+		# print OUT "fullCommentSplit[0]		= $fullCommentSplit[0]\n";
+		# print OUT "fullCommentSplit[1]		= $fullCommentSplit[1]\n";
+	$numericComment = fullCommentSplit[0];
+		# print OUT "numericComment			= $numericComment\n";
+	$textComment = fullCommentSplit[1];
+		# print OUT "textComment			= $textComment\n";
+	if ($numericComment =~ /\d{3}/)  {
+		$description = $IDOTmiscCodes::IDOTmiscCodes{$numericComment};
+		if ($description) {
+			
+
+			Iknow this isn't right - have a good weekend
+
+
+		$fullComment = $description + textComment:
 #  print OUT "fullComment2 = $fullComment\n";
  } else {
   $fullComment = $fullComment;
