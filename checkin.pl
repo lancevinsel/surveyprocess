@@ -3,7 +3,6 @@ use warnings;
 
 # Some Global Vars
 $figname="";
-$curPtNum="";
 $lastPtNum="";
 $lastFigname="";
 %activeStrings=();
@@ -18,62 +17,62 @@ $oflag = "XXXoutlierXXX";
 
 # --------------------
 sub generateNextPtNum {
- return $_nextAutogenPtNum++;
+	return $_nextAutogenPtNum++;
 }
 #------------------- Start of Main Program
 if ($#ARGV<0) {
- die "Syntax:\nperl fbk.pl <input file name> <start ptnum for new pts>\n";
+	die "Syntax:\nperl fbk.pl <input file name> <start ptnum for new pts>\n";
 }
 $filename=$ARGV[0];
 $filename =~ s/\.[^.]*$//;
 open(IN,$ARGV[0]);
 open(OUT,">${filename}.csv");
 if ($#ARGV>0) {
- $_nextAutogenPtNum=$ARGV[1];
+	$_nextAutogenPtNum=$ARGV[1];
 }
 else {
- $_nextAutogenPtNum=100000;
+	$_nextAutogenPtNum=100000;
 }
 while (<IN>) {
- $curIsString=0;
- @in = split(/,/, substr(uc, 0, -1), 5); # forces text to be uppercase
- my @firstsplit = split(/\s+/,$in[4],2); # this separates the full code from the field comments
-     #using the first whitespace as the separator.
-#    print OUT "firstsplit[0] =		$firstsplit[0]\n";
-#    print OUT "firstsplit[1] =		$firstsplit[1]\n";
-     $MPSlineCode    = $firstsplit[0];
-#    print OUT "MPSlineCode =		$MPSlineCode\n";
-     $fieldComment = $firstsplit[1];
-#    print OUT "fieldComment =		$fieldComment\n";
- my @pointCodeSplit = ($MPSlineCode =~ /(\w+)*(\W+)/);
-#    print OUT "pointCodeSplit[0] = $pointCodeSplit[0]\n";
-#    print OUT "pointCodeSplit[1] = $pointCodeSplit[1]\n";
-    if ($pointCodeSplit[1]) {
- } else {
-  $pointCodeSplit[0] = $firstsplit[0];
-  $pointCodeSplit[1] = "";
- }
-# print OUT "pointCodeSplit[0] = $pointCodeSplit[0]\n";
-# print OUT "pointCodeSplit[1] = $pointCodeSplit[1]\n";
+	$curIsString=0;
+	@in = split(/,/, substr(uc, 0, -1), 5); # forces text to be uppercase
+	my @codeCommentSplit = split(/\s+/,$in[4],2); # this separates the fullCode from the fullComment
+		#using the first whitespace as the separator.
+		#    print OUT "codeCommentSplit[0] =		$codeCommentSplit[0]\n";
+		#    print OUT "codeCommentSplit[1] =		$codeCommentSplit[1]\n";
+	$fullCode    = $codeCommentSplit[0];
+		#    print OUT "fullCode =		$fullCode\n";
+	$fullComment = $codeCommentSplit[1];
+		#    print OUT "fullComment =		$fullComment\n";
+	my @pointCodeSplit = ($fullCode =~ /(\w+)*(\W+)/);
+		#    print OUT "pointCodeSplit[0] = $pointCodeSplit[0]\n";
+		#    print OUT "pointCodeSplit[1] = $pointCodeSplit[1]\n";
+	if ($pointCodeSplit[1]) {
+	} else {
+		$pointCodeSplit[0] = $codeCommentSplit[0];
+		$pointCodeSplit[1] = "";
+	}
+		# print OUT "pointCodeSplit[0] = $pointCodeSplit[0]\n";
+		# print OUT "pointCodeSplit[1] = $pointCodeSplit[1]\n";
     #added lv - this separates the 3 letter and
     # line number from the line coding symbol; \w is alpha
     # or numeric - \W is non alpha or numeric
     # $pointCodeSplit[0] is the code and line number; pointCodeSplit[1] is the line code
  $tok[0] = $pointCodeSplit[1]; #added lv - this is the line code
- $tok[1] = "$pointCodeSplit[0] $firstsplit[1]"; #added lv - this is the code and the comment, no line code
+ $tok[1] = "$pointCodeSplit[0] $codeCommentSplit[1]"; #added lv - this is the code and the comment, no line code
  # @tok = split(/\s+/, $in[4], 2);
  my @csplit = ($pointCodeSplit[0] =~ /(\w\w\w)(\d*)/);
 
 
 ########################test for comment
-# if (length($firstsplit[1])>0) {##############lv  test for comment
-#  $firstsplit[1]="\;$firstsplit[1]";########lv
-#  $globalcomment = $firstsplit[1]; #### added lv to make comment $firstsplit[1] available to processpoint()
+# if (length($codeCommentSplit[1])>0) {##############lv  test for comment
+#  $codeCommentSplit[1]="\;$codeCommentSplit[1]";########lv
+#  $globalcomment = $codeCommentSplit[1]; #### added lv to make comment $codeCommentSplit[1] available to processpoint()
 # }
 ##### 1.A. cHANGES TO fIELD cOMMENT idot MISC CODES
-# if ($firstsplit[1] =~ /\d[3]/)  {
- if ($firstsplit[1] =~ /\d\d\d/)  {
-#  print OUT "firstsplit[1] = $firstsplit[1]\n";
+# if ($codeCommentSplit[1] =~ /\d[3]/)  {
+ if ($codeCommentSplit[1] =~ /\d\d\d/)  {
+#  print OUT "codeCommentSplit[1] = $codeCommentSplit[1]\n";
 #  print OUT "var1 = $&\n";
   $possibleMiscCode = $&;
   $description = $IDOTmiscCodes{$possibleMiscCode};
@@ -81,13 +80,13 @@ while (<IN>) {
 #  print OUT "description = $description\n";
  }
  if ($description) {
-  $fieldComment = $firstsplit[1];
-#  print OUT "fieldcomment1 = $fieldComment\n";
-  $fieldComment =~ s/$possibleMiscCode/$description/;
-#  print OUT "fieldcomment2 = $fieldComment\n";
+  $fullComment = $codeCommentSplit[1];
+#  print OUT "fullComment1 = $fullComment\n";
+  $fullComment =~ s/$possibleMiscCode/$description/;
+#  print OUT "fullComment2 = $fullComment\n";
  } else {
-  $fieldComment = $firstsplit[1];
-#  print OUT "fieldcomment3 = $fieldComment\n";
+  $fullComment = $codeCommentSplit[1];
+#  print OUT "fullComment3 = $fullComment\n";
  }
 #####1.B sEARCH FOR DELETEABLE CODES
  if ($in[4] =~ /RANDOM|CKH|CKV/) {
@@ -135,7 +134,7 @@ while (<IN>) {
  if ($pointCodeSplit[1] =~ /\+/) { #CLOSE FIGURE
   $linecode = "+";
  }
- $comment = " $mcomment $fieldComment $commentFlag";
+ $comment = " $mcomment $fullComment $commentFlag";
  $checkInCode = "$pointCodeSplit[0]$linecode$comment";
  $checkInCode =~ s/  / /g;
  $checkInCode =~ s/  / /g;
@@ -150,8 +149,8 @@ while (<IN>) {
 # print OUT "in[2] easting                  = $in[2]\n";
 # print OUT "in[3] elevation                = $in[3]\n";
 # print OUT "in[4] full code & comment      = $in[4]\n";
-# print OUT "firstsplit[0] full code no comment = $firstsplit[0]\n";
-# print OUT "firstsplit[1] comment              = $firstsplit[1]\n";
+# print OUT "codeCommentSplit[0] full code no comment = $codeCommentSplit[0]\n";
+# print OUT "codeCommentSplit[1] comment              = $codeCommentSplit[1]\n";
 # print OUT "pointCodeSplit[0] code and line no.    = $pointCodeSplit[0]\n";
 # print OUT "pointCodeSplit[1] line code            = $pointCodeSplit[1]\n";
 # print OUT "tok[0] line code               = $tok[0]\n";
@@ -160,7 +159,7 @@ while (<IN>) {
 # print OUT "csplit[1] line number          = $csplit[1]\n";
 # print OUT "possibleMiscCode               = $possibleMiscCode\n";
 # print OUT "description                    = $description\n";
-# print OUT "field comment                  = $fieldComment\n";
+# print OUT "field comment                  = $fullComment\n";
 # print OUT "C1                             = $C1\n";
 # print OUT "commentFlag                    = $commentFlag\n";
 # print OUT "cFlag  control                 = $cflag\n";
@@ -184,16 +183,16 @@ while (<IN>) {
  $lastPtNum=$in[0];
  $figname="";
  $comment="";  #### added lv
- $globalcomment="";  #### added lv to make comment $firstsplit[1] available to processpoint()
+ $globalcomment="";  #### added lv to make comment $codeCommentSplit[1] available to processpoint()
  $pointCodeSplit[0]="";
- $firstsplit[0]="";
+ $codeCommentSplit[0]="";
  $pointCodeSplit[1]="";
- $firstsplit[1]="";
+ $codeCommentSplit[1]="";
  $csplit[0]="";
  $csplit[1]="";
  $possibleMiscCode="";
  $description="";
- $fieldComment="";
+ $fullComment="";
  $C2="";
  $mComment="";
  $C3="";
