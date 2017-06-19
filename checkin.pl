@@ -1,5 +1,5 @@
-use strict;
-use warnings;
+## use strict;
+## use warnings;
 use lib "C:/git-repos/surveyprocess/modules";
 use lib "C:/git-repos/surveyprocess/lists";
 # Some Global Vars
@@ -26,16 +26,18 @@ my $MPScode="";
 my $lineCode="";
 my $fullCode="";
 my $filename="";
-my $in="";
+my @in="";
 my $possibleMiscCode="";
 my $C2="";
 my $mComment="";
+my $mcomment="";
 my $C3="";
 my $C4="";
 my $linecode="";
 my $checkInCode="";
 my $commentFlag="";
 my $commentText="";
+my $requiredComments="";
 
 
 # --------------------
@@ -68,44 +70,43 @@ while (<IN>) {
 		# print OUT "codeCommentSplit[0] 	= $codeCommentSplit[0]\n";
 		# print OUT "codeCommentSplit[1] 	= $codeCommentSplit[1]\n";
 	$fullCode = $codeCommentSplit[0];
-		# print OUT "fullCode			= $fullCode\n";
+		 print OUT "fullCode		= $fullCode\n";
 	$fullComment = $codeCommentSplit[1];
-		# print OUT "fullComment		= $fullComment\n";
+		 print OUT "fullComment		= $fullComment\n";
 	my @fullCodeSplit = ($fullCode =~ /(\w+)*(\W+)/); # this separates the 3 character MPSCode and
 		# line number from the line coding symbol liningSymbol;
 		# \w is alpha or numeric - \W is non alpha or numeric
-		# print OUT "fullCodeSplit[0]		= $fullCodeSplit[0]\n";
-		# print OUT "fullCodeSplit[1]		= $fullCodeSplit[1]\n";
+		# print OUT "fullCodeSplit[0]	= $fullCodeSplit[0]\n";
+		# print OUT "fullCodeSplit[1]	= $fullCodeSplit[1]\n";
 	$lineCode = $fullCodeSplit[0];
-		# print OUT "lineCode			= $lineCode\n";
+		 print OUT "lineCode		= $lineCode\n";
 	$liningSymbol = $fullCodeSplit[1];
-		# print OUT "liningSymbol		= $liningSymbol\n";
+		 print OUT "liningSymbol		= $liningSymbol\n";
 	if ($liningSymbol) {
 	} else {
 		$lineCode = $fullCode;
 		$liningSymbol = "";
 	}
-		# print OUT "lineCode			= $lineCode\n";
-		# print OUT "liningSymbol		= $liningSymbol\n";
+		 print OUT "lineCode		= $lineCode\n";
+		 print OUT "liningSymbol		= $liningSymbol\n";
 	my @lineNumberSplit = ($lineCode =~ /(\w\w\w)(\d*)/);
-		# print OUT "lineNumberSplit[0]		= $lineNumberSplit[0]\n";
-		# print OUT "lineNumberSplit[1]		= $lineNumberSplit[1]\n";
-	$MPScode = lineNumberSplit[0];
-		# print OUT "MPScode			= $MPScode\n";
-	$lineNumber = lineNumberSplit[1];
-		# print OUT "lineNumber			= $lineNumber\n";
+		# print OUT "lineNumberSplit[0]	= $lineNumberSplit[0]\n";
+		# print OUT "lineNumberSplit[1]	= $lineNumberSplit[1]\n";
+	$MPScode = $lineNumberSplit[0];
+		 print OUT "MPScode			= $MPScode\n";
+	$lineNumber = $lineNumberSplit[1];
+		 print OUT "lineNumber		= $lineNumber\n";
 # need to parse the fullComment for:
 # 1.  IDOT misc code
 # 2.  multiCodeDelimiter - this probably needs to be done first  and a new point created for Geopak
-# 
-
-	my @fullCommentSplit = (split(/\s+/,$fullComment,2); # This separates the full code by the first
+#
+	my @fullCommentSplit = (split(/\s+/,$fullComment,2)); # This separates the full code by the first
 		# whitespace
 		# print OUT "fullCommentSplit[0]		= $fullCommentSplit[0]\n";
 		# print OUT "fullCommentSplit[1]		= $fullCommentSplit[1]\n";
-	$numericComment = fullCommentSplit[0];
+	$numericComment = $fullCommentSplit[0];
 		# print OUT "numericComment			= $numericComment\n";
-	$textComment = fullCommentSplit[1];
+	$textComment = $fullCommentSplit[1];
 		# print OUT "textComment			= $textComment\n";
 	if ($numericComment =~ /\d{3}/)  {
 		$IDOTtext = $IDOTmiscCodes::IDOTmiscCodes{$numericComment};
@@ -120,7 +121,7 @@ while (<IN>) {
   $commentFlag = $cflag;
  }
 ####2 SEARCH FOR REQUIRED COMMENTS
- $commentText = $requiredComments{$MPScode};
+ $commentText = $requiredComments::requiredComments{$MPScode};
 # if ($CommentText) {
   #print OUT "MPScode = $MPScode\n";
   #print OUT "variblec2 = $commentText\n";
@@ -133,8 +134,8 @@ while (<IN>) {
 # }
 
 #### 3.B. sEARCH FOR OUTLIERS
- $C3 = $legalCodes{$MPScode};
-# print OUT "varibleC3 = $C3\n";
+ $C3 = $lists::legalCodes::legalCodes{$MPScode};
+ print OUT "varibleC3		= $C3\n";
  unless ($C3) {
   $commentFlag = $oflag;
  }
