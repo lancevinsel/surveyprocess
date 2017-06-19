@@ -1,8 +1,9 @@
 use strict;
 use warnings;
-use lib "C:\git-repos\surveyprocess\modules";
-use lib "C:\git-repos\surveyprocess\lists";
+use lib "C:/git-repos/surveyprocess/modules";
+use lib "C:/git-repos/surveyprocess/lists";
 # Some Global Vars
+$IDOTtext=""
 $figname="";
 $lastPtNum="";
 $lastFigname="";
@@ -37,6 +38,10 @@ else {
 while (<IN>) {
 	$curIsString=0;
 	@in = split(/,/, substr(uc, 0, -1), 5); # forces text to be uppercase
+# 
+# need to parse the fullComment for:
+# multiCodeDelimiter - this probably needs to be done first  and a new point created for Geopak
+# 
 	my @codeCommentSplit = split(/\s+/,$in[4],2); # this separates the fullCode from the fullComment
 		# using the first whitespace as the separator.
 		# print OUT "codeCommentSplit[0] 	= $codeCommentSplit[0]\n";
@@ -82,11 +87,11 @@ while (<IN>) {
 	$textComment = fullCommentSplit[1];
 		# print OUT "textComment			= $textComment\n";
 	if ($numericComment =~ /\d{3}/)  {
-		$description = $IDOTmiscCodes::IDOTmiscCodes{$numericComment};
-		# print OUT "description			= $description\n";
-		if ($description) {
-			$fullComment = "$description $textComment";
-		# print OUT "fullComment w IDOT description	= $fullComment\n";
+		$IDOTtext = $IDOTmiscCodes::IDOTmiscCodes{$numericComment};
+		# print OUT "IDOTtext			= $IDOTtext\n";
+		if ($IDOTtext) {
+			$fullComment = "$IDOTtext $textComment";
+		# print OUT "fullComment w/IDOT IDOTtext	= $fullComment\n";
 		}
 	}
 #####1.B sEARCH FOR DELETEABLE CODES
@@ -157,7 +162,7 @@ while (<IN>) {
 # print OUT "MPScode code                 = $MPScode\n";
 # print OUT "lineNumber line number          = $lineNumber\n";
 # print OUT "possibleMiscCode               = $possibleMiscCode\n";
-# print OUT "description                    = $description\n";
+# print OUT "IDOTtext                    = $IDOTtext\n";
 # print OUT "field comment                  = $fullComment\n";
 # print OUT "C1                             = $C1\n";
 # print OUT "commentFlag                    = $commentFlag\n";
@@ -190,7 +195,7 @@ while (<IN>) {
  $MPScode="";
  $lineNumber="";
  $possibleMiscCode="";
- $description="";
+ $IDOTtext="";
  $fullComment="";
  $C2="";
  $mComment="";
