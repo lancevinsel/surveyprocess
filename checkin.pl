@@ -25,6 +25,17 @@ my $lineNumber=0;
 my $MPScode="";
 my $lineCode="";
 my $fullCode="";
+my $filename="";
+my $in="";
+my $possibleMiscCode="";
+my $C2="";
+my $mComment="";
+my $C3="";
+my $C4="";
+my $linecode="";
+my $checkInCode="";
+my $commentFlag="";
+my $commentText="";
 
 
 # --------------------
