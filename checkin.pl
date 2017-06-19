@@ -3,19 +3,29 @@ use warnings;
 use lib "C:/git-repos/surveyprocess/modules";
 use lib "C:/git-repos/surveyprocess/lists";
 # Some Global Vars
-$IDOTtext=""
-$figname="";
-$lastPtNum="";
-$lastFigname="";
-%activeStrings=();
-$curIsString=0;
-$lastWasString=0;
-$comment="";
-$globalcomment="";
-undef @fullCodeSplit;
-$cflag = "XXXcontrolXXX";
-$aflag = "XXXalphaXXX";
-$oflag = "XXXoutlierXXX";
+my $IDOTtext="";
+my $figname="";
+my $lastPtNum="";
+my $lastFigname="";
+my %activeStrings=();
+my $curIsString=0;
+my $lastWasString=0;
+my $comment="";
+my $globalcomment="";
+my $cflag = "XXXcontrolXXX";
+my $aflag = "XXXalphaXXX";
+my $oflag = "XXXoutlierXXX";
+my $_nextAutogenPtNum=0;
+my $multiCodeDelimiter="";
+my $textComment="";
+my $numericComment="";
+my $fullComment="";
+my $liningSymbol="";
+my $lineNumber=0;
+my $MPScode="";
+my $lineCode="";
+my $fullCode="";
+
 
 # --------------------
 sub generateNextPtNum {
