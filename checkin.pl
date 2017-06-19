@@ -102,18 +102,18 @@ while (<IN>) {
 #
 	my @fullCommentSplit = (split(/\s+/,$fullComment,2)); # This separates the full code by the first
 		# whitespace
-		# print OUT "fullCommentSplit[0]		= $fullCommentSplit[0]\n";
-		# print OUT "fullCommentSplit[1]		= $fullCommentSplit[1]\n";
+		# print OUT "fullCommentSplit[0]	= $fullCommentSplit[0]\n";
+		# print OUT "fullCommentSplit[1]	= $fullCommentSplit[1]\n";
 	$numericComment = $fullCommentSplit[0];
-		# print OUT "numericComment			= $numericComment\n";
+		 print OUT "numericComment		= $numericComment\n";
 	$textComment = $fullCommentSplit[1];
-		# print OUT "textComment			= $textComment\n";
+		 print OUT "textComment		= $textComment\n";
 	if ($numericComment =~ /\d{3}/)  {
 		$IDOTtext = $IDOTmiscCodes::IDOTmiscCodes{$numericComment};
-		# print OUT "IDOTtext			= $IDOTtext\n";
+		 print OUT "IDOTtext		= $IDOTtext\n";
 		if ($IDOTtext) {
 			$fullComment = "$IDOTtext $textComment";
-		# print OUT "fullComment w/IDOT IDOTtext	= $fullComment\n";
+		 print OUT "fullComment w/IDOT IDOTtext	= $fullComment\n";
 		}
 	}
 #####1.B sEARCH FOR DELETEABLE CODES
