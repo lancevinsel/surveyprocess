@@ -83,18 +83,12 @@ while (<IN>) {
 		# print OUT "textComment			= $textComment\n";
 	if ($numericComment =~ /\d{3}/)  {
 		$description = $IDOTmiscCodes::IDOTmiscCodes{$numericComment};
+		# print OUT "description			= $description\n";
 		if ($description) {
-			
-
-			Iknow this isn't right - have a good weekend
-
-
-		$fullComment = $description + textComment:
-#  print OUT "fullComment2 = $fullComment\n";
- } else {
-  $fullComment = $fullComment;
-#  print OUT "fullComment3 = $fullComment\n";
- }
+			$fullComment = "$description $textComment";
+		# print OUT "fullComment w IDOT description	= $fullComment\n";
+		}
+	}
 #####1.B sEARCH FOR DELETEABLE CODES
  if ($in[4] =~ /RANDOM|CKH|CKV/) {
   $commentFlag = $cflag;
