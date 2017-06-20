@@ -1,4 +1,4 @@
-package lists::IDOTmiscCodes;
+package miscCodes;
 use strict;
 use warnings;
 

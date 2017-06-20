@@ -1,7 +1,10 @@
-## use strict;
-## use warnings;
-use lib "C:/git-repos/surveyprocess/modules";
-use lib "C:/git-repos/surveyprocess/lists";
+ use strict;
+# use warnings;
+use lib 'C:\git-repos\surveyprocess\modules';
+use lib 'C:\git-repos\surveyprocess\lists';
+
+use miscCodes;
+
 # Some Global Vars
 my $IDOTtext="";
 my $figname="";
@@ -97,7 +100,7 @@ while (<IN>) {
 	$lineNumber = $lineNumberSplit[1];
 		 print OUT "lineNumber		= $lineNumber\n";
 # need to parse the fullComment for:
-# 1.  IDOT misc code
+# 1.  IDOT misc 
 # 2.  multiCodeDelimiter - this probably needs to be done first  and a new point created for Geopak
 #
 	my @fullCommentSplit = (split(/\s+/,$fullComment,2)); # This separates the full code by the first
@@ -109,7 +112,7 @@ while (<IN>) {
 	$textComment = $fullCommentSplit[1];
 		 print OUT "textComment		= $textComment\n";
 	if ($numericComment =~ /\d{3}/)  {
-		$IDOTtext = $IDOTmiscCodes::IDOTmiscCodes{$numericComment};
+		my $IDOTtext = $miscCodes::IDOTmiscCodes{$numericComment};
 		 print OUT "IDOTtext		= $IDOTtext\n";
 		if ($IDOTtext) {
 			$fullComment = "$IDOTtext $textComment";
