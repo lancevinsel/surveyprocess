@@ -1,11 +1,14 @@
- use strict;
-# use warnings;
+use strict;
+use warnings;
+
 use lib 'C:\git-repos\surveyprocess\modules';
-use lib 'C:\git-repos\surveyprocess\lists';
 
 use miscCodes;
+use flagCodes;
+use legalCodes;
+use requiredComments;
 
-# Some Global Vars
+# Some Vars
 my $IDOTtext="";
 my $figname="";
 my $lastPtNum="";
@@ -61,6 +64,8 @@ if ($#ARGV>0) {
 else {
 	$_nextAutogenPtNum=100000;
 }
+{
+	no warnings 'uninitialized';
 while (<IN>) {
 	$curIsString=0;
 	@in = split(/,/, substr(uc, 0, -1), 5); # forces text to be uppercase
@@ -231,6 +236,7 @@ while (<IN>) {
  $checkInCode="";
  $commentFlag="";
  $commentText="";
+}
 }
 close(IN);
 close(OUT);
