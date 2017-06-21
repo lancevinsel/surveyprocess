@@ -66,12 +66,13 @@ else {
 }
 {
 	no warnings 'uninitialized';
+	no warnings 'once';
 while (<IN>) {
 	$curIsString=0;
 	@in = split(/,/, substr(uc, 0, -1), 5); # forces text to be uppercase
 # 
 # need to parse the fullComment for:
-# multiCodeDelimiter - this probably needs to be done first  and a new point created for Geopak
+# multiCodeDelimiter
 # 
 	my @codeCommentSplit = split(/\s+/,$in[4],2); # this separates the fullCode from the fullComment
 		# using the first whitespace as the separator.
@@ -104,10 +105,6 @@ while (<IN>) {
 		 print OUT "MPScode			= $MPScode\n";
 	$lineNumber = $lineNumberSplit[1];
 		 print OUT "lineNumber		= $lineNumber\n";
-# need to parse the fullComment for:
-# 1.  IDOT misc 
-# 2.  multiCodeDelimiter - this probably needs to be done first  and a new point created for Geopak
-#
 	my @fullCommentSplit = (split(/\s+/,$fullComment,2)); # This separates the full code by the first
 		# whitespace
 		# print OUT "fullCommentSplit[0]	= $fullCommentSplit[0]\n";
@@ -116,8 +113,9 @@ while (<IN>) {
 		 print OUT "numericComment		= $numericComment\n";
 	$textComment = $fullCommentSplit[1];
 		 print OUT "textComment		= $textComment\n";
-	if ($numericComment =~ /\d{3}/)  {
-		my $IDOTtext = $miscCodes::IDOTmiscCodes{$numericComment};
+	if ($numericComment =~ /\d{3}/)  { # This checks if the numericCode is in fact numeric 
+		my $IDOTtext = $miscCodes::IDOTmiscCodes{$numericComment};  # If it is numeric it checks it against the 
+		# IDOT misc code and then replaces the number with the IDOT text.
 		 print OUT "IDOTtext		= $IDOTtext\n";
 		if ($IDOTtext) {
 			$fullComment = "$IDOTtext $textComment";
@@ -125,7 +123,7 @@ while (<IN>) {
 		}
 	}
 #####1.B sEARCH FOR DELETEABLE CODES
- if ($in[4] =~ /RANDOM|CKH|CKV/) {
+ if ($numericComment =~ /RANDOM|CKH|CKV/) {
   $commentFlag = $cflag;
  }
 ####2 SEARCH FOR REQUIRED COMMENTS
@@ -142,7 +140,7 @@ while (<IN>) {
 # }
 
 #### 3.B. sEARCH FOR OUTLIERS
- $C3 = $lists::legalCodes::legalCodes{$MPScode};
+ $C3 = $legalCodes::legalCodes{$MPScode};
  print OUT "varibleC3		= $C3\n";
  unless ($C3) {
   $commentFlag = $oflag;
