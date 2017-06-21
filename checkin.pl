@@ -3,10 +3,11 @@ use warnings;
 
 use lib 'C:\git-repos\surveyprocess\modules';
 
-use miscCodes;
+use commentLists;
 use flagCodes;
 use legalCodes;
-use commentLists;
+use liningCodes;
+use miscCodes;
 
 # Some Variables
 my $IDOTtext="";
@@ -95,6 +96,11 @@ print OUT "\n";
 	$liningSymbol = $fullCodeSplit[1];
 		 print OUT "liningSymbol		= $liningSymbol\n";
 	if ($liningSymbol) { # This checks for a lining symbol
+		if ($liningCodes::lineSymbols{$liningSymbol}) {
+			 print OUT "liningSymbol		= This lining symbol \"$liningSymbol\" is OK\n";
+		} else {
+			 print OUT "liningSymbol		= This lining symbol \"$liningSymbol\" is ILLEGAL!!!!\n";
+		}
 	} else {
 		$lineCode = $fullCode;
 		$liningSymbol = "";
