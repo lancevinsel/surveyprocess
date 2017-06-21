@@ -1,8 +1,8 @@
-package lists::requiredComments;
+package commentLists;
 use strict;
 use warnings;
 
-our %requiredComments = (
+our %addedComments = (
  "ACU" => "AC UNIT",
  "AEM" => "MAIN",
  "BAB" => "ABUTMENT CAP",

@@ -6,7 +6,7 @@ use lib 'C:\git-repos\surveyprocess\modules';
 use miscCodes;
 use flagCodes;
 use legalCodes;
-use requiredComments;
+use commentLists;
 
 # Some Variables
 my $IDOTtext="";
@@ -76,6 +76,7 @@ while (<IN>) {
 # need to parse the fullComment for:
 # multiCodeDelimiter
 # 
+print OUT "\n";
 	my @codeCommentSplit = split(/\s+/,$in[4],2); # this separates the fullCode from the fullComment
 		# using the first whitespace as the separator.
 		# print OUT "codeCommentSplit[0] 	= $codeCommentSplit[0]\n";
@@ -125,14 +126,17 @@ while (<IN>) {
 		}
 	}
 	if ($flagCodes::controlFlags{$numericComment}) { # This checks for control flags and issues the error messages
-		$commentFlag = $flagCodes::controlFlags{$numericComment};
+		my $commentFlag = $flagCodes::controlFlags{$numericComment};
+		 print OUT "commentFlag		= $commentFlag\n";
+		} else {
+		 print OUT "commentFlag		= This is not a control check or resection point\n";
 	}
-#####1.B sEARCH FOR DELETEABLE CODES
-# if ($numericComment =~ /RANDOM|CKH|CKV/) {
-#  $commentFlag = $cflag;
-# }
-####2 SEARCH FOR REQUIRED COMMENTS
- $commentText = $requiredComments::requiredComments{$MPScode};
+	if ($commentLists::addedComments{$MPScode}) { # This checks for comments that are required by the code
+		my $commentText = $commentLists::addedComments{$MPScode};
+		 print OUT "commentText		= $commentText\n";
+		} else {
+		 print OUT "commentText		= There are no added comments for this code\n";
+	}
 # if ($CommentText) {
   #print OUT "MPScode = $MPScode\n";
   #print OUT "variblec2 = $commentText\n";
