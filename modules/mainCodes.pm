@@ -1,4 +1,4 @@
-package legalCodes;
+package mainCodes;
 use strict;
 use warnings;
 

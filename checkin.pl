@@ -5,11 +5,14 @@ use lib 'C:\git-repos\surveyprocess\modules';
 
 use commentLists;
 use flagCodes;
-use legalCodes;
+use mainCodes;
 use liningCodes;
 use miscCodes;
 
 # Some Variables
+my $illegalCodeCount=0;
+my $illegalLiningSymbolCount=0;
+my $controlPointCount=0;
 my $IDOTtext="";
 my $figname="";
 my $lastPtNum="";
@@ -19,9 +22,8 @@ my $curIsString=0;
 my $lastWasString=0;
 my $comment="";
 my $globalcomment="";
-my $cflag = "XXXcontrolXXX";
 my $aflag = "XXXalphaXXX";
-my $oflag = "XXXoutlierXXX";
+my $codeFlag = ".-|-??? What Code Is This, eh ???-|-.";
 my $_nextAutogenPtNum=0;
 my $multiCodeDelimiter="";
 my $textComment="";
@@ -99,6 +101,7 @@ print OUT "\n";
 		if ($liningCodes::lineSymbols{$liningSymbol}) {
 			 print OUT "liningSymbol		= This lining symbol \"$liningSymbol\" is OK\n";
 		} else {
+			$illegalLiningSymbolCount++;
 			 print OUT "liningSymbol		= This lining symbol \"$liningSymbol\" is ILLEGAL!!!!\n";
 		}
 	} else {
@@ -114,6 +117,13 @@ print OUT "\n";
 		 print OUT "MPScode			= $MPScode\n";
 	$lineNumber = $lineNumberSplit[1];
 		 print OUT "lineNumber		= $lineNumber\n";
+	if ($mainCodes::legalCodes{$MPScode}) {
+		print OUT "MPScode check		= $MPScode is a legal code\n";
+	} else {
+		$illegalCodeCount++;
+		$commentFlag = $codeFlag;
+		print OUT "MPScode check		= $MPScode is and ILLEGAL CODE!!!!! DAMN!!\n";
+	}
 	my @fullCommentSplit = (split(/\s+/,$fullComment,2)); # This separates the full code by the first
 		# whitespace
 		# print OUT "fullCommentSplit[0]	= $fullCommentSplit[0]\n";
@@ -132,7 +142,8 @@ print OUT "\n";
 		}
 	}
 	if ($flagCodes::controlFlags{$numericComment}) { # This checks for control flags and issues the error messages
-		my $commentFlag = $flagCodes::controlFlags{$numericComment};
+		$commentFlag = "$commentFlag $flagCodes::controlFlags{$numericComment}";
+		$controlPointCount++;
 		 print OUT "commentFlag		= $commentFlag\n";
 		} else {
 		 print OUT "commentFlag		= This is not a control check or resection point\n";
@@ -155,11 +166,11 @@ print OUT "\n";
 # }
 
 #### 3.B. sEARCH FOR OUTLIERS
- $C3 = $legalCodes::legalCodes{$MPScode};
- print OUT "varibleC3		= $C3\n";
- unless ($C3) {
-  $commentFlag = $oflag;
- }
+# $C3 = $legalCodes::legalCodes{$MPScode};
+# print OUT "varibleC3		= $C3\n";
+# unless ($C3) {
+#  $commentFlag = $oflag;
+# }
 
 
 #### 4 lINECODEl
@@ -251,6 +262,21 @@ print OUT "\n";
  $commentText="";
 }
 }
+if ($illegalCodeCount > 0) {
+	print "\nThere are $illegalCodeCount illegal point codes in this file\n";
+	print OUT "\nThere are $illegalCodeCount illegal point codes in this file\n";
+}
+if ($illegalLiningSymbolCount > 0) {
+	print "\nThere are $illegalLiningSymbolCount illegal lining symbols in this file\n";
+	print OUT "\nThere are $illegalLiningSymbolCount illegal lining symbols in this file\n";
+}
+if ($controlPointCount > 0) {
+	print "\nThere are $controlPointCount control-point-checks or resection positions in this file\n";
+	print OUT "\nThere are $controlPointCount control-point-checks or resection positions in this file\n";
+}
+if ($illegalCodeCount < 1 && $illegalLiningSymbolCount < 1 && $controlPointCount < 1) {
+	print "\nCheckin found no errors in this file. Good job!\n";
+print "\n"
 close(IN);
 close(OUT);
 
