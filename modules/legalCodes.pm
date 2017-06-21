@@ -1,4 +1,4 @@
-package lists::legalCodes;
+package legalCodes;
 use strict;
 use warnings;
 

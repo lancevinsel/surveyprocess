@@ -3,10 +3,10 @@ use strict;
 use warnings;
 
 our %controlFlags = (
- "RANDOM" => "Control",
- "CKH" => "Control",
- "CKV" => "Control",
- "TMP" => "Control",
+ "RANDOM" => ".-x-X-x-. Control .-x-X-x-.",
+ "CKH" => ".-x-X-x-. Control .-x-X-x-.",
+ "CKV" => ".-x-X-x-. Control .-x-X-x-.",
+ "TMP" => ".-x-X-x-. Control .-x-X-x-.",
 );
 
 1;

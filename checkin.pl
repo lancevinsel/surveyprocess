@@ -8,7 +8,7 @@ use flagCodes;
 use legalCodes;
 use requiredComments;
 
-# Some Vars
+# Some Variables
 my $IDOTtext="";
 my $figname="";
 my $lastPtNum="";
@@ -50,7 +50,7 @@ my $requiredComments="";
 sub generateNextPtNum {
 	return $_nextAutogenPtNum++;
 }
-#------------------- Start of Main Program
+# Start of Main Program
 if ($#ARGV<0) {
 	die "Syntax:\nperl fbk.pl <input file name> <start ptnum for new pts>\n";
 }
@@ -64,9 +64,11 @@ if ($#ARGV>0) {
 else {
 	$_nextAutogenPtNum=100000;
 }
+# eliminate specific warnings
 {
 	no warnings 'uninitialized';
 	no warnings 'once';
+# begin the loop
 while (<IN>) {
 	$curIsString=0;
 	@in = split(/,/, substr(uc, 0, -1), 5); # forces text to be uppercase
@@ -91,14 +93,14 @@ while (<IN>) {
 		 print OUT "lineCode		= $lineCode\n";
 	$liningSymbol = $fullCodeSplit[1];
 		 print OUT "liningSymbol		= $liningSymbol\n";
-	if ($liningSymbol) {
+	if ($liningSymbol) { # This checks for a lining symbol
 	} else {
 		$lineCode = $fullCode;
 		$liningSymbol = "";
 	}
 		 print OUT "lineCode		= $lineCode\n";
 		 print OUT "liningSymbol		= $liningSymbol\n";
-	my @lineNumberSplit = ($lineCode =~ /(\w\w\w)(\d*)/);
+	my @lineNumberSplit = ($lineCode =~ /(\w\w\w)(\d*)/); # this separates the MPScode from the line number
 		# print OUT "lineNumberSplit[0]	= $lineNumberSplit[0]\n";
 		# print OUT "lineNumberSplit[1]	= $lineNumberSplit[1]\n";
 	$MPScode = $lineNumberSplit[0];
@@ -122,10 +124,13 @@ while (<IN>) {
 		 print OUT "fullComment w/IDOT IDOTtext	= $fullComment\n";
 		}
 	}
+	if ($flagCodes::controlFlags{$numericComment}) { # This checks for control flags and issues the error messages
+		$commentFlag = $flagCodes::controlFlags{$numericComment};
+	}
 #####1.B sEARCH FOR DELETEABLE CODES
- if ($numericComment =~ /RANDOM|CKH|CKV/) {
-  $commentFlag = $cflag;
- }
+# if ($numericComment =~ /RANDOM|CKH|CKV/) {
+#  $commentFlag = $cflag;
+# }
 ####2 SEARCH FOR REQUIRED COMMENTS
  $commentText = $requiredComments::requiredComments{$MPScode};
 # if ($CommentText) {
@@ -238,3 +243,4 @@ while (<IN>) {
 }
 close(IN);
 close(OUT);
+
