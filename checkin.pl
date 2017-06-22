@@ -79,160 +79,90 @@ while (<IN>) {
 # need to parse the fullComment for:
 # multiCodeDelimiter
 # 
-print OUT "\n";
+# print OUT "\n";
 	my @codeCommentSplit = split(/\s+/,$in[4],2); # this separates the fullCode from the fullComment
 		# using the first whitespace as the separator.
 		# print OUT "codeCommentSplit[0] 	= $codeCommentSplit[0]\n";
 		# print OUT "codeCommentSplit[1] 	= $codeCommentSplit[1]\n";
 	$fullCode = $codeCommentSplit[0];
-		 print OUT "fullCode		= $fullCode\n";
+		# print OUT "fullCode		= $fullCode\n";
 	$fullComment = $codeCommentSplit[1];
-		 print OUT "fullComment		= $fullComment\n";
+		# print OUT "fullComment		= $fullComment\n";
 	my @fullCodeSplit = ($fullCode =~ /(\w+)*(\W+)/); # this separates the 3 character MPSCode and
 		# line number from the line coding symbol liningSymbol;
 		# \w is alpha or numeric - \W is non alpha or numeric
 		# print OUT "fullCodeSplit[0]	= $fullCodeSplit[0]\n";
 		# print OUT "fullCodeSplit[1]	= $fullCodeSplit[1]\n";
 	$lineCode = $fullCodeSplit[0];
-		 print OUT "lineCode		= $lineCode\n";
+		# print OUT "lineCode		= $lineCode\n";
 	$liningSymbol = $fullCodeSplit[1];
-		 print OUT "liningSymbol		= $liningSymbol\n";
+		# print OUT "liningSymbol		= $liningSymbol\n";
 	if ($liningSymbol) { # This checks for a lining symbol
 		if ($liningCodes::lineSymbols{$liningSymbol}) {
-			 print OUT "liningSymbol		= This lining symbol \"$liningSymbol\" is OK\n";
+			# print OUT "liningSymbol		= This lining symbol \"$liningSymbol\" is OK\n";
 		} else {
 			$illegalLiningSymbolCount++;
-			 print OUT "liningSymbol		= This lining symbol \"$liningSymbol\" is ILLEGAL!!!!\n";
+			# print OUT "liningSymbol		= This lining symbol \"$liningSymbol\" is ILLEGAL!!!!\n";
 		}
 	} else {
 		$lineCode = $fullCode;
 		$liningSymbol = "";
 	}
-		 print OUT "lineCode		= $lineCode\n";
-		 print OUT "liningSymbol		= $liningSymbol\n";
+		# print OUT "lineCode		= $lineCode\n";
+		# print OUT "liningSymbol		= $liningSymbol\n";
 	my @lineNumberSplit = ($lineCode =~ /(\w\w\w)(\d*)/); # this separates the MPScode from the line number
 		# print OUT "lineNumberSplit[0]	= $lineNumberSplit[0]\n";
 		# print OUT "lineNumberSplit[1]	= $lineNumberSplit[1]\n";
 	$MPScode = $lineNumberSplit[0];
-		 print OUT "MPScode			= $MPScode\n";
+		# print OUT "MPScode			= $MPScode\n";
 	$lineNumber = $lineNumberSplit[1];
-		 print OUT "lineNumber		= $lineNumber\n";
+		# print OUT "lineNumber		= $lineNumber\n";
 	if ($mainCodes::legalCodes{$MPScode}) {
-		print OUT "MPScode check		= $MPScode is a legal code\n";
+		#print OUT "MPScode check		= $MPScode is a legal code\n";
 	} else {
 		$illegalCodeCount++;
 		$commentFlag = $codeFlag;
-		print OUT "MPScode check		= $MPScode is an ILLEGAL CODE!!!!! DAMN!!\n";
+		#print OUT "MPScode check		= $MPScode is an ILLEGAL CODE!!!!! DAMN!!\n";
 	}
 	my @fullCommentSplit = (split(/\s+/,$fullComment,2)); # This separates the full code by the first
 		# whitespace
 		# print OUT "fullCommentSplit[0]	= $fullCommentSplit[0]\n";
 		# print OUT "fullCommentSplit[1]	= $fullCommentSplit[1]\n";
 	$numericComment = $fullCommentSplit[0];
-		 print OUT "numericComment		= $numericComment\n";
+		# print OUT "numericComment		= $numericComment\n";
 	$textComment = $fullCommentSplit[1];
-		 print OUT "textComment		= $textComment\n";
+		# print OUT "textComment		= $textComment\n";
 	if ($numericComment =~ /\d{3}/)  { # This checks if the numericCode is in fact numeric 
 		$IDOTtext = $miscCodes::IDOTmiscCodes{$numericComment};  # If it is numeric it checks it against the 
 		# IDOT misc code and then replaces the number with the IDOT text.
-		 print OUT "IDOTtext		= $IDOTtext\n";
+		# print OUT "IDOTtext		= $IDOTtext\n";
 		if ($IDOTtext) {
 			$fullComment = "$IDOTtext $textComment";
-		 print OUT "fullComment w/IDOT IDOTtext	= $fullComment\n";
+		# print OUT "fullComment w/IDOT IDOTtext	= $fullComment\n";
 		}
 	}
 	if ($flagCodes::controlFlags{$numericComment}) { # This checks for control flags and issues the error messages
 		$commentFlag = "$commentFlag $flagCodes::controlFlags{$numericComment}";
 		$controlPointCount++;
-		 print OUT "commentFlag		= $commentFlag\n";
+		# print OUT "commentFlag		= $commentFlag\n";
 		} else {
-		 print OUT "commentFlag		= This is not a control check or resection point\n";
+		# print OUT "commentFlag		= This is not a control check or resection point\n";
 	}
 	if ($commentLists::addedComments{$MPScode}) { # This checks for comments that are required by the code
 		$commentText = $commentLists::addedComments{$MPScode};
-		 print OUT "commentText-		= $commentText\n";
+		# print OUT "commentText-		= $commentText\n";
 		} else {
-		 print OUT "commentText-		= There are no added comments for this code\n";
+		# print OUT "commentText-		= There are no added comments for this code\n";
 	}
-# if ($CommentText) {
-  #print OUT "MPScode = $MPScode\n";
-  #print OUT "variblec2 = $commentText\n";
-#  $mcomment = $commentText;
-# }
-
-####3.A. sEARCH FOR ALPHA POINT NUMBERS
-# if ($in[0] =~ /[^0-9]/) {
-##  $commentFlag = $aflag;
-# }
-
-#### 3.B. sEARCH FOR OUTLIERS
-# $C3 = $legalCodes::legalCodes{$MPScode};
-# print OUT "varibleC3		= $C3\n";
-# unless ($C3) {
-#  $commentFlag = $oflag;
-# }
-
-
-#### 4 lINECODEl
- if ($liningSymbol =~ /\.\./) {   #END LINE
-#  print OUT "a;lskdjfl\n";
-#  print OUT "liningSymbol = $liningSymbol\n";
-  $linecode = ")";
- }
- if ($liningSymbol =~ /^\.$/) { #BEGIN LINE
-  $linecode = "(";
- }
- if ($liningSymbol =~ /-/) { #PC or PT (substitiute for OC);Graef Curve 20110610
-  $linecode = "%";
- }
- if ($liningSymbol =~ /@/) { #END LINE
-  $linecode = ")";
- }
- #if ($liningSymbol =~ /-/) { #PC CURVE
- # $linecode = "-";
- #}
- if ($liningSymbol =~ /\+/) { #CLOSE FIGURE
-  $linecode = "+";
- }
-$finalComment = join " ", $commentText, $fullComment, $commentFlag;
-	 print OUT "finalComment		= $finalComment\n";
- $checkInCode = "$lineCode$liningSymbol $finalComment";
-	 print OUT "checkInCode		= $checkInCode\n";
- $checkInCode =~ s/  / /g;
- $checkInCode =~ s/  / /g;
-
+	$finalComment = join " ", $commentText, $fullComment, $commentFlag;
+	# print OUT "finalComment		= $finalComment\n";
+	$checkInCode = "$lineCode$liningSymbol $finalComment";
+	# print OUT "checkInCode		= $checkInCode\n";
+	$checkInCode =~ s/  / /g;
+	$checkInCode =~ s/  / /g;
 ########################### Print Section
 
  print OUT "$in[0],$in[1],$in[2],$in[3],$checkInCode\n";
-
-####################### TEST SECTION
-# print OUT "in[0] point number             = $in[0]\n";
-# print OUT "in[1] northing                 = $in[1]\n";
-# print OUT "in[2] easting                  = $in[2]\n";
-# print OUT "in[3] elevation                = $in[3]\n";
-# print OUT "in[4] full code & comment      = $in[4]\n";
-# print OUT "fullCode full code no comment = $fullCode\n";
-# print OUT "fullComment comment              = $fullComment\n";
-# print OUT "fullCodeSplit[0] code and line no.    = $lineCode\n";
-# print OUT "liningSymbol line code            = $liningSymbol\n";
-# print OUT "MPScode code                 = $MPScode\n";
-# print OUT "lineNumber line number          = $lineNumber\n";
-# print OUT "possibleMiscCode               = $possibleMiscCode\n";
-# print OUT "IDOTtext                    = $IDOTtext\n";
-# print OUT "field comment                  = $fullComment\n";
-# print OUT "C1                             = $C1\n";
-# print OUT "commentFlag                    = $commentFlag\n";
-# print OUT "cFlag  control                 = $cflag\n";
-# print OUT "aFlag  alpha                   = $aflag\n";
-# print OUT "oFlag  outlier                 = $oflag\n";
-# print OUT "C2                             = $C2\n";
-# print OUT "mComment                       = $mComment\n";
-# print OUT "C3                             = $C3\n";
-# print OUT "C4                             = $C4\n";
-# print OUT "linecode                       = $linecode\n";
-# print OUT "comment                        = $comment\n";
-# print OUT "checkInCode                    = $checkInCode\n\n";
-
 
  #prepare for next loop
  if ($curIsString) {
