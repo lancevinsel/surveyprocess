@@ -14,15 +14,8 @@ my $illegalCodeCount=0;
 my $illegalLiningSymbolCount=0;
 my $controlPointCount=0;
 my $IDOTtext="";
-my $lastPtNum="";
-my %activeStrings=();
-my $curIsString=0;
-my $lastWasString=0;
 my $finalComment="";
-my $globalcomment="";
-my $aflag = "XXXalphaXXX";
 my $codeFlag = ".-|-??? What Code Is This, eh ???-|-.";
-my $_nextAutogenPtNua=0;
 my $multiCodeDelimiter="";
 my $textComment="";
 my $numericComment="";
@@ -34,12 +27,6 @@ my $lineCode="";
 my $fullCode="";
 my $filename="";
 my @in="";
-my $possibleMiscCode="";
-my $C2="";
-my $mComment="";
-my $mcomment="";
-my $C3="";
-my $C4="";
 my $linecode="";
 my $checkInCode="";
 my $commentFlag="";
@@ -164,21 +151,14 @@ while (<IN>) {
 
  #prepare for next loop
  $finalComment="";  #### added lv
- $globalcomment="";  #### added lv to make comment $fullComment available to processpoint()
  $lineCode="";
  $fullCode="";
  $liningSymbol="";
  $fullComment="";
  $MPScode="";
  $lineNumber="";
- $possibleMiscCode="";
  $IDOTtext="";
  $fullComment="";
- $C2="";
- $mComment="";
- $C3="";
- $C4="";
- $linecode="";
  $checkInCode="";
  $commentFlag="";
  $commentText="";
@@ -186,15 +166,15 @@ while (<IN>) {
 }
 if ($illegalCodeCount > 0) {
 	print "\nThere are $illegalCodeCount illegal point codes in this file\n";
-	print OUT "\nThere are $illegalCodeCount illegal point codes in this file\n";
+	# print OUT "\nThere are $illegalCodeCount illegal point codes in this file\n";
 }
 if ($illegalLiningSymbolCount > 0) {
 	print "\nThere are $illegalLiningSymbolCount illegal lining symbols in this file\n";
-	print OUT "\nThere are $illegalLiningSymbolCount illegal lining symbols in this file\n";
+	# print OUT "\nThere are $illegalLiningSymbolCount illegal lining symbols in this file\n";
 }
 if ($controlPointCount > 0) {
 	print "\nThere are $controlPointCount control-point-checks or resection positions in this file\n";
-	print OUT "\nThere are $controlPointCount control-point-checks or resection positions in this file\n";
+	# print OUT "\nThere are $controlPointCount control-point-checks or resection positions in this file\n";
 }
 if ($illegalCodeCount < 1 && $illegalLiningSymbolCount < 1 && $controlPointCount < 1) {
 	print "\nCheckin found no errors in this file. Good job!\n";
