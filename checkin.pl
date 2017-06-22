@@ -20,7 +20,7 @@ my $lastFigname="";
 my %activeStrings=();
 my $curIsString=0;
 my $lastWasString=0;
-my $comment="";
+my $finalComment="";
 my $globalcomment="";
 my $aflag = "XXXalphaXXX";
 my $codeFlag = ".-|-??? What Code Is This, eh ???-|-.";
@@ -122,7 +122,7 @@ print OUT "\n";
 	} else {
 		$illegalCodeCount++;
 		$commentFlag = $codeFlag;
-		print OUT "MPScode check		= $MPScode is and ILLEGAL CODE!!!!! DAMN!!\n";
+		print OUT "MPScode check		= $MPScode is an ILLEGAL CODE!!!!! DAMN!!\n";
 	}
 	my @fullCommentSplit = (split(/\s+/,$fullComment,2)); # This separates the full code by the first
 		# whitespace
@@ -133,7 +133,7 @@ print OUT "\n";
 	$textComment = $fullCommentSplit[1];
 		 print OUT "textComment		= $textComment\n";
 	if ($numericComment =~ /\d{3}/)  { # This checks if the numericCode is in fact numeric 
-		my $IDOTtext = $miscCodes::IDOTmiscCodes{$numericComment};  # If it is numeric it checks it against the 
+		$IDOTtext = $miscCodes::IDOTmiscCodes{$numericComment};  # If it is numeric it checks it against the 
 		# IDOT misc code and then replaces the number with the IDOT text.
 		 print OUT "IDOTtext		= $IDOTtext\n";
 		if ($IDOTtext) {
@@ -149,15 +149,15 @@ print OUT "\n";
 		 print OUT "commentFlag		= This is not a control check or resection point\n";
 	}
 	if ($commentLists::addedComments{$MPScode}) { # This checks for comments that are required by the code
-		my $commentText = $commentLists::addedComments{$MPScode};
-		 print OUT "commentText		= $commentText\n";
+		$commentText = $commentLists::addedComments{$MPScode};
+		 print OUT "commentText-		= $commentText\n";
 		} else {
-		 print OUT "commentText		= There are no added comments for this code\n";
+		 print OUT "commentText-		= There are no added comments for this code\n";
 	}
 # if ($CommentText) {
   #print OUT "MPScode = $MPScode\n";
   #print OUT "variblec2 = $commentText\n";
-  $mcomment = $commentText;
+#  $mcomment = $commentText;
 # }
 
 ####3.A. sEARCH FOR ALPHA POINT NUMBERS
@@ -194,8 +194,10 @@ print OUT "\n";
  if ($liningSymbol =~ /\+/) { #CLOSE FIGURE
   $linecode = "+";
  }
- $comment = " $mcomment $fullComment $commentFlag";
- $checkInCode = "$lineCode$linecode$comment";
+$finalComment = join " ", $commentText, $fullComment, $commentFlag;
+	 print OUT "finalComment		= $finalComment\n";
+ $checkInCode = "$lineCode$liningSymbol $finalComment";
+	 print OUT "checkInCode		= $checkInCode\n";
  $checkInCode =~ s/  / /g;
  $checkInCode =~ s/  / /g;
 
@@ -240,7 +242,7 @@ print OUT "\n";
  $lastFigname=$figname;
  $lastPtNum=$in[0];
  $figname="";
- $comment="";  #### added lv
+ $finalComment="";  #### added lv
  $globalcomment="";  #### added lv to make comment $fullComment available to processpoint()
  $lineCode="";
  $fullCode="";
@@ -256,7 +258,6 @@ print OUT "\n";
  $C3="";
  $C4="";
  $linecode="";
- $comment="";
  $checkInCode="";
  $commentFlag="";
  $commentText="";
@@ -276,7 +277,8 @@ if ($controlPointCount > 0) {
 }
 if ($illegalCodeCount < 1 && $illegalLiningSymbolCount < 1 && $controlPointCount < 1) {
 	print "\nCheckin found no errors in this file. Good job!\n";
-print "\n"
+}
+print "\n";
 close(IN);
 close(OUT);
 
