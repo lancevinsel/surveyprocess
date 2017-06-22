@@ -14,9 +14,7 @@ my $illegalCodeCount=0;
 my $illegalLiningSymbolCount=0;
 my $controlPointCount=0;
 my $IDOTtext="";
-my $figname="";
 my $lastPtNum="";
-my $lastFigname="";
 my %activeStrings=();
 my $curIsString=0;
 my $lastWasString=0;
@@ -24,7 +22,7 @@ my $finalComment="";
 my $globalcomment="";
 my $aflag = "XXXalphaXXX";
 my $codeFlag = ".-|-??? What Code Is This, eh ???-|-.";
-my $_nextAutogenPtNum=0;
+my $_nextAutogenPtNua=0;
 my $multiCodeDelimiter="";
 my $textComment="";
 my $numericComment="";
@@ -47,35 +45,35 @@ my $checkInCode="";
 my $commentFlag="";
 my $commentText="";
 my $requiredComments="";
-
-
-# --------------------
-sub generateNextPtNum {
-	return $_nextAutogenPtNum++;
-}
+# 
+# 
 # Start of Main Program
+# 
+#
+# Test to make sure that a filename was listed after the command 'checkin'
 if ($#ARGV<0) {
-	die "Syntax:\nperl fbk.pl <input file name> <start ptnum for new pts>\n";
+	die "\nHey you forgot the file name, Jeez! \n\nSyntax:\ncheckin <input file name>\n";
 }
+# @ARGV is a special array containing the items listed after the command on the command line
+# $ARGV[0] is the first item following the command - in our case the filename to be processed
 $filename=$ARGV[0];
+	# print OUT "filename with extension	= $filename\n";
+# This next line removes the extension (normally .txt) from the entered filename
 $filename =~ s/\.[^.]*$//;
+	# print OUT "filename without extension	= $filename\n";
+# This opens the file for reading
 open(IN,$ARGV[0]);
+# This open the output file for writing
 open(OUT,">${filename}.csv");
-if ($#ARGV>0) {
-	$_nextAutogenPtNum=$ARGV[1];
-}
-else {
-	$_nextAutogenPtNum=100000;
-}
-# eliminate specific warnings
+# eliminate specific warnings - this is needed to prevent error messages in this code 
 {
 	no warnings 'uninitialized';
 	no warnings 'once';
-# begin the loop
+# begin the loop - read in the lines one by one and evaluate to the end
 while (<IN>) {
-	$curIsString=0;
 	@in = split(/,/, substr(uc, 0, -1), 5); # forces text to be uppercase
 # 
+# FUTURE FEATURE?
 # need to parse the fullComment for:
 # multiCodeDelimiter
 # 
@@ -165,13 +163,6 @@ while (<IN>) {
  print OUT "$in[0],$in[1],$in[2],$in[3],$checkInCode\n";
 
  #prepare for next loop
- if ($curIsString) {
-  $activeStrings{$figname}=1; #make sure the list contains an entry for this string
- }
- $lastWasString=$curIsString;
- $lastFigname=$figname;
- $lastPtNum=$in[0];
- $figname="";
  $finalComment="";  #### added lv
  $globalcomment="";  #### added lv to make comment $fullComment available to processpoint()
  $lineCode="";
