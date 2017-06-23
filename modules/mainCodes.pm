@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 our %legalCodes = (
- "ACU" => "legal", # Air Conditioning Unit
+ "ACU" => "282 ACU", # Air Conditioning Unit
  "BAB" => "legal", # The outline of the face,sides,  top of the abutment.  A 3d line.
  "BAL" => "legal", # The outline of the face of the abutment and the face of the
                    # Wingwalls.  A 2d line, usually collected prismless.

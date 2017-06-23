@@ -37,11 +37,11 @@ my $requiredComments="";
 # Start of Main Program
 # 
 #
+# @ARGV is a special array containing the items listed after the command on the command line
 # Test to make sure that a filename was listed after the command 'checkin'
 if ($#ARGV<0) {
 	die "\nHey you forgot the file name, Jeez! \n\nSyntax:\ncheckin <input file name>\n";
 }
-# @ARGV is a special array containing the items listed after the command on the command line
 # $ARGV[0] is the first item following the command - in our case the filename to be processed
 $filename=$ARGV[0];
 	# print OUT "filename with extension	= $filename\n";
@@ -150,16 +150,7 @@ while (<IN>) {
  print OUT "$in[0],$in[1],$in[2],$in[3],$checkInCode\n";
 
  #prepare for next loop
- $finalComment="";  #### added lv
- $lineCode="";
- $fullCode="";
- $liningSymbol="";
- $fullComment="";
- $MPScode="";
- $lineNumber="";
  $IDOTtext="";
- $fullComment="";
- $checkInCode="";
  $commentFlag="";
  $commentText="";
 }
