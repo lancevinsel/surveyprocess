@@ -32,15 +32,26 @@ my $checkInCode="";
 my $commentFlag="";
 my $commentText="";
 my $requiredComments="";
-# 
-# 
-# Start of Main Program
-# 
-#
+# ==============================================================================================
+#                                   Start of Main Program
+# ==============================================================================================
+#                                   Syntax - process ARGV
 # @ARGV is a special array containing the items listed after the command on the command line
 # Test to make sure that a filename was listed after the command 'checkin'
 if ($#ARGV<0) {
-	die "\nHey you forgot the file name, Jeez! \n\nSyntax:\ncheckin <input file name>\n";
+	print q{
+==============================================================================
+|                                                                            |
+|                     Hey you forgot the file name, Jeez!!                   |
+|                                                                            |
+|                     checkin.pl script requires file name                   |
+|                                                                            |
+|                      Syntax:  checkin <input file name>                    |
+|                                                                            |
+==============================================================================
+
+};
+	exit;
 }
 # $ARGV[0] is the first item following the command - in our case the filename to be processed
 $filename=$ARGV[0];
@@ -58,7 +69,13 @@ open(OUT,">${filename}.csv");
 	no warnings 'once';
 # begin the loop - read in the lines one by one and evaluate to the end
 while (<IN>) {
-	@in = split(/,/, substr(uc, 0, -1), 5); # forces text to be uppercase
+	@in = split(/,/, substr(uc, 0, -1), 5); # the substr forces text to be uppercase
+	# the split creates:
+		# $in[0] = point number
+		# $in[1] = northing
+		# $in[2] = easting
+		# $in[3] = elevation
+		# $in[4] = fullComment (3 Letter Code-Line Number-Line Code-Comment)
 # 
 # FUTURE FEATURE?
 # need to parse the fullComment for:

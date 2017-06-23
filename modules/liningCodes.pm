@@ -3,11 +3,12 @@ use strict;
 use warnings;
 
 our %lineSymbols = (
- "."  => "Begin Line",
- ".." => "End Line",
- "@"  => "End Line",
- "+"  => "Close figure",
- "-"  => "Curve Point",
+ "."  => "B B",			# Begin Line
+ ".." => "E E",			# End Line
+ "+"  => "C CLS",		# Close Figure
+ "-"  => "PC BC",		# Begin Curve
+ "!"  => "PT EC",		# End Curve
+ "@"  => "OC OC",		# Point On Curve
 );
 
 1;
