@@ -152,47 +152,11 @@ print OUT "\n";
 	$lineNumber = $lineNumberSplit[1];
 		# print OUT "lineNumber		= $lineNumber\n";
 
-#
-#
-# 		######33333333333333333333
-#
-#  my @fsplit = split(/\s+/,$in[4],2); #added lv - this separates the Codes from the Comments
-#    #using the first whitespace as the separator so:
-#    #$fsplit[0] = 3 Letter Code-Line Number-Line Code
-#    #$fsplit[1] = the Comment
-#  my @ssplit = ($fsplit[0] =~ /(\w+)*(\W*)/); #added lv - this separtes the 3 Letter Code and
-#    # line number from the line coding symbol
-#    # \w is alpha or numeric - \W is non alpha or numeric:
-#    # $ssplit[0] = the 3 Letter Code and Line Number
-#    # $ssplit[1] = the Line Code
-#  $tok[0] = $ssplit[1]; #added lv:
-#    # $tok[0} = the Line Code
-#  $tok[1] = "$ssplit[0] $fsplit[1]"; #added lv:
-#    # $tok[1] = the code and the comment, no line code
-#  my @csplit = ($ssplit[0] =~ /(\w\w\w)(\d*)/); # this is for QAQC
-#    # $csplit[0] = 3 letter code
-#    # $csplit[1] = line number
 # # if (length($fsplit[1])>0) {##############lv
 # #  $fsplit[1]="\;$fsplit[1]"; ########lv - adds the semi-colon before the Comment
 # # }
 #  $Icode=$pointCodes{$csplit[0]}; ## if the three letter code matches any of the codes
 #
-##############Test Section
-##print OUT1 "alksdf;alkdj   $pointCodes{$csplit[0]}\n";
-#print OUT1 "\n\n\n\in[0] point number      = $in[0]\n";
-#print OUT1 "in[4] full code & comment      = $in[4]\n";
-#print OUT1 "fsplit[0] full code no comment = $fsplit[0]\n";
-#print OUT1 "fsplit[1] comment              = $fsplit[1]\n";
-#print OUT1 "ssplit[0] code and line no.    = $ssplit[0]\n";
-#print OUT1 "ssplit[1] line code            = $ssplit[1]\n";
-#print OUT1 "tok[0] line code               = $tok[0]\n";
-#print OUT1 "tok[1] code, line no., comment = $tok[1]\n";
-#print OUT1 "csplit[0] alpha code           = $csplit[0]\n";
-#print OUT1 "csplit[1] line number          = $csplit[1]\n";
-##print OUT1 "hold                           = $hold\n";
-##print OUT1 "c linecode                     = $c\n";
-#print OUT1 "Icode idot code, line no.      = $Icode\n\n";
-#####################
 #Material type prefix
 	if  (exists ($typePrefixList::typePrefix{$MPScode})) {
   my $prefix = $typePrefixList::typePrefix{$MPScode};
