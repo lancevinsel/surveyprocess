@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 use lib 'C:\git-repos\surveyprocess\modules';
-use Getopt::Long qw(getOptions);
+use Getopt::Long qw(GetOptions);
 
 use commentLists;
 use flagCodes;
@@ -20,6 +20,8 @@ my $ACADlineSymbol="";
 my $filename="";
 my $civil3d="";
 my $openroads="";
+my $MPScode="";
+my $lineNumber="";
 # $figname="";
 # $curPtNum="";
 # $lastPtNum="";
@@ -52,9 +54,11 @@ if ($#ARGV<0) {
 	exit;
 }
 # Test for the output program flag and assign a value to either $civil3d or $openroads
-GetOptions('c' => \$civil3d);
-GetOptions('o' => \$openroads);
-if ($civil3d = "" && $openroads = ""){
+GetOptions(
+	'c' => \$civil3d,
+	'o' => \$openroads,
+);
+if ($civil3d eq "" && $openroads eq ""){
 	print q{
 ==============================================================================
 |                                                                            |
@@ -72,16 +76,18 @@ if ($civil3d = "" && $openroads = ""){
 }
 # $ARGV[0] is the first item following the command - in our case the filename to be processed
 $filename=$ARGV[0];
-	# print OUT "filename with extension	= $filename\n";
 # This next line removes the extension (normally .txt) from the entered filename
 $filename =~ s/\.[^.]*$//;
-	# print OUT "filename without extension	= $filename\n";
 # This opens the file for reading
 open(IN,$ARGV[0]);
 # This opens the file for writing
 open(OUT,">${filename}_all.cor");
 # begin the loop - read in the lines one by one and evaluate to the end
 # eliminate specific warnings - this is needed to prevent error messages in this code
+	print OUT "Civil3d is selected		= $civil3d\n";
+	print OUT "Openroads is selected		= $openroads\n";
+	print OUT "filename with extension		= $ARGV[0]\n";
+	print OUT "filename without extension	= $filename\n";
 {
 	no warnings 'uninitialized';
 	no warnings 'once';
@@ -94,8 +100,8 @@ while (<IN>) {
 		# $in[3] = elevation
 		# $in[4] = fieldCode (3 Letter Code-Line Number-Line Code-Comments)
 ###############
-
-
+print OUT "\n";
+		print OUT "fieldCode		= @in\n";
 	my @codeCommentSplit = split(/\s+/,$in[4],2); # this separates the fullCode from the fullComment
 		# using the first whitespace as the separator.
 		# print OUT "codeCommentSplit[0] 	= $codeCommentSplit[0]\n";
@@ -124,11 +130,12 @@ while (<IN>) {
 		 print OUT "IDOTlineSymbol		= $IDOTlineSymbol\n";
 		$ACADlineSymbol = $separateLineSymbol[1];
 		 print OUT "ACADlineSymbol		= $ACADlineSymbol\n";
-		} else {
+	} else {
 		$IDOTlineSymbol = "";
 		 print OUT "IDOTlineSymbol		= $IDOTlineSymbol\n";
 		$ACADlineSymbol = "";
 		 print OUT "ACADlineSymbol		= $ACADlineSymbol\n";
+	}
 #			# print OUT "liningSymbol		= This lining symbol \"$liningSymbol\" is ILLEGAL!!!!\n";
 #		}
 #	} else {
@@ -188,7 +195,7 @@ while (<IN>) {
 #####################
 #Material type prefix
 	if  (exists ($typePrefixList::typePrefix{$MPScode})) {
-  $prefix = $typePrefixList::typePrefix{$MPScode};
+  my $prefix = $typePrefixList::typePrefix{$MPScode};
   $lineNumber = "$prefix$lineNumber";
  }
 # ########################################
@@ -198,46 +205,46 @@ while (<IN>) {
 #          $noLineCounter = $noLineCounter + 1;
 # }
  ########################################Begin sorting and printing
- #################################################
- if  (exists ($bridgeCodes{$csplit[0]}))
-   {
-   if ($c = $idotcommands{$tok[0]})
-     {
-     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
-     }
-   else
-     {
-     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
-     }
-   }
- elsif (exists ($symbolCodes{$Icode}))  # Check against symbolCodes list for cells
-   {
-   if ($c = $idotcommands{$tok[0]})
-     {
-     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
-     }
-   else
-     {
-     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
-     }
-   }
- elsif (exists ($lineCodes{$Icode}))
-   {
-   if ($c = $idotcommands{$tok[0]})
-     {
-     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
-     }
-   else
-     {
-     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
-     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
-     }
-   }
+# #################################################
+# if  (exists ($bridgeCodes{$csplit[0]}))
+#   {
+#   if ($c = $idotcommands{$tok[0]})
+#     {
+#     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
+#     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
+#     }
+#   else
+#     {
+#     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
+#     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
+#     }
+#   }
+# elsif (exists ($symbolCodes{$Icode}))  # Check against symbolCodes list for cells
+#   {
+#   if ($c = $idotcommands{$tok[0]})
+#     {
+#     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
+#     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
+#     }
+#   else
+#     {
+#     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
+#     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
+#     }
+#   }
+# elsif (exists ($lineCodes{$Icode}))
+#   {
+#   if ($c = $idotcommands{$tok[0]})
+#     {
+#     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
+#     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
+#     }
+#   else
+#     {
+#     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
+#     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
+#     }
+#   }
 
 
 
@@ -263,24 +270,12 @@ while (<IN>) {
 
 
  #prepare for next loop
- $lastFigname=$figname;
- $lastPtNum=$in[0];
- $figname="";
- $comment="";  #### added lv
- $Icode="";
- $prefix="";
-
-
- $fsplit[0]="";
- $fsplit[1]="";
- $ssplit[0]="";
- $ssplit[1]="";
- $tok[0]="";
- $tok[1]="";
- $csplit[0]="";
- $csplit[1]="";
-
-}
+# $lastFigname=$figname;
+# $lastPtNum=$in[0];
+# $figname="";
+# $comment="";  #### added lv
+# $Icode="";
+# $prefix="";
 }
 close(IN);
 close(OUT1);
@@ -289,3 +284,4 @@ close(OUT3);
 close(OUT4);
 close(OUT5);
 close(OUT6);
+}
