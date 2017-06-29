@@ -81,7 +81,8 @@ while (<IN>) {
 # need to parse the fullComment for:
 # multiCodeDelimiter
 # 
-# print OUT "\n";
+#  print OUT "\n";
+ # print OUT "fieldCode		= @in\n";
 	my @codeCommentSplit = split(/\s+/,$in[4],2); # this separates the fullCode from the fullComment
 		# using the first whitespace as the separator.
 		# print OUT "codeCommentSplit[0] 	= $codeCommentSplit[0]\n";
@@ -93,12 +94,12 @@ while (<IN>) {
 	my @fullCodeSplit = ($fullCode =~ /(\w+)*(\W+)/); # this separates the 3 character MPSCode and
 		# line number from the line coding symbol liningSymbol;
 		# \w is alpha or numeric - \W is non alpha or numeric
-		# print OUT "fullCodeSplit[0]	= $fullCodeSplit[0]\n";
-		# print OUT "fullCodeSplit[1]	= $fullCodeSplit[1]\n";
+		#  print OUT "fullCodeSplit[0]	= $fullCodeSplit[0]\n";
+		#  print OUT "fullCodeSplit[1]	= $fullCodeSplit[1]\n";
 	$lineCode = $fullCodeSplit[0];
-		# print OUT "lineCode		= $lineCode\n";
+	#  print OUT "lineCode		= $lineCode\n";
 	$liningSymbol = $fullCodeSplit[1];
-		# print OUT "liningSymbol		= $liningSymbol\n";
+	#  print OUT "liningSymbol		= $liningSymbol\n";
 	if ($liningSymbol) { # This checks for a lining symbol
 		if ($liningCodes::lineSymbols{$liningSymbol}) {
 			# print OUT "liningSymbol		= This lining symbol \"$liningSymbol\" is OK\n";

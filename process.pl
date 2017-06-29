@@ -9,6 +9,7 @@ use flagCodes;
 use mainCodes;
 use liningCodes;
 use noLineList;
+use typePrefixList;
 # Some Vars
 my @in="";
 my $fullCode="";
@@ -107,36 +108,38 @@ print OUT "\n";
 		# print OUT "codeCommentSplit[0] 	= $codeCommentSplit[0]\n";
 		# print OUT "codeCommentSplit[1] 	= $codeCommentSplit[1]\n";
 	$fullCode = $codeCommentSplit[0];
-		# print OUT "fullCode		= $fullCode\n";
+		print OUT "fullCode		= $fullCode\n";
 	$fullComment = $codeCommentSplit[1];
-		# print OUT "fullComment		= $fullComment\n";
-	my @fullCodeSplit = ($fullCode =~ /(\w+)*(\W+)/); # this separates the 3 character MPSCode and
+		print OUT "fullComment		= $fullComment\n";
+		#my @fullCodeSplit = ($fullCode =~ /(\w+)*(\W+)/); # this separates the 3 character MPSCode and
+	my @fullCodeSplit = ($fullCode =~ /([a-zA-Z0-9]+)*(\W+)/); # this separates the 3 character MPSCode and
 		# line number from the line coding symbol liningSymbol;
 		# \w is alpha or numeric - \W is non alpha or numeric
 		# print OUT "fullCodeSplit[0]	= $fullCodeSplit[0]\n";
 		# print OUT "fullCodeSplit[1]	= $fullCodeSplit[1]\n";
 	$lineCode = $fullCodeSplit[0];
-		# print OUT "lineCode		= $lineCode\n";
+		print OUT "lineCode		= $lineCode\n";
 	$liningSymbol = $fullCodeSplit[1];
-		# print OUT "liningSymbol		= $liningSymbol\n";
+		print OUT "liningSymbol		= $liningSymbol\n";
 	if ($liningSymbol) { # This checks for a lining symbol
 		my $combinedLineSymbol = ($liningCodes::lineSymbols{$liningSymbol});
-		 print OUT "combinedLineSymbol		= $combinedLineSymbol\n";
+		# print OUT "combinedLineSymbol	= $combinedLineSymbol\n";
 		my @separateLineSymbol = split(/\s+/,$combinedLineSymbol,2); # this separates
 		# the IDOTlineSymbol from the ACADlineSymbol
-		 print OUT "separateLineSymbol[0]	= $separateLineSymbol[0]\n";
-		 print OUT "separateLineSymbol[1]	= $separateLineSymbol[1]\n";
+		# print OUT "separateLineSymbol[0]	= $separateLineSymbol[0]\n";
+		# print OUT "separateLineSymbol[1]	= $separateLineSymbol[1]\n";
 		$IDOTlineSymbol = $separateLineSymbol[0];
 		 print OUT "IDOTlineSymbol		= $IDOTlineSymbol\n";
 		$ACADlineSymbol = $separateLineSymbol[1];
 		 print OUT "ACADlineSymbol		= $ACADlineSymbol\n";
 	} else {
+		$lineCode = $fullCode;
+		 print OUT "lineCode		= $lineCode\n";
 		$IDOTlineSymbol = "";
 		 print OUT "IDOTlineSymbol		= $IDOTlineSymbol\n";
 		$ACADlineSymbol = "";
 		 print OUT "ACADlineSymbol		= $ACADlineSymbol\n";
 	}
-#			# print OUT "liningSymbol		= This lining symbol \"$liningSymbol\" is ILLEGAL!!!!\n";
 #		}
 #	} else {
 #		$lineCode = $fullCode;
@@ -148,9 +151,9 @@ print OUT "\n";
 		# print OUT "lineNumberSplit[0]	= $lineNumberSplit[0]\n";
 		# print OUT "lineNumberSplit[1]	= $lineNumberSplit[1]\n";
 	$MPScode = $lineNumberSplit[0];
-		# print OUT "MPScode			= $MPScode\n";
+		print OUT "MPScode			= $MPScode\n";
 	$lineNumber = $lineNumberSplit[1];
-		# print OUT "lineNumber		= $lineNumber\n";
+		print OUT "lineNumber		= $lineNumber\n";
 
 # # if (length($fsplit[1])>0) {##############lv
 # #  $fsplit[1]="\;$fsplit[1]"; ########lv - adds the semi-colon before the Comment
@@ -158,10 +161,14 @@ print OUT "\n";
 #  $Icode=$pointCodes{$csplit[0]}; ## if the three letter code matches any of the codes
 #
 #Material type prefix
-	if  (exists ($typePrefixList::typePrefix{$MPScode})) {
-  my $prefix = $typePrefixList::typePrefix{$MPScode};
-  $lineNumber = "$prefix$lineNumber";
- }
+	if ($openroads eq "1") {
+		if ($typePrefixList::typePrefix{$MPScode}) {
+			my $prefix = $typePrefixList::typePrefix{$MPScode};
+			print OUT "prefix			= $prefix\n";
+			$lineNumber = "$prefix$lineNumber";
+			print OUT "lineNumber		= $lineNumber\n";
+		}
+	}
 # ########################################
 # #NoLine fix
 # if  (exists ($noLine{$csplit[0]})) {
