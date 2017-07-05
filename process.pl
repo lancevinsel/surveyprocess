@@ -74,10 +74,10 @@ open(IN,$ARGV[0]);
 open(OUT,">${filename}_all.cor");
 # begin the loop - read in the lines one by one and evaluate to the end
 # eliminate specific warnings - this is needed to prevent error messages in this code
-	print OUT "Civil3d is selected		= $civil3d\n";
-	print OUT "Openroads is selected		= $openroads\n";
-	print OUT "filename with extension		= $ARGV[0]\n";
-	print OUT "filename without extension	= $filename\n";
+	# print OUT "Civil3d is selected		= $civil3d\n";
+	# print OUT "Openroads is selected		= $openroads\n";
+	# print OUT "filename with extension		= $ARGV[0]\n";
+	# print OUT "filename without extension	= $filename\n";
 {
 	no warnings 'uninitialized';
 	no warnings 'once';
@@ -90,16 +90,16 @@ while (<IN>) {
 		# $in[3] = elevation
 		# $in[4] = fieldCode (3 Letter Code-Line Number-Line Code-Comments)
 ###############
-print OUT "\n";
-		print OUT "fieldCode		= @in\n";
+# print OUT "\n";
+		# print OUT "fieldCode		= @in\n";
 	my @codeCommentSplit = split(/\s+/,$in[4],2); # this separates the fullCode from the fullComment
 		# using the first whitespace as the separator.
 		# print OUT "codeCommentSplit[0] 	= $codeCommentSplit[0]\n";
 		# print OUT "codeCommentSplit[1] 	= $codeCommentSplit[1]\n";
 	$fullCode = $codeCommentSplit[0];
-		print OUT "fullCode		= $fullCode\n";
+		# print OUT "fullCode		= $fullCode\n";
 	$fullComment = $codeCommentSplit[1];
-		print OUT "fullComment		= $fullComment\n";
+		# print OUT "fullComment		= $fullComment\n";
 		#my @fullCodeSplit = ($fullCode =~ /(\w+)*(\W+)/); # this separates the 3 character MPSCode and
 	my @fullCodeSplit = ($fullCode =~ /([a-zA-Z0-9]+)*(\W+)/); # this separates the 3 character MPSCode and
 		# line number from the line coding symbol liningSymbol;
@@ -107,9 +107,9 @@ print OUT "\n";
 		# print OUT "fullCodeSplit[0]	= $fullCodeSplit[0]\n";
 		# print OUT "fullCodeSplit[1]	= $fullCodeSplit[1]\n";
 	$lineCode = $fullCodeSplit[0];
-		print OUT "lineCode		= $lineCode\n";
+		# print OUT "lineCode		= $lineCode\n";
 	$liningSymbol = $fullCodeSplit[1];
-		print OUT "liningSymbol		= $liningSymbol\n";
+		# print OUT "liningSymbol		= $liningSymbol\n";
 	if ($liningSymbol) { # This checks for a lining symbol
 		my $combinedLineSymbol = ($liningCodes::lineSymbols{$liningSymbol});
 		# print OUT "combinedLineSymbol	= $combinedLineSymbol\n";
@@ -118,16 +118,16 @@ print OUT "\n";
 		# print OUT "separateLineSymbol[0]	= $separateLineSymbol[0]\n";
 		# print OUT "separateLineSymbol[1]	= $separateLineSymbol[1]\n";
 		$IDOTlineSymbol = $separateLineSymbol[0];
-		 print OUT "IDOTlineSymbol		= $IDOTlineSymbol\n";
+			# print OUT "IDOTlineSymbol		= $IDOTlineSymbol\n";
 		$ACADlineSymbol = $separateLineSymbol[1];
-		 print OUT "ACADlineSymbol		= $ACADlineSymbol\n";
+		#  print OUT "ACADlineSymbol		= $ACADlineSymbol\n";
 	} else {
 		$lineCode = $fullCode;
-		 print OUT "lineCode		= $lineCode\n";
+		#  print OUT "lineCode		= $lineCode\n";
 		$IDOTlineSymbol = "";
-		 print OUT "IDOTlineSymbol		= $IDOTlineSymbol\n";
+			# print OUT "IDOTlineSymbol		= $IDOTlineSymbol\n";
 		$ACADlineSymbol = "";
-		 print OUT "ACADlineSymbol		= $ACADlineSymbol\n";
+		#  print OUT "ACADlineSymbol		= $ACADlineSymbol\n";
 	}
 #		}
 #	} else {
@@ -140,9 +140,9 @@ print OUT "\n";
 		# print OUT "lineNumberSplit[0]	= $lineNumberSplit[0]\n";
 		# print OUT "lineNumberSplit[1]	= $lineNumberSplit[1]\n";
 	$MPScode = $lineNumberSplit[0];
-		print OUT "MPScode			= $MPScode\n";
+		# print OUT "MPScode			= $MPScode\n";
 	$lineNumber = $lineNumberSplit[1];
-		print OUT "lineNumber		= $lineNumber\n";
+		# print OUT "lineNumber		= $lineNumber\n";
 
 # # if (length($fsplit[1])>0) {##############lv
 # #  $fsplit[1]="\;$fsplit[1]"; ########lv - adds the semi-colon before the Comment
@@ -153,33 +153,33 @@ print OUT "\n";
 	if ($openroads eq "1") {
 		if ($typePrefixList::typePrefix{$MPScode}) {
 			my $prefix = $typePrefixList::typePrefix{$MPScode};
-			print OUT "prefix			= $prefix\n";
+				#   	print OUT "prefix			= $prefix\n";
 			$lineNumber = "$prefix$lineNumber";
-			print OUT "lineNumber		= $lineNumber\n";
+		# 	print OUT "lineNumber		= $lineNumber\n";
 		}
 	}
 # fix IDOT smd creating lines on non-line items
 	if ($openroads eq "1") {
 		if ($noLineList::noLine{$MPScode}) {
-			print OUT "lineNumber before noline add	= $lineNumber\n";
-			print OUT "noLineCounter		= $noLineCounter\n";
+			# print OUT "lineNumber before noline add	= $lineNumber\n";
+			# print OUT "noLineCounter		= $noLineCounter\n";
 		$lineNumber = $noLineCounter;
-			print OUT "lineNumber after noline add	= $lineNumber\n";
+			# print OUT "lineNumber after noline add	= $lineNumber\n";
 		$noLineCounter = $noLineCounter + 1;
-			print OUT "noLineCounter is now		= $noLineCounter\n";
+			# print OUT "noLineCounter is now		= $noLineCounter\n";
 		}
 	}
 # get the IDOT and Civil3d codes for the MPScode as created in the field
 	my $combinedCode = ($mainCodes::legalCodes{$MPScode});
-	 print OUT "combinedCode	= $combinedCode\n";
+		# print OUT "combinedCode	= $combinedCode\n";
 	my @separateCode = split(/\s+/,$combinedCode,2); # this separates
 	# the IDOTlineSymbol from the ACADlineSymbol
-	 print OUT "separateCode[0]	= $separateCode[0]\n";
-	 print OUT "separateCode[1]	= $separateCode[1]\n";
+	#  print OUT "separateCode[0]	= $separateCode[0]\n";
+	#  print OUT "separateCode[1]	= $separateCode[1]\n";
 	my $idotCode = $separateCode[0];
-	 print OUT "idotCode		= $idotCode\n";
+	#  print OUT "idotCode		= $idotCode\n";
 	my $civil3dCode = $separateCode[1];
-	 print OUT "civil3dCode		= $civil3dCode\n";
+	#  print OUT "civil3dCode		= $civil3dCode\n";
 # Printing Section
 	if ($openroads eq "1") {
 		print OUT "$in[0],$in[1],$in[2],$in[3],$idotCode$lineNumber,$IDOTlineSymbol $fullComment\n";
@@ -188,7 +188,7 @@ print OUT "\n";
 		print OUT "$in[0],$in[1],$in[2],$in[3],$civil3dCode$lineNumber,$ACADlineSymbol $fullComment\n";
 		}
 
- #prepare for next loop
+# prepare for next loop
 my @in="";
 my $fullCode="";
 my $fullComment="";
