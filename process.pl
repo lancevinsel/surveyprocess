@@ -23,6 +23,7 @@ my $civil3d="";
 my $openroads="";
 my $MPScode="";
 my $lineNumber="";
+my $noLineCounter=1;
 # $figname="";
 # $curPtNum="";
 # $lastPtNum="";
@@ -170,13 +171,17 @@ print OUT "\n";
 		}
 	}
 # ########################################
-# #NoLine fix
-# if  (exists ($noLine{$csplit[0]})) {
-#          $csplit[1] = $noLineCounter;
-#          $noLineCounter = $noLineCounter + 1;
-# }
- ########################################Begin sorting and printing
-# #################################################
+	if ($openroads eq "1") {
+		if ($noLineList::noLine{$MPScode}) {
+			print OUT "lineNumber before noline add	= $lineNumber\n";
+			print OUT "noLineCounter		= $noLineCounter\n";
+		$lineNumber = $noLineCounter;
+			print OUT "lineNumber after noline add	= $lineNumber\n";
+		$noLineCounter = $noLineCounter + 1;
+			print OUT "noLineCounter is now		= $noLineCounter\n";
+		}
+	}
+# Printing Section
 # if  (exists ($bridgeCodes{$csplit[0]}))
 #   {
 #   if ($c = $idotcommands{$tok[0]})
