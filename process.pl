@@ -24,22 +24,10 @@ my $openroads="";
 my $MPScode="";
 my $lineNumber="";
 my $noLineCounter=1;
-# $figname="";
-# $curPtNum="";
-# $lastPtNum="";
-# $lastFigname="";
-# %activeStrings=();
-# $lastWasString=0;
-# $comment=""; #lv added
-# $Icode=""; #lv added (Process01)
-# $hold = "";
-# $noLineCounter=1;
-
 
 # ==============================================================================================
 #                                   Start of Main Program
 # ==============================================================================================
-#                                   Syntax - process ARGV
 # @ARGV is a special array containing the items listed after the command on the command line
 # Test to make sure that a filename was listed after the command 'checkin'
 if ($#ARGV<0) {
@@ -161,7 +149,7 @@ print OUT "\n";
 # # }
 #  $Icode=$pointCodes{$csplit[0]}; ## if the three letter code matches any of the codes
 #
-#Material type prefix
+# Material type prefix
 	if ($openroads eq "1") {
 		if ($typePrefixList::typePrefix{$MPScode}) {
 			my $prefix = $typePrefixList::typePrefix{$MPScode};
@@ -170,7 +158,7 @@ print OUT "\n";
 			print OUT "lineNumber		= $lineNumber\n";
 		}
 	}
-# ########################################
+# fix IDOT smd creating lines on non-line items
 	if ($openroads eq "1") {
 		if ($noLineList::noLine{$MPScode}) {
 			print OUT "lineNumber before noline add	= $lineNumber\n";
@@ -181,83 +169,38 @@ print OUT "\n";
 			print OUT "noLineCounter is now		= $noLineCounter\n";
 		}
 	}
+# get the IDOT and Civil3d codes for the MPScode as created in the field
+	my $combinedCode = ($mainCodes::legalCodes{$MPScode});
+	 print OUT "combinedCode	= $combinedCode\n";
+	my @separateCode = split(/\s+/,$combinedCode,2); # this separates
+	# the IDOTlineSymbol from the ACADlineSymbol
+	 print OUT "separateCode[0]	= $separateCode[0]\n";
+	 print OUT "separateCode[1]	= $separateCode[1]\n";
+	my $idotCode = $separateCode[0];
+	 print OUT "idotCode		= $idotCode\n";
+	my $civil3dCode = $separateCode[1];
+	 print OUT "civil3dCode		= $civil3dCode\n";
 # Printing Section
-# if  (exists ($bridgeCodes{$csplit[0]}))
-#   {
-#   if ($c = $idotcommands{$tok[0]})
-#     {
-#     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
-#     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
-#     }
-#   else
-#     {
-#     print OUT2 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
-#     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
-#     }
-#   }
-# elsif (exists ($symbolCodes{$Icode}))  # Check against symbolCodes list for cells
-#   {
-#   if ($c = $idotcommands{$tok[0]})
-#     {
-#     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
-#     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
-#     }
-#   else
-#     {
-#     print OUT4 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
-#     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
-#     }
-#   }
-# elsif (exists ($lineCodes{$Icode}))
-#   {
-#   if ($c = $idotcommands{$tok[0]})
-#     {
-#     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
-#     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $c $fsplit[1]\n";
-#     }
-#   else
-#     {
-#     print OUT3 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
-#     print OUT1 "$in[0],$in[1],$in[2],$in[3],$Icode$csplit[1] $fsplit[1]\n";
-#     }
-#   }
-
-
-
-
-
-####################### TEST SECTION
-#print OUT5 "in[0] point number             = $in[0]\n";
-#print OUT5 "in[1] northing                 = $in[1]\n";
-#print OUT5 "in[2] easting                  = $in[2]\n";
-#print OUT5 "in[3] elevation                = $in[3]\n";
-#print OUT5 "in[4] full code & comment      = $in[4]\n";
-#print OUT5 "fsplit[0] full code no comment = $fsplit[0]\n";
-#print OUT5 "fsplit[1] comment              = $fsplit[1]\n";
-#print OUT5 "ssplit[0] code and line no.    = $ssplit[0]\n";
-#print OUT5 "ssplit[1] line code            = $ssplit[1]\n";
-#print OUT5 "tok[0] line code               = $tok[0]\n";
-#print OUT5 "tok[1] code, line no., comment = $tok[1]\n";
-#print OUT5 "csplit[0] alpha code           = $csplit[0]\n";
-#print OUT5 "csplit[1] line number          = $csplit[1]\n";
-#print OUT1 "hold                           = $hold\n";
-#print OUT5 "c linecode                     = $c\n";
-#print OUT5 "Icode idot code, line no.      = $Icode\n\n\n\n\n";
-
+	if ($openroads eq "1") {
+		print OUT "$in[0],$in[1],$in[2],$in[3],$idotCode$lineNumber,$IDOTlineSymbol $fullComment\n";
+		}
+	if ($civil3d eq "1") {
+		print OUT "$in[0],$in[1],$in[2],$in[3],$civil3dCode$lineNumber,$ACADlineSymbol $fullComment\n";
+		}
 
  #prepare for next loop
-# $lastFigname=$figname;
-# $lastPtNum=$in[0];
-# $figname="";
-# $comment="";  #### added lv
-# $Icode="";
-# $prefix="";
+my @in="";
+my $fullCode="";
+my $fullComment="";
+my $lineCode="";
+my $liningSymbol="";
+my $IDOTlineSymbol="";
+my $ACADlineSymbol="";
+my $civil3d="";
+my $openroads="";
+my $MPScode="";
+my $lineNumber="";
 }
 close(IN);
-close(OUT1);
-close(OUT2);
-close(OUT3);
-close(OUT4);
-close(OUT5);
-close(OUT6);
+close(OUT);
 }
