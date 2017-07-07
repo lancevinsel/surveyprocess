@@ -144,20 +144,15 @@ while (<IN>) {
 	$lineNumber = $lineNumberSplit[1];
 		# print OUT "lineNumber		= $lineNumber\n";
 
-# # if (length($fsplit[1])>0) {##############lv
-# #  $fsplit[1]="\;$fsplit[1]"; ########lv - adds the semi-colon before the Comment
-# # }
-#  $Icode=$pointCodes{$csplit[0]}; ## if the three letter code matches any of the codes
-#
 # Material type prefix
-	if ($openroads eq "1") {
+#	if ($openroads eq "1") {
 		if ($typePrefixList::typePrefix{$MPScode}) {
 			my $prefix = $typePrefixList::typePrefix{$MPScode};
 				#   	print OUT "prefix			= $prefix\n";
 			$lineNumber = "$prefix$lineNumber";
 		# 	print OUT "lineNumber		= $lineNumber\n";
 		}
-	}
+#	}
 # fix IDOT smd creating lines on non-line items
 	if ($openroads eq "1") {
 		if ($noLineList::noLine{$MPScode}) {
