@@ -185,8 +185,12 @@ while (<IN>) {
 		print OUT "$in[0],$in[1],$in[2],$in[3],$idotCode$lineNumber,$IDOTlineSymbol $fullComment\n";
 		}
 	if ($civil3d eq "1") {
-		print OUT "$in[0],$in[1],$in[2],$in[3],$civil3dCode$lineNumber,$ACADlineSymbol $fullComment\n";
+		if ($liningSymbol) {
+			print OUT "$in[0],$in[1],$in[2],$in[3],$civil3dCode$lineNumber^$ACADlineSymbol $fullComment\n";
+		} else {
+			print OUT "$in[0],$in[1],$in[2],$in[3],$civil3dCode$lineNumber $fullComment\n";
 		}
+	}
 
 # prepare for next loop
 my @in="";
