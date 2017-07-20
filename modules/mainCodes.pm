@@ -9,14 +9,14 @@ our %legalCodes = (
 			# and the face of the wingwalls.  A 2d line, usually collected prismless.
  "BAR" => "695 695", #Stop Bar
  "BAS" => "618 618", #Bridge Approach Slab
- "BBA" => "619 619", #Bridge Deck Spot – Aggregate
- "BBB" => "619 619", #Bridge Deck Spot – HMA
- "BBC" => "619 619", #Bridge Deck Spot – Concrete
+ "BBA" => "619 BBA", #Bridge Deck Spot – Aggregate
+ "BBB" => "619 BBA", #Bridge Deck Spot – HMA
+ "BBC" => "619 BBA", #Bridge Deck Spot – Concrete
  "BBG" => "319 319", #Buffalo Box - Gas
- "BBR" => "619 619", #Bridge Deck Spot – Brick
+ "BBR" => "619 BBA", #Bridge Deck Spot – Brick
  "BBS" => "620 620", #Bridge Beam Seat Elevation - The bridge seat elevation.  For elevation only.
 			# Usually collected with the "hook".
- "BBV" => "619 619", #Bridge Deck Spot – Vinyl
+ "BBV" => "619 BBA", #Bridge Deck Spot – Vinyl
  "BBW" => "320 320", #Buffalo Box - Water
  "BCB" => "611 611", #Bridge Curb - Top Front
  "BDB" => "619 619", #Bridge Deck Edge – Bit

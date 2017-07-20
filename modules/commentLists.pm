@@ -4,8 +4,8 @@ use warnings;
 
 our %addedComments = (
  "ACU" => "AC UNIT",
- "BAB" => "ABUTMENT CAP",
- "BAL" => "LOCATION ONLY",
+ "BAB" => "ABUT",
+ "BAL" => "2D ONLY",
  "BBA" => "AGG",
  "BBB" => "HMA",
  "BBC" => "CONC",
