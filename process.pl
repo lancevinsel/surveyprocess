@@ -104,7 +104,7 @@ while (<IN>) {
 	$fullCode = $codeCommentSplit[0];
 		# print OUT "fullCode		= $fullCode\n";
 	$fullComment = $codeCommentSplit[1];
-		# print OUT "fullComment		= $fullComment\n";
+		# print OUT1 "fullComment		= $fullComment TEST\n";
 		#my @fullCodeSplit = ($fullCode =~ /(\w+)*(\W+)/); # this separates the 3 character MPSCode and
 	my @fullCodeSplit = ($fullCode =~ /([a-zA-Z0-9]+)*(\W+)/); # this separates the 3 character MPSCode and
 		# line number from the line coding symbol liningSymbol;
@@ -182,7 +182,10 @@ while (<IN>) {
 	#  print OUT "civil3dCode		= $civil3dCode\n";
 # Printing Section
 	if ($openroads eq "1") {
-		print OUT1 "$in[0],$in[1],$in[2],$in[3],$idotCode$lineNumber-$fullComment,$IDOTlineSymbol\n";
+		if ($fullComment) {
+			$fullComment="--$fullComment";
+		}
+		print OUT1 "$in[0],$in[1],$in[2],$in[3],$idotCode$lineNumber$fullComment,$IDOTlineSymbol\n";
 		}
 	if ($civil3d eq "1") {
 		if ($liningSymbol) {

@@ -49,7 +49,7 @@ our %legalCodes = (
  "BSC" => "641 641", #Bridge Scupper (drain)
  "BSH" => "408 408", #Bush / Shrub
  "BSL" => "412 412", #Bush Line / Hedgerow
- "BSS" => "633 633", #Bridge Structural Steel Member (not low steel)
+ "BSS" => "633 BSS", #Bridge Structural Steel Member (not low steel)
  "BWL" => "612 612", #Bridge Backwall – 3D
  "BWW" => "635 635", #Bridge Wingwall - Top Face & Back – 3D - The outline of the face and
 			# sides of the wingwall.  A 3d line with points at each elevation change.
