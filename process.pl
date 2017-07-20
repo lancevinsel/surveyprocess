@@ -69,9 +69,10 @@ $filename=$ARGV[0];
 # This next line removes the extension (normally .txt) from the entered filename
 $filename =~ s/\.[^.]*$//;
 # This opens the file for reading
-open(IN,$ARGV[0]);
+open(IN,$ARGV[0]) or die "Can't open '$ARGV[0]' : $!";
 # This opens the file for writing
-open(OUT,">${filename}_all.cor");
+open(OUT1,">${filename}_ORoads.cor");
+open(OUT2,">${filename}_C3d.cor");
 # begin the loop - read in the lines one by one and evaluate to the end
 # eliminate specific warnings - this is needed to prevent error messages in this code
 	# print OUT "Civil3d is selected		= $civil3d\n";
@@ -177,13 +178,13 @@ while (<IN>) {
 	#  print OUT "civil3dCode		= $civil3dCode\n";
 # Printing Section
 	if ($openroads eq "1") {
-		print OUT "$in[0],$in[1],$in[2],$in[3],$idotCode$lineNumber,$IDOTlineSymbol $fullComment\n";
+		print OUT1 "$in[0],$in[1],$in[2],$in[3],$idotCode$lineNumber,$IDOTlineSymbol $fullComment\n";
 		}
 	if ($civil3d eq "1") {
 		if ($liningSymbol) {
-			print OUT "$in[0],$in[1],$in[2],$in[3],$civil3dCode$lineNumber^$ACADlineSymbol $fullComment\n";
+			print OUT2 "$in[0],$in[1],$in[2],$in[3],$civil3dCode$lineNumber^$ACADlineSymbol $fullComment\n";
 		} else {
-			print OUT "$in[0],$in[1],$in[2],$in[3],$civil3dCode$lineNumber $fullComment\n";
+			print OUT2 "$in[0],$in[1],$in[2],$in[3],$civil3dCode$lineNumber $fullComment\n";
 		}
 	}
 
