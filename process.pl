@@ -71,8 +71,12 @@ $filename =~ s/\.[^.]*$//;
 # This opens the file for reading
 open(IN,$ARGV[0]) or die "Can't open '$ARGV[0]' : $!";
 # This opens the file for writing
-open(OUT1,">${filename}_ORoads.cor");
-open(OUT2,">${filename}_C3d.cor");
+if ($openroads eq "1") {
+	open(OUT1,">${filename}_ORoads.cor");
+	}
+if ($civil3d eq "1") {
+	open(OUT2,">${filename}_C3d.cor");
+	}
 # begin the loop - read in the lines one by one and evaluate to the end
 # eliminate specific warnings - this is needed to prevent error messages in this code
 	# print OUT "Civil3d is selected		= $civil3d\n";
@@ -202,5 +206,10 @@ my $MPScode="";
 my $lineNumber="";
 }
 close(IN);
-close(OUT);
+if ($openroads eq "1") {
+	close(OUT1);
+}
+if ($civil3d eq "1") {
+	close(OUT2);
+}
 }
