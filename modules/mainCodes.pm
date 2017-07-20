@@ -41,7 +41,7 @@ our %legalCodes = (
  "BPA" => "633 633", #Bridge Parapet – 3D
  "BPC" => "629 629", #Bridge Pier - 2D Prismless - The outline of the face of the pier cap.
 			# A 2d line usually collected "prismless".
- "BPR" => "615 615", #Bridge Pier - Top Face - 3D
+ "BPR" => "615 BPR", #Bridge Pier - Top Face - 3D
  "BPT" => "631 631", #Bridge Pier Top Elevation Only - The pier cap elevation - For elevation
 			# only.  Usually collected with the "hook".
  "BRK" => "607 607", #Breakline

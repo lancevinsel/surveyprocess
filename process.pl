@@ -182,7 +182,7 @@ while (<IN>) {
 	#  print OUT "civil3dCode		= $civil3dCode\n";
 # Printing Section
 	if ($openroads eq "1") {
-		print OUT1 "$in[0],$in[1],$in[2],$in[3],$idotCode$lineNumber,$IDOTlineSymbol $fullComment\n";
+		print OUT1 "$in[0],$in[1],$in[2],$in[3],$idotCode$lineNumber-$fullComment,$IDOTlineSymbol\n";
 		}
 	if ($civil3d eq "1") {
 		if ($liningSymbol) {
