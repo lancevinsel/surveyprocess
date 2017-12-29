@@ -17,7 +17,7 @@
  "BAB" => "legal", # The outline of the face,sides, and top of the abutment.  A 3d line.
  #"BAL" => "legal", # The outline of the face of the abutment and the face of the
                    # Wingwalls.  A 2d line, usually collected prismless.
- #"BAR" => "legal", # Stop Bar - Painted
+ "BAR" => "legal", # Stop Bar - Painted
  #"BAS" => "legal", # Bridge Approach Slab
  #"BAT" => "legal",
  "BBA" => "legal", # Bridge Deck - AGG
@@ -106,7 +106,7 @@
  "CNR" => "legal", # Crown of roadway - BRICK - use where there is no stripeing
  #"CRN" => "legal", # Crown Line
  "CRP" => "legal", # Crop Line
- #"CRW" => "legal", # Crosswalk
+ "CRW" => "legal", # Crosswalk
  "CUB" => "legal", # Culvert - Box
  #"CUE" => "legal", # Culvert - Elliptical
  "CUP" => "legal", # Culvert - Pipe
@@ -223,7 +223,7 @@
  "MHV" => "legal", # Manhole Cable TV
  "MHW" => "legal", # Manhole Water
  "MHS" => "legal", # Manhole Traffic Fiber Optic
- #"MSC" => "legal", # Misc - added v6
+ "MSC" => "legal", # Misc - added v6
  "MTE" => "legal", # Meter Electrical
  "MTG" => "legal", # Meter Gas
  "MTW" => "legal", # Meter Water

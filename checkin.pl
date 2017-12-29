@@ -223,7 +223,7 @@
  "MHV" => "legal", # Manhole Cable TV
  "MHW" => "legal", # Manhole Water
  "MHS" => "legal", # Manhole Traffic Fiber Optic
- #"MSC" => "legal", # Misc - added v6
+ "MSC" => "legal", # Misc - added v6
  "MTE" => "legal", # Meter Electrical
  "MTG" => "legal", # Meter Gas
  "MTW" => "legal", # Meter Water
