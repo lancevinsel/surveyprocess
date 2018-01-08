@@ -240,7 +240,7 @@
  "PDV" => "legal", # Pedestal Cable TV
  "PLF" => "legal", # Flag Pole
  "PLT" => "legal", # Pole Light Only
- #"PMA" => "legal", # Spot - Aggregate
+ "PMA" => "legal", # Spot - Aggregate
  "PMB" => "legal", # Spot - HMA/BIT
  "PMC" => "legal", # Spot - Concrete
  "PMR" => "legal", # Spot - Brick
@@ -504,6 +504,7 @@
  "867" => "legal",
  "881" => "legal",
  "930" => "legal",
+ "940" => "legal",
  "942" => "legal",
  "960" => "legal",
  "962" => "legal",
