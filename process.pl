@@ -233,7 +233,7 @@
  "PMT" => "666", # Pavement
  "PPL" => "254", # Power Pole with Light added v6
  "PPT" => "412", # Power Pole with Transformer
- "PPU" => "411", #H Power Pole
+ "PPU" => "409", #H Power Pole
  "PRK" => "385", # Parking Meter
  "PUG" => "508", # Gas Pump
  "RCK" => "699", # Rock or Boulder
@@ -948,7 +948,7 @@
 # "696" => "696",
 # "697" => "697",
 # "698" => "698",
-# "699" => "699",
+ "699" => "354",
 # "700" => "700",
 # "701" => "701",
 # "702" => "702",

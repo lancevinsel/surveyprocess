@@ -247,7 +247,7 @@
  #"PMT" => "legal",
  "PPL" => "legal", # Pole Utility with Light
  #"PPT" => "legal", # Pole Utility with Transformer
- #"PPU" => "legal", # Pole Utility
+ "PPU" => "legal", # Pole Utility
  "PUG" => "legal", # Gas Pump
  #"RCK" => "legal", # Rock or Boulder
  "PRK" => "legal", # Parking Meter
