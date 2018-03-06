@@ -183,7 +183,8 @@ while (<IN>) {
 # Printing Section
 	if ($openroads eq "1") {
 		if ($fullComment) {
-			$fullComment="--$fullComment";
+# 			$fullComment="--$fullComment";
+			$fullComment=";$fullComment";
 		}
 		print OUT1 "$in[0],$in[1],$in[2],$in[3],$idotCode$lineNumber$fullComment,$IDOTlineSymbol\n";
 		}
