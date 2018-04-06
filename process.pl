@@ -36,7 +36,7 @@ if ($#ARGV<0) {
 |                                                                            |
 |                     Process script requires file name                      |
 |                                                                            |
-|                    Syntax:  process filename -c (or -i)                    |
+|                    Syntax:  process filename -c (or -o)                    |
 |                                                                            |
 ==============================================================================
 
@@ -183,12 +183,14 @@ while (<IN>) {
 # Printing Section
 	if ($openroads eq "1") {
 		if ($fullComment) {
-# 			$fullComment="--$fullComment";
-			$fullComment=";$fullComment";
+			$fullComment="--$fullComment";
 		}
-		print OUT1 "$in[0],$in[1],$in[2],$in[3],$idotCode$lineNumber$fullComment,$IDOTlineSymbol\n";
+		print OUT1 "$in[0],$in[1],$in[2],$in[3],$IDOTlineSymbol$idotCode$lineNumber $fullComment\n";
 		}
 	if ($civil3d eq "1") {
+		if ($fullComment) {
+			$fullComment=";$fullComment";
+		}
 		if ($liningSymbol) {
 			print OUT2 "$in[0],$in[1],$in[2],$in[3],$civil3dCode$lineNumber^$ACADlineSymbol $fullComment\n";
 		} else {
