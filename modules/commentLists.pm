@@ -194,6 +194,7 @@ our %addedComments = (
  "SPV" => "DRILL HOLE",
  "SPW" => "BRASS MONUMENT",
  "SPX" => "IRON ROD",
+ "SPY" => "CUT NOTCH",
  "SWA" => "AGG",
  "SWB" => "HMA",
  "SWC" => "CONC",
