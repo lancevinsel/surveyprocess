@@ -190,6 +190,7 @@
  "CKV" => "legal", # Control Point Check - Vertical
  "CLR" => "legal", # Centerline Railroad Track - depreciated
  #"CMA" => "legal",
+ "CMP" => "legal", # Computed Point
  "CNP" => "legal", # Canopy
  "CNT" => "legal", # Traffic Signal Cantelever/Mast Arm
  "CNA" => "legal", # Crown of roadway - Agg - use where there is no stripeing
@@ -677,6 +678,7 @@
  "BSS" => "STRUCTURAL STEEL",
  "BWC" => "SIDEWALK CONC",
  "BWL" => "BACKWALL",
+ "CMP" => "COMPUTED",
  "CNA" => "AGG",
  "CNB" => "HMA",
  "CNC" => "CONC",

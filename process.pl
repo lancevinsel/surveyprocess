@@ -284,6 +284,7 @@
  "CKH" => "135",
  "CKV" => "134",
  "CLR" => "450", # RR centerline - depreciated
+ "CMP" => "111", # Computed point
  "CNA" => "607", # Crown - AGG
  "CNB" => "607", # Crown - BIT/HMA - use stripeing as breakline where possible
  "CNC" => "607", # Crown - CONC - use stripeing as breakline where possible
