@@ -58,6 +58,7 @@ while (<IN>) {
             $diststation = (($station+$lastweld)/2)
             print OUT1 "DST,$diststation,$disttext1,\n";
        }
+       print OUT1 "WLD,$station,$text1,\n";
     }
 
 
