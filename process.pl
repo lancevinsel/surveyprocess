@@ -60,57 +60,57 @@ while (<IN>) {
 	if ($code eq "WLD") {
 		if ($lastbend) {
 			$legstation = (($station+$lastbend)/2);
-			print OUT1 "LEG,$legstation,,,0\n";
+			print OUT1 "LEG,0,$legstation,X;\n";
 			if ($lastjoint) {
 				$jointstation = (($station+$lastweld)/2);
 				if ($disttext2 > 25) {
-					print OUT1 "JN2,$jointstation,$jointtext1,$jointtext2,0\n";
+					print OUT1 "JN2,0,$jointstation,$jointtext1;$jointtext2\n";
 				} else {
-					print OUT1 "JN3,$jointstation,$jointtext1,$jointtext2,0\n";
+					print OUT1 "JN3,0,$jointstation,$jointtext1;$jointtext2\n";
 				}
 			}
 			if ($lastdist) {
 				$diststation = (($station+$lastweld)/2);
 				if ($disttext2 > 25) {
-					print OUT1 "DST,$diststation,,$disttext2,0\n";
+					print OUT1 "DST,0,$diststation,X;$disttext2\n";
 				} else {
-					print OUT1 "DS2,$diststation,,$disttext2,0\n";
+					print OUT1 "DS2,0,$diststation,X;$disttext2\n";
 				}
 			}
 		} else {
 			if ($lastjoint) {
 				$jointstation = (($station+$lastweld)/2);
 				if ($disttext2 > 25) {
-					print OUT1 "JNT,$jointstation,$jointtext1,$jointtext2,0\n";
+					print OUT1 "JNT,0,$jointstation,$jointtext1;$jointtext2\n";
 				} else {
-					print OUT1 "JN3,$jointstation,$jointtext1,$jointtext2,0\n";
+					print OUT1 "JN3,0,$jointstation,$jointtext1;$jointtext2\n";
 				}
 			}
 			if ($lastdist) {
 				$diststation = (($station+$lastweld)/2);
 				if ($disttext2 > 25) {
-				print OUT1 "DST,$diststation,,$disttext2,0\n";
+				print OUT1 "DST,0,$diststation,X;$disttext2\n";
 				} else {
-				print OUT1 "DS2,$diststation,,$disttext2,0\n";
+				print OUT1 "DS2,0,$diststation,X;$disttext2\n";
 				}
 			}
 		}
 		$lastjoint=$text1;
 		$lastdist=$text1;
 		$lastbend="";
-		print OUT1 "WLD,$station,$text1,,0\n";
+		print OUT1 "WLD,0,$station,$text1;\n";
 		$lastweld=$station;
 	}
 	if ($code eq "BND") {
 		$bendtext2=$text2;
 		if ($lastbend) {
 			$legstation = (($station+$lastbend)/2);
-			print OUT1 "LEG,$legstation,,,0\n";
-			print OUT1 "BND,$station,,$bendtext2,0\n";
+			print OUT1 "LEG,0,$legstation,x;\n";
+			print OUT1 "BND,0,$station,X;$bendtext2\n";
 		} else {
 			$legstation = (($station+$lastweld)/2);
-			print OUT1 "LEG,$legstation,,,0\n";
-			print OUT1 "BND,$station,,$bendtext2,0\n";
+			print OUT1 "LEG,0,$legstation,X;\n";
+			print OUT1 "BND,0,$station,X;$bendtext2\n";
 		}
 		$lastbend=$station;
 	}
