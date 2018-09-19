@@ -15,6 +15,7 @@ my $lastdist="";
 my $lastjoint="";
 my $lastweld="";
 my $legstation="";
+my $random = 1;
 #
 # ====================================================================================================
 #                                             Start of Main Program
@@ -60,7 +61,8 @@ while (<IN>) {
 	if ($code eq "WLD") {
 		if ($lastbend) {
 			$legstation = (($station+$lastbend)/2);
-			print OUT1 "LEG,0,$legstation,X;\n";
+			print OUT1 "LEG,0,$legstation,$random;\n";
+			$random++;
 			if ($lastjoint) {
 				$jointstation = (($station+$lastweld)/2);
 				if ($disttext2 > 25) {
@@ -72,9 +74,11 @@ while (<IN>) {
 			if ($lastdist) {
 				$diststation = (($station+$lastweld)/2);
 				if ($disttext2 > 25) {
-					print OUT1 "DST,0,$diststation,X;$disttext2\n";
+					print OUT1 "DST,0,$diststation,$random;$disttext2\n";
+					$random++;
 				} else {
-					print OUT1 "DS2,0,$diststation,X;$disttext2\n";
+					print OUT1 "DS2,0,$diststation,$random;$disttext2\n";
+					$random++;
 				}
 			}
 		} else {
@@ -89,9 +93,11 @@ while (<IN>) {
 			if ($lastdist) {
 				$diststation = (($station+$lastweld)/2);
 				if ($disttext2 > 25) {
-				print OUT1 "DST,0,$diststation,X;$disttext2\n";
+				print OUT1 "DST,0,$diststation,$random;$disttext2\n";
+				$random++;
 				} else {
-				print OUT1 "DS2,0,$diststation,X;$disttext2\n";
+				print OUT1 "DS2,0,$diststation,$random;$disttext2\n";
+				$random++;
 				}
 			}
 		}
@@ -105,12 +111,16 @@ while (<IN>) {
 		$bendtext2=$text2;
 		if ($lastbend) {
 			$legstation = (($station+$lastbend)/2);
-			print OUT1 "LEG,0,$legstation,x;\n";
-			print OUT1 "BND,0,$station,X;$bendtext2\n";
+			print OUT1 "LEG,0,$legstation,$random;\n";
+			$random++;
+			print OUT1 "BND,0,$station,$random;$bendtext2\n";
+			$random++;
 		} else {
 			$legstation = (($station+$lastweld)/2);
-			print OUT1 "LEG,0,$legstation,X;\n";
-			print OUT1 "BND,0,$station,X;$bendtext2\n";
+			print OUT1 "LEG,0,$legstation,$random;\n";
+			$random++;
+			print OUT1 "BND,0,$station,$random;$bendtext2\n";
+			$random++;
 		}
 		$lastbend=$station;
 	}
@@ -133,6 +143,11 @@ while (<IN>) {
 
 #-----------------prepare for next loop
 	$jointstation="";
+}
+for (my $i = 0; $i <= 400; $i = $i + 5) {
+	my $sta = $i * 100;
+	print OUT1 "STA,0,$sta,$random;$i+00\n";
+	$random++;
 }
 close(IN);
 close(OUT1);
