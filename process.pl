@@ -36,7 +36,7 @@ if ($#ARGV<0) {
 my $filename=$ARGV[0];
 $filename =~ s/\.[^.]*$//;
 open(IN,$ARGV[0]);
-open(OUT1,">${filename}.csv");
+open(OUT1,">${filename}.cor");
 while (<IN>) {
 	my @in = split(/,/, substr(uc, 0, -1), 5); #note: the substr forces text to be uppercase; the split creates:
 	my $code    = $in[0];
@@ -55,29 +55,36 @@ while (<IN>) {
 #                    print OUT1 "IF JNT jointtext2                         $jointtext2\n";
 	}
 	if ($code eq "DST") {
-		$disttext2=$text2;
+#		$disttext2=$text2;
+		$disttext2= sprintf "%.1f", $text2;
 #                    print OUT1 "IF DST disttext2                         $disttext2\n";
 	}
 	if ($code eq "WLD") {
 		if ($lastbend) {
 			$legstation = (($station+$lastbend)/2);
-			print OUT1 "LEG,0,$legstation,$random;\n";
+			print OUT1 "LEG,0,$legstation,T$random;\n";
 			$random++;
 			if ($lastjoint) {
 				$jointstation = (($station+$lastweld)/2);
 				if ($disttext2 > 25) {
 					print OUT1 "JN2,0,$jointstation,$jointtext1;$jointtext2\n";
+					print OUT1 "HT2,0,$jointstation,T$random;$jointtext2\n";
+					$random++;
 				} else {
 					print OUT1 "JN3,0,$jointstation,$jointtext1;$jointtext2\n";
+					print OUT1 "HT3,0,$jointstation,T$random;$jointtext2\n";
+					$random++;
 				}
 			}
 			if ($lastdist) {
 				$diststation = (($station+$lastweld)/2);
 				if ($disttext2 > 25) {
-					print OUT1 "DST,0,$diststation,$random;$disttext2\n";
+					print OUT1 "DST,0,$diststation,T$random;$disttext2\n";
 					$random++;
 				} else {
-					print OUT1 "DS2,0,$diststation,$random;$disttext2\n";
+					print OUT1 "DS2,0,$diststation,T$random;$disttext2\n";
+					$random++;
+					print OUT1 "LEG,0,$diststation,T$random;\n";
 					$random++;
 				}
 			}
@@ -86,40 +93,47 @@ while (<IN>) {
 				$jointstation = (($station+$lastweld)/2);
 				if ($disttext2 > 25) {
 					print OUT1 "JNT,0,$jointstation,$jointtext1;$jointtext2\n";
+					print OUT1 "HT1,0,$jointstation,T$random;$jointtext2\n";
+					$random++;
 				} else {
 					print OUT1 "JN3,0,$jointstation,$jointtext1;$jointtext2\n";
+					print OUT1 "HT3,0,$jointstation,T$random;$jointtext2\n";
+					$random++;
 				}
 			}
 			if ($lastdist) {
 				$diststation = (($station+$lastweld)/2);
 				if ($disttext2 > 25) {
-				print OUT1 "DST,0,$diststation,$random;$disttext2\n";
-				$random++;
+					print OUT1 "DST,0,$diststation,T$random;$disttext2\n";
+					$random++;
 				} else {
-				print OUT1 "DS2,0,$diststation,$random;$disttext2\n";
-				$random++;
+					print OUT1 "DS2,0,$diststation,T$random;$disttext2\n";
+					$random++;
+					print OUT1 "LEG,0,$diststation,T$random;\n";
+					$random++;
 				}
 			}
 		}
 		$lastjoint=$text1;
 		$lastdist=$text1;
 		$lastbend="";
-		print OUT1 "WLD,0,$station,$text1;\n";
+		print OUT1 "WLD,0,$station,T$random;$text1\n";
+		$random++;
 		$lastweld=$station;
 	}
 	if ($code eq "BND") {
-		$bendtext2=$text2;
+		$bendtext2=$text1;
 		if ($lastbend) {
 			$legstation = (($station+$lastbend)/2);
-			print OUT1 "LEG,0,$legstation,$random;\n";
+			print OUT1 "LEG,0,$legstation,T$random;\n";
 			$random++;
-			print OUT1 "BND,0,$station,$random;$bendtext2\n";
+			print OUT1 "BND,0,$station,T$random;$bendtext2\n";
 			$random++;
 		} else {
 			$legstation = (($station+$lastweld)/2);
-			print OUT1 "LEG,0,$legstation,$random;\n";
+			print OUT1 "LEG,0,$legstation,T$random;\n";
 			$random++;
-			print OUT1 "BND,0,$station,$random;$bendtext2\n";
+			print OUT1 "BND,0,$station,T$random;$bendtext2\n";
 			$random++;
 		}
 		$lastbend=$station;
@@ -144,7 +158,7 @@ while (<IN>) {
 #-----------------prepare for next loop
 	$jointstation="";
 }
-for (my $i = 0; $i <= 400; $i = $i + 5) {
+for (my $i = 0; $i <= 600; $i = $i + 5) {
 	my $sta = $i * 100;
 	print OUT1 "STA,0,$sta,$random;$i+00\n";
 	$random++;
