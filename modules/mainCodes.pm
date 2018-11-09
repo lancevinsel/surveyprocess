@@ -266,6 +266,7 @@ our %legalCodes = (
  "RWR" => "296 296", #Retaining Wall – Brick
  "RWS" => "296 296", #Retaining Wall – Steel
  "RWT" => "296 296", #Retaining Wall – Timber
+ "RWV" => "296 296", #Retaining Wall – Timber
  "SBE" => "282 282", #Splice Box – Electric
  "SBF" => "283 ???", #Splice Box – Fiber
  "SBR" => "281 223", #Splice Box – Traffic

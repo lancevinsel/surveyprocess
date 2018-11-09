@@ -179,6 +179,7 @@ our %addedComments = (
  "RWR" => "BRICK",
  "RWS" => "STEEL",
  "RWT" => "TIMBER",
+ "RWV" => "VINYL",
  "SBF" => "FIBER OPTIC",
  "SBF" => "TRAFFIC",
  "SBS" => "TRAFFIC FIBER",
