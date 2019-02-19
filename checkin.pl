@@ -236,7 +236,7 @@
  "PBC" => "legal", # A spot elevation on a conc bridge deck
  #"PDE" => "legal", # Pedestal Electric
  #"PDF" => "legal", # Pedestal Fiber Optic
- #"PDT" => "legal", # Pedestal Telephone/Communications
+ "PDT" => "legal", # Pedestal Telephone/Communications
  "PDV" => "legal", # Pedestal Cable TV
  "PLF" => "legal", # Flag Pole
  "PLT" => "legal", # Pole Light Only
@@ -246,7 +246,7 @@
  "PMR" => "legal", # Spot - Brick
  #"PMT" => "legal",
  "PPL" => "legal", # Pole Utility with Light
- #"PPT" => "legal", # Pole Utility with Transformer
+ "PPT" => "legal", # Pole Utility with Transformer
  "PPU" => "legal", # Pole Utility
  "PUG" => "legal", # Gas Pump
  #"RCK" => "legal", # Rock or Boulder
@@ -277,10 +277,10 @@
  "RWT" => "legal", # Retaining Wall - Timber
  "SBE" => "legal", # Splice Box - Electrical
  "SBR" => "legal", # Splice Box - Traffic Signals
- #"SBT" => "legal", # Splice Box - Telephone
+ "SBT" => "legal", # Splice Box - Telephone
  "SBV" => "legal", # Splice Box - Television
  "SBW" => "legal", # Splice Box - Water Sprinkler
- #"SHA" => "legal", # Shoulder - Aggregate
+ "SHA" => "legal", # Shoulder - Aggregate
  #"SHB" => "legal", # Shoulder - HMA/BIT
  #"SHC" => "legal", # Shoulder - Concrete
  "SLB" => "legal", # Slab - Bit
@@ -298,7 +298,7 @@
  "SNW" => "legal", # Sign - Warning - Water line
  "SPA" => "legal", # Traverse Point
  "SPB" => "legal", # Axle
- #"SPC" => "legal", # Cut Cross
+ "SPC" => "legal", # Cut Cross
  "SPD" => "legal", # Concrete Monument
  "SPE" => "legal", # Crimp Pipe
  "SPF" => "legal", # Bench Mark
@@ -328,7 +328,7 @@
  "TRC" => "legal", # Tree - Coniferous
  "TRD" => "legal", # Tree - Deciduous
  "TRF" => "legal", # Traffic Signal
- #"TRL" => "legal", # Traffic Loop Detector
+ "TRL" => "legal", # Traffic Loop Detector
  #"THW" => "legal", # Thalweg - Lowest Point
  #"UND" => "legal", # Underdrain
  "VLB" => "legal", # Valve - Box
@@ -336,7 +336,7 @@
  "VLN" => "legal", # Valve - Sanitary
  "VLW" => "legal", # Valve - Water (By Hydrant)
  "VLE" => "legal", # Valve - Electric
- #"VNG" => "legal", # Vent - Gas
+ "VNG" => "legal", # Vent - Gas
  "VNT" => "legal", # Vent - Gas
  "VNN" => "legal", # Vent - Sanitary
  "WAL" => "legal", # Wall - Not Retaining
@@ -614,7 +614,7 @@
  "RWL" => "Retaining Wall", #H
  "SBT" => "TELEPHONE",
  "SBW" => "SPRINKLER SYSTEM",
- "SHA" => "AGG",
+ "SHA" => "AGG SHOULDER",
  "SHB" => "HMA",
  "SHC" => "CONC",
  "SNE" => "ELEC",
@@ -630,15 +630,16 @@
  "SWC" => "CONC",
  "SWR" => "BRICK",
  "TIL" => "TILE",
+ "TRL" => "LOOP DETECTOR",
  "VLB" => "VALVE BOX",
  "VLN" => "VALVE SANITARY",
- "VNG" => "GAS VALVE",
+ "VNG" => "GAS VENT",
  "VLW" => "WATER VALVE",
  "WTR" => "TOP ELEV",
 );
 @flagCodes = (
  "RANDOM",
- "CKH",
+ # "CKH",
  "CKV",
  "TMP",
 );
@@ -868,7 +869,7 @@ while (<IN>) {
 #  print OUT "fieldcomment3 = $fieldComment\n";
  }
 #####1.B sEARCH FOR DELETEABLE CODES
- if ($in[4] =~ /RANDOM|CKH|CKV/) {
+ if ($in[4] =~ /RANDOM|CKV/) {
   $commentFlag = $cflag;
  }
 ####2 SEARCH FOR REQUIRED COMMENTS

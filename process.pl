@@ -33,7 +33,7 @@
  #"BDK" => "619", # Bridge Deck
  "BEX" => "623", # Bridge Expansion Joint.  A 3d line.
  "BHR" => "355", #H Bridge Handrail
- "BLD" => "601", # v16 start of depreciation
+ "BLD" => "300", # v16 start of depreciation
  "BLC" => "205", #H The bottom of the concrete bridge beams.  Usually taken at
                   # the beginning middle and end oof each span of the bridge beams.
                   # Usually only required on the outside (upstream and downstream) beams.
@@ -100,7 +100,7 @@
  "COL" => "352", #H Column
  "CPH" => "100", #H Control Point - modified v6
  "CRB" => "263", #H Curb Top - Generic
- "CRN" => "667", # Depreciated see CNA-CNR
+ "CRN" => "231", # Depreciated see CNA-CNR
  "CRP" => "804", # Crop Line
  "CRW" => "274", #H Crosswalk
  "CUB" => "942", # Culvert - Box
@@ -221,8 +221,8 @@
  "PBB" => "666", # A spot elevation on a bit bridge deck.
  "PBC" => "666", # A spot elevation on a conc bridge deck.
  "PDE" => "413", #H Pedestal Electric
- "PDF" => "283", # Pedestal Fiber Optic
- "PDT" => "283",
+ "PDF" => "613", # Pedestal Fiber Optic
+ "PDT" => "613",
  "PDV" => "284",
  "PLF" => "380", # Flag Pole
  "PLT" => "410", #H Pole - Light Only
@@ -265,7 +265,7 @@
  "RWT" => "348", #H Retaining Wall - Timber
  "SBE" => "408", #H Splice Box Electric
  "SBR" => "223", # Traffic Signal Controller - changed v6
- "SBT" => "281", # SPLICE BOX TELEPHONE
+ "SBT" => "613", # SPLICE BOX TELEPHONE
  "SBV" => "281", # SPLICE BOX TELEVISION
  "SBW" => "281", # Splice Box for Sprinkler System
  "SHA" => "246", # Shoulder - Aggregate
@@ -332,7 +332,7 @@
  "TRD 36" => "D36", #H Tree deciduous
  "TRD 42" => "D42", #H Tree deciduous
  "TRF" => "394", # Traffic Signal
- "TRL" => "224", # Traffic Signal Loop Detector
+ "TRL" => "220", # Traffic Signal Loop Detector
  "THW" => "858",
  "UND" => "381", # Underdrain
  "VLB" => "342", # Valve Box
@@ -340,7 +340,7 @@
  "VLE" => "344",
  "VLN" => "337", # Valve for sanitary force main
  "VLW" => "716", #H Water Valve By Hydrant
- "VNG" => "354", # Gas Vent Pipe
+ "VNG" => "500", # Gas Vent Pipe
  "VNT" => "513", #H Vent/Riser
 
  "VNN" => "354",
