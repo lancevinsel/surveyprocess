@@ -166,7 +166,7 @@
  "FNW" => "377", # Fence - Wire
  "FNT" => "378", # Fence - Wood
  "FNX" => "374", # Fence - Barbed Wire
- "FOU" => "352", #H Foundation /Column on Hoelsher
+ "FOU" => "300", #H Foundation /Column on Hoelsher
  "GCR" => "302", #H
  "GND" => "144", #H
  "GRL" => "273", # Guard Rail

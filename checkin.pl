@@ -178,7 +178,7 @@
  "FNV" => "legal", # Fence - Vinyl
  "FNW" => "legal", # Fence - Wire
  "FNX" => "legal", # Fence - Barbed Wire
- #"FOU" => "legal", # Foundation
+ "FOU" => "legal", # Foundation
  "GCR" => "legal", # Building - Commercial - Brick
  "GND" => "legal", # Ground Shot
  "GRL" => "legal", # Guard Rail
@@ -209,7 +209,7 @@
  "LNB" => "legal", # Lane Line - BIT/HMA
  "LNC" => "legal", # Lane Line - Concrete
  "LND" => "legal", # Landscape Edge
- #"LNM" => "legal", # Lane Paint Mark
+ "LNM" => "legal", # Lane Paint Mark
  "MBX" => "legal", # Mailbox
  "MCS" => "legal", # Misc Concrete Slab
  #"MED" => "legal", # Top Front of Median

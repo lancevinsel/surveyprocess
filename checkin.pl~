@@ -178,7 +178,7 @@
  "FNV" => "legal", # Fence - Vinyl
  "FNW" => "legal", # Fence - Wire
  "FNX" => "legal", # Fence - Barbed Wire
- #"FOU" => "legal", # Foundation
+ "FOU" => "legal", # Foundation
  "GCR" => "legal", # Building - Commercial - Brick
  "GND" => "legal", # Ground Shot
  "GRL" => "legal", # Guard Rail
