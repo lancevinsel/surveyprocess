@@ -1,0 +1,514 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--This file represents feature coding definitions-->
+<FeatureCodingDefinitions CreationDate="2019-03-22T10:33:29.9401546-05:00" DateModified="2019-03-22T10:34:33.1277244-05:00" SchemaVersion="9" xmlns="http://trimble.com/schema/fxl">
+  <LineStyleDefinitions Version="3.0" xmlns="http://trimble.com/schema/linestyle">
+    <LineStyleDefinition Name="Solid" Description="">
+      <Units Reference="Ground" Length="Metric" />
+      <PatternType>Default</PatternType>
+      <Pattern TotalLength="10000.000000" EndLength="0.000000">
+        <Line Color="Empty" LineWeight="1">
+          <Location X="0.000000" Y="0.000000" />
+          <Location X="10000.000000" Y="0.000000" />
+        </Line>
+      </Pattern>
+    </LineStyleDefinition>
+  </LineStyleDefinitions>
+  <SymbolDefinitions Version="2" xmlns="http://trimble.com/schema/symbol">
+    <SymbolDefinition Name="Cross">
+      <Units Reference="Paper" Length="Metric" />
+      <Scale Size="Variable" Shape="Fixed" />
+      <Rotation Type="Allow" />
+      <Dimension First="Length" Second="Length" />
+      <Color Name="BlueViolet" Red="138" Green="43" Blue="226" />
+      <Component Number="1" Name="Cross">
+        <Line Color="BlueViolet" LineWeight="1">
+          <Location X="-2.000000" Y="-2.000000" />
+          <Location X="2.000000" Y="2.000000" />
+        </Line>
+        <Line Color="BlueViolet" LineWeight="1">
+          <Location X="-2.000000" Y="2.000000" />
+          <Location X="2.000000" Y="-2.000000" />
+        </Line>
+      </Component>
+      <Component Number="2" Name="" />
+    </SymbolDefinition>
+  </SymbolDefinitions>
+  <LabelStyles SchemaVersion="1" xmlns="http://trimble.com/schema/labelstyle">
+    <LineLabelStyles>
+      <LineLabelStyle Name="Standard" Description="Line Label Style" Gap="2.5" LineSpacing="1.5" Layer="0" TextStyle="Standard">
+        <LineLabels>
+          <LineLabel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://trimble.com/schema/linelabel">
+            <Type>LineDistance</Type>
+            <Prefix />
+            <Units>ProjectSetting</Units>
+            <Precision>ProjectSetting</Precision>
+            <Angle>ProjectSetting</Angle>
+            <Offset>1</Offset>
+            <Along>0.5</Along>
+          </LineLabel>
+          <LineLabel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://trimble.com/schema/linelabel">
+            <Type>LineAzimuthBearing</Type>
+            <Prefix />
+            <Units>ProjectSetting</Units>
+            <Precision>ProjectSetting</Precision>
+            <Angle>ProjectSetting</Angle>
+            <Offset>-1</Offset>
+            <Along>0.5</Along>
+          </LineLabel>
+          <LineLabel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://trimble.com/schema/linelabel">
+            <Type>ArcDistance</Type>
+            <Prefix />
+            <Units>ProjectSetting</Units>
+            <Precision>ProjectSetting</Precision>
+            <Angle>ProjectSetting</Angle>
+            <Offset>1</Offset>
+            <Along>0.5</Along>
+          </LineLabel>
+          <LineLabel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://trimble.com/schema/linelabel">
+            <Type>ArcChordAzimuthBearing</Type>
+            <Prefix />
+            <Units>ProjectSetting</Units>
+            <Precision>ProjectSetting</Precision>
+            <Angle>ProjectSetting</Angle>
+            <Offset>-1</Offset>
+            <Along>0.5</Along>
+          </LineLabel>
+          <LineLabel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://trimble.com/schema/linelabel">
+            <Type>ArcRadius</Type>
+            <Prefix />
+            <Units>ProjectSetting</Units>
+            <Precision>ProjectSetting</Precision>
+            <Angle>ProjectSetting</Angle>
+            <Offset>-2</Offset>
+            <Along>0.5</Along>
+          </LineLabel>
+        </LineLabels>
+      </LineLabelStyle>
+    </LineLabelStyles>
+    <PointLabelStyles>
+      <PointLabelStyle Name="Standard" Description="Point Label Style" LabelAttributeValuesOnly="false" LabelAttributesVertically="false" AlignToSegment="false" Rotation="0" Gap="2.5" LineSpacing="1.5" Layer="0" TextStyle="Standard">
+        <PointLabels>
+          <PointLabel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://trimble.com/schema/pointlabel">
+            <Type>Name</Type>
+            <SymbolSize>0</SymbolSize>
+            <Prefix />
+            <Units>ProjectSetting</Units>
+            <Precision>ProjectSetting</Precision>
+            <Angle>ProjectSetting</Angle>
+            <Offset>1</Offset>
+            <Position>Right</Position>
+          </PointLabel>
+          <PointLabel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://trimble.com/schema/pointlabel">
+            <Type>Elevation</Type>
+            <SymbolSize>0</SymbolSize>
+            <Prefix />
+            <Units>ProjectSetting</Units>
+            <Precision>ProjectSetting</Precision>
+            <Angle>ProjectSetting</Angle>
+            <Offset>0</Offset>
+            <Position>Right</Position>
+          </PointLabel>
+        </PointLabels>
+      </PointLabelStyle>
+    </PointLabelStyles>
+    <PolygonLabelStyles>
+      <PolygonLabelStyle Name="Standard" Description="Polygon Label Style" Rotation="0" Gap="2.5" LineSpacing="1.5" Layer="0" TextStyle="Standard">
+        <PolygonLabels>
+          <PolygonLabel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://trimble.com/schema/polygonlabel">
+            <Type>Name</Type>
+            <Prefix />
+            <Units>ProjectSetting</Units>
+            <Precision>ProjectSetting</Precision>
+            <Angle>ProjectSetting</Angle>
+            <Offset>0</Offset>
+            <Position>Center</Position>
+          </PolygonLabel>
+          <PolygonLabel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://trimble.com/schema/polygonlabel">
+            <Type>Area</Type>
+            <Prefix />
+            <Units>ProjectSetting</Units>
+            <Precision>ProjectSetting</Precision>
+            <Angle>ProjectSetting</Angle>
+            <Offset>-1</Offset>
+            <Position>Center</Position>
+          </PolygonLabel>
+        </PolygonLabels>
+      </PolygonLabelStyle>
+    </PolygonLabelStyles>
+    <TextStyleDefinition xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="Standard" Description="Text Style" xmlns="http://tempuri.org/TextStyleDefinition.xsd">
+      <TypeFace>Courier New</TypeFace>
+      <Bold>false</Bold>
+      <AutoFlip>false</AutoFlip>
+      <WhiteOut>false</WhiteOut>
+      <Italic>false</Italic>
+      <Underline>false</Underline>
+      <Justification>CenterMiddle</Justification>
+      <Height>5</Height>
+      <WidthFactor>1</WidthFactor>
+      <ObliqueAngle>0</ObliqueAngle>
+      <Unit>Paper</Unit>
+    </TextStyleDefinition>
+  </LabelStyles>
+  <LayerDefinitions>
+    <LayerDefinition>
+      <Name>Points</Name>
+      <Color>FFFFFFFF</Color>
+      <LineStyleName>Solid</LineStyleName>
+      <LineWeight>0</LineWeight>
+      <ProtectLayer>true</ProtectLayer>
+      <LayerGroup>&lt;&lt;None&gt;&gt;</LayerGroup>
+      <DisplayPriority>64</DisplayPriority>
+      <Print>true</Print>
+    </LayerDefinition>
+    <LayerDefinition>
+      <Name>0</Name>
+      <Color>FFFFFFFF</Color>
+      <LineStyleName>Solid</LineStyleName>
+      <LineWeight>0</LineWeight>
+      <ProtectLayer>true</ProtectLayer>
+      <LayerGroup>&lt;&lt;None&gt;&gt;</LayerGroup>
+      <DisplayPriority>64</DisplayPriority>
+      <Print>true</Print>
+    </LayerDefinition>
+  </LayerDefinitions>
+  <FeatureDefinitions>
+    <PointFeatureDefinition Code="TST" Name="test" Category="Test" IncludeInSurface="true" Color="FE000000" Layer="0" PointLabelStyle="" />
+    <PointFeatureDefinition Code="966" Name="HDPE Pipe" Category="Miscellaneous" />
+    <PointFeatureDefinition Code="ACU" Name="Air Conditioning Unit" Category="Miscellaneous" />
+    <PointFeatureDefinition Code="BAL" Name="Bridge Abut/Wingwall _ Prismless" Category="Bridge" />
+    <PointFeatureDefinition Code="BAR" Name="Stop Bar" Category="Striping" />
+    <PointFeatureDefinition Code="BAS" Name="Bridge Approach Slab" Category="Bridge" />
+    <PointFeatureDefinition Code="BBA" Name="Bridge Deck Spot Aggregate" Category="Bridge" />
+    <PointFeatureDefinition Code="BBB" Name="Bridge Deck Spot HMA" Category="Bridge" />
+    <PointFeatureDefinition Code="BBC" Name="Bridge Deck Spot Concrete" Category="Bridge" />
+    <PointFeatureDefinition Code="BBG" Name="Buffalo Box _ Gas" Category="Utilities" />
+    <PointFeatureDefinition Code="BBR" Name="Bridge Deck Spot Brick" Category="Bridge" />
+    <PointFeatureDefinition Code="BBS" Name="Bridge Beam Seat Elevation" Category="Bridge" />
+    <PointFeatureDefinition Code="BBV" Name="Bridge Deck Spot Vinyl" Category="Bridge" />
+    <PointFeatureDefinition Code="BBW" Name="Buffalo Box _ Water" Category="Utilities" />
+    <PointFeatureDefinition Code="BCB" Name="Bridge Curb _ Top Front" Category="Bridge" />
+    <PointFeatureDefinition Code="BDB" Name="Bridge Deck Edge Bit" Category="Bridge" />
+    <PointFeatureDefinition Code="BDC" Name="Bridge Deck Edge Conc" Category="Bridge" />
+    <PointFeatureDefinition Code="BDT" Name="Bridge Deck Edge Timber" Category="Bridge" />
+    <PointFeatureDefinition Code="BEX" Name="Bridge Expansion Joint" Category="Bridge" />
+    <PointFeatureDefinition Code="BHR" Name="Bridge Handrail" Category="Bridge" />
+    <PointFeatureDefinition Code="BLC" Name="Bridge Low Element Elevation Concrete" Category="Bridge" />
+    <PointFeatureDefinition Code="BLS" Name="Bridge Low Element Elevation Steel" Category="Bridge" />
+    <PointFeatureDefinition Code="BLT" Name="Bridge Low Element Elevation Timber" Category="Bridge" />
+    <PointFeatureDefinition Code="BOL" Name="Post / Bollard" Category="Miscellaneous" />
+    <PointFeatureDefinition Code="BOR" Name="Soil Boring / Coring" Category="Miscellaneous" />
+    <PointFeatureDefinition Code="BPA" Name="Bridge Parapet 3D" Category="Bridge" />
+    <PointFeatureDefinition Code="BPC" Name="Bridge Pier _ 2D Prismless" Category="Bridge" />
+    <PointFeatureDefinition Code="BPR" Name="Bridge Pier _ Top Face _ 3D" Category="Bridge" />
+    <PointFeatureDefinition Code="BPT" Name="Bridge Pier Top Elevation Only" Category="Bridge" />
+    <PointFeatureDefinition Code="BRK" Name="Breakline" Category="DTM" />
+    <PointFeatureDefinition Code="BRR" Name="Barrier Wall _ Base" Category="Pave" />
+    <PointFeatureDefinition Code="BSC" Name="Bridge Scupper" Category="Bridge" />
+    <PointFeatureDefinition Code="BSH" Name="Bush / Shrub" Category="Vegetation" />
+    <PointFeatureDefinition Code="BSL" Name="Bush Line / Hedgerow" Category="Vegetation" />
+    <PointFeatureDefinition Code="BSS" Name="Bridge Structural Steel Member (not low steel)" Category="Bridge" />
+    <PointFeatureDefinition Code="BWL" Name="Bridge Backwall 3D" Category="Bridge" />
+    <PointFeatureDefinition Code="BWW" Name="Bridge Wingwall _ Top Face and Back 3D" Category="Bridge" />
+    <PointFeatureDefinition Code="CBM" Name="Storm _ CB _ round open" Category="Utilities" />
+    <PointFeatureDefinition Code="CKH" Name="Check horizontal control point" Category="Control" />
+    <PointFeatureDefinition Code="CKV" Name="Check BM" Category="Control" />
+    <PointFeatureDefinition Code="CLP" Name="Calculated Point" Category="Control" />
+    <PointFeatureDefinition Code="CNA" Name="Pavement Crown aggregate" Category="DTM" />
+    <PointFeatureDefinition Code="CNB" Name="Pavement Crown HMA" Category="DTM" />
+    <PointFeatureDefinition Code="CNC" Name="Pavement Crown Concrete" Category="DTM" />
+    <PointFeatureDefinition Code="CNP" Name="Canopy" Category="Structure" />
+    <PointFeatureDefinition Code="CNT" Name="Signal Cantilever/Mast Arm" Category="Traffic" />
+    <PointFeatureDefinition Code="COL" Name="Column" Category="Structure" />
+    <PointFeatureDefinition Code="CPH" Name="Control Point" Category="Control" />
+    <PointFeatureDefinition Code="CPT" Name="Cathodic Protection Test Station Gas" Category="Utilities" />
+    <PointFeatureDefinition Code="CRB" Name="Curb Top Back _ concrete" Category="Pave" />
+    <PointFeatureDefinition Code="CRP" Name="Crop / Cultivation Line" Category="Vegetation" />
+    <PointFeatureDefinition Code="CRW" Name="Crosswalk" Category="Striping" />
+    <PointFeatureDefinition Code="CUB" Name="Storm_culvert_box" Category="Utilities" />
+    <PointFeatureDefinition Code="CUE" Name="Storm_culvert_Elliptical" Category="Utilities" />
+    <PointFeatureDefinition Code="CUP" Name="Storm_culvert_pipe" Category="Utilities" />
+    <PointFeatureDefinition Code="DAM" Name="Dam/Levee Top" Category="Water" />
+    <PointFeatureDefinition Code="DCA" Name="Driveway Commercial Aggregate" Category="Pave" />
+    <PointFeatureDefinition Code="DCB" Name="Driveway Commercial HMA" Category="Pave" />
+    <PointFeatureDefinition Code="DCC" Name="Driveway Commercial Concrete" Category="Pave" />
+    <PointFeatureDefinition Code="DCK" Name="Deck" Category="Structure" />
+    <PointFeatureDefinition Code="DCR" Name="Driveway Commercial Brick" Category="Pave" />
+    <PointFeatureDefinition Code="DFA" Name="Driveway Field Aggregate" Category="Pave" />
+    <PointFeatureDefinition Code="DFB" Name="Driveway Field HMA" Category="Pave" />
+    <PointFeatureDefinition Code="DFC" Name="Driveway Field Conc" Category="Pave" />
+    <PointFeatureDefinition Code="DFG" Name="Driveway Field Ground" Category="Pave" />
+    <PointFeatureDefinition Code="DFO" Name="Driveway Field Oil and Chip" Category="Pave" />
+    <PointFeatureDefinition Code="DFR" Name="Driveway Field Brick" Category="Pave" />
+    <PointFeatureDefinition Code="DPA" Name="Driveway Public Aggregate" Category="Pave" />
+    <PointFeatureDefinition Code="DPB" Name="Driveway Public HMA" Category="Pave" />
+    <PointFeatureDefinition Code="DPC" Name="Driveway Public Concrete" Category="Pave" />
+    <PointFeatureDefinition Code="DPR" Name="Driveway Public Brick" Category="Pave" />
+    <PointFeatureDefinition Code="DRA" Name="Driveway Residential Aggregate" Category="Pave" />
+    <PointFeatureDefinition Code="DRB" Name="Driveway Residential HMA" Category="Pave" />
+    <PointFeatureDefinition Code="DRC" Name="Driveway Residential Concrete" Category="Pave" />
+    <PointFeatureDefinition Code="DRR" Name="Driveway Residential Brick" Category="Pave" />
+    <PointFeatureDefinition Code="DSP" Name="Downspout" Category="Utilities" />
+    <PointFeatureDefinition Code="DTH" Name="Ditch _ Flowline" Category="DTM" />
+    <PointFeatureDefinition Code="DTP" Name="Paved Ditch Centerline" Category="Utilities" />
+    <PointFeatureDefinition Code="EOA" Name="EOP Line Aggregate" Category="Pave" />
+    <PointFeatureDefinition Code="EOB" Name="EOP Line HMA" Category="Pave" />
+    <PointFeatureDefinition Code="EOC" Name="EOP Line Concrete" Category="Pave" />
+    <PointFeatureDefinition Code="EOG" Name="EOP Line Ground Travelled Way" Category="Pave" />
+    <PointFeatureDefinition Code="EOO" Name="EOP Line Oil and Chip" Category="Pave" />
+    <PointFeatureDefinition Code="EOR" Name="EOP Line Brick" Category="Pave" />
+    <PointFeatureDefinition Code="FDA" Name="Found Survey Evidence _ Traverse Point" Category="Control" />
+    <PointFeatureDefinition Code="FDB" Name="Found Survey Evidence _ Axle" Category="Control" />
+    <PointFeatureDefinition Code="FDC" Name="Found Survey Evidence _ Cut Cross" Category="Control" />
+    <PointFeatureDefinition Code="FDD" Name="Found Survey Evidence _ Concrete Monument" Category="Control" />
+    <PointFeatureDefinition Code="FDE" Name="Found Survey Evidence _ Crimp Pipe" Category="Control" />
+    <PointFeatureDefinition Code="FDF" Name="Found Survey Evidence _ Benchmark" Category="Control" />
+    <PointFeatureDefinition Code="FDG" Name="Found Survey Evidence _ GPS Monument" Category="Control" />
+    <PointFeatureDefinition Code="FDH" Name="Found Survey Evidence _ Control Point" Category="Control" />
+    <PointFeatureDefinition Code="FDI" Name="Found Survey Evidence _ Iron Pipe" Category="Control" />
+    <PointFeatureDefinition Code="FDJ" Name="Found Survey Evidence _ Nail" Category="Control" />
+    <PointFeatureDefinition Code="FDK" Name="Found Survey Evidence _ Nail and Washer/Shiner" Category="Control" />
+    <PointFeatureDefinition Code="FDL" Name="Found Survey Evidence _ PK Nail" Category="Control" />
+    <PointFeatureDefinition Code="FDM" Name="Found Survey Evidence _ Mag Nail" Category="Control" />
+    <PointFeatureDefinition Code="FDN" Name="Found Survey Evidence _ ROW Marker" Category="Control" />
+    <PointFeatureDefinition Code="FDO" Name="Found Survey Evidence _ RR Spike" Category="Control" />
+    <PointFeatureDefinition Code="FDP" Name="Found Survey Evidence _ Pole Barn Spike" Category="Control" />
+    <PointFeatureDefinition Code="FDQ" Name="Found Survey Evidence _ Stone" Category="Control" />
+    <PointFeatureDefinition Code="FDR" Name="Found Survey Evidence _ Cotton Picker Spindle" Category="Control" />
+    <PointFeatureDefinition Code="FDS" Name="Found Survey Evidence _ Hub" Category="Control" />
+    <PointFeatureDefinition Code="FDT" Name="Found Survey Evidence _ Cut Square" Category="Control" />
+    <PointFeatureDefinition Code="FDU" Name="Found Survey Evidence _ Rebar" Category="Control" />
+    <PointFeatureDefinition Code="FDV" Name="Found Survey Evidence _ Drill Hole" Category="Control" />
+    <PointFeatureDefinition Code="FDW" Name="Found Survey Evidence _ Brass Marker" Category="Control" />
+    <PointFeatureDefinition Code="FDX" Name="Found Survey Evidence _ Iron Rod/Pin" Category="Control" />
+    <PointFeatureDefinition Code="FDY" Name="Found Survey Evidence _ Notch" Category="Control" />
+    <PointFeatureDefinition Code="FDZ" Name="Found Survey Evidence _ Other" Category="Control" />
+    <PointFeatureDefinition Code="FES" Name="Flared End Section" Category="Utilities" />
+    <PointFeatureDefinition Code="FFL" Name="Finish Floor Elevation" Category="Structure" />
+    <PointFeatureDefinition Code="FNG" Name="Fence _ Gate post" Category="Fence" />
+    <PointFeatureDefinition Code="FNI" Name="Fence Iron" Category="Fence" />
+    <PointFeatureDefinition Code="FNL" Name="Fence Chain Link" Category="Fence" />
+    <PointFeatureDefinition Code="FNM" Name="Fence Masonry" Category="Fence" />
+    <PointFeatureDefinition Code="FNN" Name="Fence Stone" Category="Fence" />
+    <PointFeatureDefinition Code="FNR" Name="Fence Brick" Category="Fence" />
+    <PointFeatureDefinition Code="FNT" Name="Fence Wood" Category="Fence" />
+    <PointFeatureDefinition Code="FNV" Name="Fence Vinyl" Category="Fence" />
+    <PointFeatureDefinition Code="FNW" Name="Fence Wire" Category="Fence" />
+    <PointFeatureDefinition Code="FNX" Name="Fence Barbed Wire" Category="Fence" />
+    <PointFeatureDefinition Code="FOU" Name="Foundation" Category="Structure" />
+    <PointFeatureDefinition Code="GCC" Name="Building Commercial Concrete" Category="Structure" />
+    <PointFeatureDefinition Code="GCF" Name="Building Commercial Frame" Category="Structure" />
+    <PointFeatureDefinition Code="GCM" Name="Building Commercial Masonry" Category="Structure" />
+    <PointFeatureDefinition Code="GCN" Name="Building Commercial Stone" Category="Structure" />
+    <PointFeatureDefinition Code="GCR" Name="Building Commercial Brick" Category="Structure" />
+    <PointFeatureDefinition Code="GCS" Name="Building Commercial Steel" Category="Structure" />
+    <PointFeatureDefinition Code="GCT" Name="Building Commercial Timber/Log" Category="Structure" />
+    <PointFeatureDefinition Code="GND" Name="Ground Shot" Category="DTM" />
+    <PointFeatureDefinition Code="GPC" Name="Building Public Concrete" Category="Structure" />
+    <PointFeatureDefinition Code="GPF" Name="Building Public Frame" Category="Structure" />
+    <PointFeatureDefinition Code="GPM" Name="Building Public Masonry" Category="Structure" />
+    <PointFeatureDefinition Code="GPN" Name="Building Public Stone" Category="Structure" />
+    <PointFeatureDefinition Code="GPR" Name="Building Public Brick" Category="Structure" />
+    <PointFeatureDefinition Code="GPS" Name="Building Public Steel" Category="Structure" />
+    <PointFeatureDefinition Code="GPT" Name="Building Public Timber/Log" Category="Structure" />
+    <PointFeatureDefinition Code="GRC" Name="Building Residential Concrete" Category="Structure" />
+    <PointFeatureDefinition Code="GRF" Name="Building Residential Frame" Category="Structure" />
+    <PointFeatureDefinition Code="GRL" Name="Guard Rail" Category="Fence" />
+    <PointFeatureDefinition Code="GRM" Name="Building Residential Masonry" Category="Structure" />
+    <PointFeatureDefinition Code="GRN" Name="Building Residential Stone" Category="Structure" />
+    <PointFeatureDefinition Code="GRR" Name="Building Residential Brick" Category="Structure" />
+    <PointFeatureDefinition Code="GRS" Name="Building Residential Steel" Category="Structure" />
+    <PointFeatureDefinition Code="GRT" Name="Building Residential Timber/Log" Category="Structure" />
+    <PointFeatureDefinition Code="GUP" Name="Pole_Guy " Category="Utilities" />
+    <PointFeatureDefinition Code="GUT" Name="Gutter/Flowline" Category="Pave" />
+    <PointFeatureDefinition Code="GUY" Name="Pole_Guy Wire" Category="Utilities" />
+    <PointFeatureDefinition Code="H2O" Name="Water Line" Category="Water" />
+    <PointFeatureDefinition Code="HHD" Name="Handhole _ Traffic Signal _ Double" Category="Utilities" />
+    <PointFeatureDefinition Code="HHE" Name="Handhole Electric" Category="Utilities" />
+    <PointFeatureDefinition Code="HHF" Name="Handhole Fiber Optic" Category="Utilities" />
+    <PointFeatureDefinition Code="HHR" Name="Handhole Traffic" Category="Utilities" />
+    <PointFeatureDefinition Code="HHS" Name="Handhole Traffic Fiber Optic" Category="Utilities" />
+    <PointFeatureDefinition Code="HHT" Name="Handhole Telephone" Category="Utilities" />
+    <PointFeatureDefinition Code="HHV" Name="Handhole TV" Category="Utilities" />
+    <PointFeatureDefinition Code="HWL" Name="Headwall" Category="Utilities" />
+    <PointFeatureDefinition Code="HYD" Name="Hydrant" Category="Utilities" />
+    <PointFeatureDefinition Code="INL" Name="Inlet _ Rectangular" Category="Utilities" />
+    <PointFeatureDefinition Code="JUE" Name="QL_B Paint Mark Line _ Electric" Category="Utilities" />
+    <PointFeatureDefinition Code="JUF" Name="QL_B Paint Mark Line _ Fiber Optic" Category="Utilities" />
+    <PointFeatureDefinition Code="JUG" Name="QL_B Paint Mark Line _ Gas" Category="Utilities" />
+    <PointFeatureDefinition Code="JUM" Name="QL_B Paint Mark Line _ Storm" Category="Utilities" />
+    <PointFeatureDefinition Code="JUN" Name="QL_B Paint Mark Line _ Sanitary" Category="Utilities" />
+    <PointFeatureDefinition Code="JUP" Name="QL_B Paint Mark Line _ Petroleum" Category="Utilities" />
+    <PointFeatureDefinition Code="JUR" Name="QL_B Paint Mark Line _ Traffic Signal" Category="Utilities" />
+    <PointFeatureDefinition Code="JUS" Name="QL_B Paint Mark Line _ Traffic Signal Fiber Optic" Category="Utilities" />
+    <PointFeatureDefinition Code="JUT" Name="QL_B Paint Mark Line _ Telephone" Category="Utilities" />
+    <PointFeatureDefinition Code="JUV" Name="QL_B Paint Mark Line _ Television" Category="Utilities" />
+    <PointFeatureDefinition Code="JUW" Name="QL_B Paint Mark Line _ Water" Category="Utilities" />
+    <PointFeatureDefinition Code="LNB" Name="Lane Line HMA" Category="Utilities" />
+    <PointFeatureDefinition Code="LNC" Name="Lane Line Concrete" Category="Utilities" />
+    <PointFeatureDefinition Code="LND" Name="Landscape edge" Category="Vegetation" />
+    <PointFeatureDefinition Code="LNM" Name="Lane Paint Mark" Category="Striping" />
+    <PointFeatureDefinition Code="MBX" Name="Mailbox" Category="Miscellaneous" />
+    <PointFeatureDefinition Code="MCS" Name="Misc Concrete Slab" Category="Structure" />
+    <PointFeatureDefinition Code="MED" Name="Top Front of Median" Category="Pave" />
+    <PointFeatureDefinition Code="MHE" Name="Manhole Electric" Category="Utilities" />
+    <PointFeatureDefinition Code="MHF" Name="Manhole Fiber" Category="Utilities" />
+    <PointFeatureDefinition Code="MHG" Name="Gas Valve Vault" Category="Utilities" />
+    <PointFeatureDefinition Code="MHM" Name="Manhole Storm" Category="Utilities" />
+    <PointFeatureDefinition Code="MHN" Name="Manhole _Sanitary" Category="Utilities" />
+    <PointFeatureDefinition Code="MHT" Name="Manhole Telephone" Category="Utilities" />
+    <PointFeatureDefinition Code="MHW" Name="Water Valve Vault" Category="Utilities" />
+    <PointFeatureDefinition Code="MSC" Name="Misc." Category="Miscellaneous" />
+    <PointFeatureDefinition Code="MTE" Name="Meter Electric" Category="Utilities" />
+    <PointFeatureDefinition Code="MTG" Name="Meter Gas" Category="Utilities" />
+    <PointFeatureDefinition Code="MTW" Name="Meter Water" Category="Utilities" />
+    <PointFeatureDefinition Code="MWL" Name="Well _ Inspection/Monitoring" Category="Utilities" />
+    <PointFeatureDefinition Code="NPS" Name="No Pass" Category="Striping" />
+    <PointFeatureDefinition Code="PAB" Name="Patio Edge HMA" Category="Structure" />
+    <PointFeatureDefinition Code="PAC" Name="Patio Edge Concrete" Category="Structure" />
+    <PointFeatureDefinition Code="PAM" Name="Patio Edge Masonry" Category="Structure" />
+    <PointFeatureDefinition Code="PAN" Name="Patio Edge Stone" Category="Structure" />
+    <PointFeatureDefinition Code="PAR" Name="Patio Edge Brick" Category="Structure" />
+    <PointFeatureDefinition Code="PDE" Name="Pedestal/Riser Electric" Category="Utilities" />
+    <PointFeatureDefinition Code="PDF" Name="Pedestal/Riser Fiber" Category="Utilities" />
+    <PointFeatureDefinition Code="PDT" Name="Pedestal/Riser Telephone" Category="Utilities" />
+    <PointFeatureDefinition Code="PDV" Name="Pedestal/Riser TV" Category="Utilities" />
+    <PointFeatureDefinition Code="PHB" Name="Phone Booth" Category="Utilities" />
+    <PointFeatureDefinition Code="PLF" Name="Flag Pole" Category="Miscellaneous" />
+    <PointFeatureDefinition Code="PLT" Name="Pole_light only" Category="Utilities" />
+    <PointFeatureDefinition Code="PMA" Name="Spot_Pavement Aggregate" Category="DTM" />
+    <PointFeatureDefinition Code="PMB" Name="Spot_Pavement HMA" Category="DTM" />
+    <PointFeatureDefinition Code="PMC" Name="Spot_Pavement Concrete" Category="DTM" />
+    <PointFeatureDefinition Code="PMO" Name="Spot_Pavement Oil and Chip" Category="DTM" />
+    <PointFeatureDefinition Code="PMR" Name="Spot_Pavement Brick" Category="DTM" />
+    <PointFeatureDefinition Code="PPL" Name="Pole_Utility with light" Category="Utilities" />
+    <PointFeatureDefinition Code="PPT" Name="Pole_Utility w/ transformer" Category="Utilities" />
+    <PointFeatureDefinition Code="PPU" Name="Pole_Utility" Category="Utilities" />
+    <PointFeatureDefinition Code="PRK" Name="Parking Meter" Category="Miscellaneous" />
+    <PointFeatureDefinition Code="PUG" Name="Pump Gas" Category="Utilities" />
+    <PointFeatureDefinition Code="PUM" Name="Pump Storm" Category="Utilities" />
+    <PointFeatureDefinition Code="PUN" Name="Pump Sanitary" Category="Utilities" />
+    <PointFeatureDefinition Code="PUP" Name="Pump Petroleum" Category="Utilities" />
+    <PointFeatureDefinition Code="PUW" Name="Pump Water" Category="Utilities" />
+    <PointFeatureDefinition Code="RCK" Name="Rock or Boulder" Category="Miscellaneous" />
+    <PointFeatureDefinition Code="RCL" Name="RR centerline" Category="RR" />
+    <PointFeatureDefinition Code="RDR" Name="RR Derailer" Category="RR" />
+    <PointFeatureDefinition Code="RGG" Name="Gas Regulator" Category="Utilities" />
+    <PointFeatureDefinition Code="RIP" Name="Riprap" Category="Pave" />
+    <PointFeatureDefinition Code="RMP" Name="RR Mile Post Marker" Category="RR" />
+    <PointFeatureDefinition Code="ROW" Name="ROW Monument" Category="Control" />
+    <PointFeatureDefinition Code="RPA" Name="Ramp Aggregate" Category="Structure" />
+    <PointFeatureDefinition Code="RPB" Name="Ramp HMA" Category="Structure" />
+    <PointFeatureDefinition Code="RPC" Name="Ramp Concrete" Category="Structure" />
+    <PointFeatureDefinition Code="RPF" Name="Ramp Frame" Category="Structure" />
+    <PointFeatureDefinition Code="RPG" Name="Ramp Ground" Category="Structure" />
+    <PointFeatureDefinition Code="RPM" Name="Ramp Masonry" Category="Structure" />
+    <PointFeatureDefinition Code="RPN" Name="Ramp Stone" Category="Structure" />
+    <PointFeatureDefinition Code="RPR" Name="Ramp Brick" Category="Structure" />
+    <PointFeatureDefinition Code="RPS" Name="Ramp _ Steel" Category="Structure" />
+    <PointFeatureDefinition Code="RPT" Name="Ramp Wood" Category="Structure" />
+    <PointFeatureDefinition Code="RRC" Name="RR signal cabinet" Category="RR" />
+    <PointFeatureDefinition Code="RRF" Name="RR Point of Frog _ 1 point" Category="RR" />
+    <PointFeatureDefinition Code="RRG" Name="RR crossing gate" Category="RR" />
+    <PointFeatureDefinition Code="RRH" Name="RR Switch Heater " Category="RR" />
+    <PointFeatureDefinition Code="RRP" Name="RR Semaphore" Category="RR" />
+    <PointFeatureDefinition Code="RRR" Name="RR top of rail" Category="RR" />
+    <PointFeatureDefinition Code="RRS" Name="RR Point of Switch take shot on side of switch box" Category="RR" />
+    <PointFeatureDefinition Code="RRT" Name="RR Tie" Category="RR" />
+    <PointFeatureDefinition Code="RRW" Name="RR Switch Box" Category="RR" />
+    <PointFeatureDefinition Code="RVT" Name="Revetment Mat" Category="Utilities" />
+    <PointFeatureDefinition Code="RWC" Name="Retaining Wall Concrete" Category="Structure" />
+    <PointFeatureDefinition Code="RWM" Name="Retaining Wall Masonry" Category="Structure" />
+    <PointFeatureDefinition Code="RWN" Name="Retaining Wall Stone" Category="Structure" />
+    <PointFeatureDefinition Code="RWR" Name="Retaining Wall Brick" Category="Structure" />
+    <PointFeatureDefinition Code="RWS" Name="Retaining Wall Steel" Category="Structure" />
+    <PointFeatureDefinition Code="RWT" Name="Retaining Wall Timber" Category="Structure" />
+    <PointFeatureDefinition Code="RWV" Name="Retaining Wall Vinyl" Category="Structure" />
+    <PointFeatureDefinition Code="SBE" Name="Splice Box Electric" Category="Utilities" />
+    <PointFeatureDefinition Code="SBF" Name="Splice Box Fiber" Category="Utilities" />
+    <PointFeatureDefinition Code="SBR" Name="Splice Box Traffic" Category="Utilities" />
+    <PointFeatureDefinition Code="SBS" Name="Splice Box Traffic Fiber" Category="Utilities" />
+    <PointFeatureDefinition Code="SBT" Name="Splice Box Telephone" Category="Utilities" />
+    <PointFeatureDefinition Code="SBV" Name="Splice Box TV" Category="Utilities" />
+    <PointFeatureDefinition Code="SHA" Name="Shoulder Aggregate" Category="Pave" />
+    <PointFeatureDefinition Code="SHB" Name="Shoulder HMA" Category="Pave" />
+    <PointFeatureDefinition Code="SHC" Name="Shoulder Concrete" Category="Pave" />
+    <PointFeatureDefinition Code="SLB" Name="Slab HMA" Category="Structure" />
+    <PointFeatureDefinition Code="SLC" Name="Slab Concrete" Category="Structure" />
+    <PointFeatureDefinition Code="SNC" Name="Sign _ Commercial" Category="Sign" />
+    <PointFeatureDefinition Code="SNE" Name="Sign _ Warning _ UG Electric" Category="Sign" />
+    <PointFeatureDefinition Code="SNF" Name="Sign _ Warning _ Fiber Optic" Category="Sign" />
+    <PointFeatureDefinition Code="SNG" Name="Sign _ Warning _ Gas" Category="Sign" />
+    <PointFeatureDefinition Code="SNL" Name="Sign _ For Line Coding" Category="Sign" />
+    <PointFeatureDefinition Code="SNN" Name="Sign _ Warning _ Sanitary Line" Category="Sign" />
+    <PointFeatureDefinition Code="SNP" Name="Sign _ Warning _ Petroleum" Category="Sign" />
+    <PointFeatureDefinition Code="SNR" Name="Sign _ Traffic" Category="Sign" />
+    <PointFeatureDefinition Code="SNS" Name="Sign _ Traffic Fiber Optic" Category="Sign" />
+    <PointFeatureDefinition Code="SNT" Name="Sign _ Warning _ Telephone/Communications" Category="Sign" />
+    <PointFeatureDefinition Code="SNV" Name="Sign _ Warning _ Cable TV" Category="Sign" />
+    <PointFeatureDefinition Code="SNW" Name="Sign _ Warning _ Water line" Category="Sign" />
+    <PointFeatureDefinition Code="SPA" Name="Survey Point _ Traverse Point" Category="Control" />
+    <PointFeatureDefinition Code="SPB" Name="Survey Point _ Axle" Category="Control" />
+    <PointFeatureDefinition Code="SPC" Name="Survey Point _ Cut Cross" Category="Control" />
+    <PointFeatureDefinition Code="SPD" Name="Survey Point _ Concrete Monument" Category="Control" />
+    <PointFeatureDefinition Code="SPE" Name="Survey Point _ Crimp Pipe" Category="Control" />
+    <PointFeatureDefinition Code="SPF" Name="Survey Point _ Benchmark" Category="Control" />
+    <PointFeatureDefinition Code="SPG" Name="Survey Point _ GPS Monument" Category="Control" />
+    <PointFeatureDefinition Code="SPH" Name="Survey Point _ Control Point" Category="Control" />
+    <PointFeatureDefinition Code="SPI" Name="Survey Point _ Iron Pipe" Category="Control" />
+    <PointFeatureDefinition Code="SPJ" Name="Survey Point _ Nail" Category="Control" />
+    <PointFeatureDefinition Code="SPK" Name="Survey Point _ Nail and Washer/Shiner" Category="Control" />
+    <PointFeatureDefinition Code="SPL" Name="Survey Point _ PK Nail" Category="Control" />
+    <PointFeatureDefinition Code="SPM" Name="Survey Point _ Mag Nail" Category="Control" />
+    <PointFeatureDefinition Code="SPN" Name="Survey Point _ ROW Marker" Category="Control" />
+    <PointFeatureDefinition Code="SPO" Name="Survey Point _ RR Spike" Category="Control" />
+    <PointFeatureDefinition Code="SPP" Name="Survey Point _ Pole Barn Spike" Category="Control" />
+    <PointFeatureDefinition Code="SPQ" Name="Survey Point _ Stone" Category="Control" />
+    <PointFeatureDefinition Code="SPR" Name="Survey Point _ Cotton Picker Spindle" Category="Control" />
+    <PointFeatureDefinition Code="SPS" Name="Survey Point _ Hub" Category="Control" />
+    <PointFeatureDefinition Code="SPT" Name="Survey Point _ Cut Square" Category="Control" />
+    <PointFeatureDefinition Code="SPU" Name="Survey Point _ Rebar" Category="Control" />
+    <PointFeatureDefinition Code="SPV" Name="Survey Point _ Drill Hole" Category="Control" />
+    <PointFeatureDefinition Code="SPW" Name="Survey Point _ Brass Marker" Category="Control" />
+    <PointFeatureDefinition Code="SPX" Name="Survey Point _ Iron Rod/Pin" Category="Control" />
+    <PointFeatureDefinition Code="SPY" Name="Survey Point _" Category="Control" />
+    <PointFeatureDefinition Code="SPZ" Name="Survey Point _ Other" Category="Control" />
+    <PointFeatureDefinition Code="STR" Name="Stairs / Porch" Category="Structure" />
+    <PointFeatureDefinition Code="SWA" Name="Sidewalk _ Agg" Category="Pave" />
+    <PointFeatureDefinition Code="SWB" Name="Sidewalk _ HMA/BIT" Category="Pave" />
+    <PointFeatureDefinition Code="SWC" Name="Sidewalk _ Conc" Category="Pave" />
+    <PointFeatureDefinition Code="SWN" Name="Sidewalk _ Stone/Rock" Category="Pave" />
+    <PointFeatureDefinition Code="SWR" Name="Sidewalk _ Brick" Category="Pave" />
+    <PointFeatureDefinition Code="THW" Name="Thalweg _ Lowest Point" Category="Water" />
+    <PointFeatureDefinition Code="TIL" Name="Field Tile/ Downspout" Category="Utilities" />
+    <PointFeatureDefinition Code="TNG" Name="Tank Gas" Category="Utilities" />
+    <PointFeatureDefinition Code="TNP" Name="Tank Petroleum" Category="Utilities" />
+    <PointFeatureDefinition Code="TNW" Name="Tank Water" Category="Utilities" />
+    <PointFeatureDefinition Code="TOE" Name="Toe of Slope" Category="DTM" />
+    <PointFeatureDefinition Code="TOP" Name="Top of Slope" Category="DTM" />
+    <PointFeatureDefinition Code="TRC" Name="Tree _ Coniferous" Category="Vegetation" />
+    <PointFeatureDefinition Code="TRD" Name="Tree _ Deciduous" Category="Vegetation" />
+    <PointFeatureDefinition Code="TRE" Name="Electric Transformer" Category="Utilities" />
+    <PointFeatureDefinition Code="TRF" Name="Traffic Signal" Category="Utilities" />
+    <PointFeatureDefinition Code="TRL" Name="Traffic Loop Detector" Category="Utilities" />
+    <PointFeatureDefinition Code="TWR" Name="Transmission Tower" Category="Utilities" />
+    <PointFeatureDefinition Code="UND" Name="Storm_underdrain" Category="Utilities" />
+    <PointFeatureDefinition Code="VLG" Name="Valve Gas" Category="Utilities" />
+    <PointFeatureDefinition Code="VLN" Name="Valve Sanitary" Category="Utilities" />
+    <PointFeatureDefinition Code="VLP" Name="Valve Petroleum" Category="Utilities" />
+    <PointFeatureDefinition Code="VLW" Name="Valve Water" Category="Utilities" />
+    <PointFeatureDefinition Code="VNG" Name="Vent Gas" Category="Utilities" />
+    <PointFeatureDefinition Code="VNN" Name="Vent Sanitary" Category="Utilities" />
+    <PointFeatureDefinition Code="WAC" Name="Wall not retaining  Concrete" Category="Structure" />
+    <PointFeatureDefinition Code="WAF" Name="Wall not retaining Frame" Category="Structure" />
+    <PointFeatureDefinition Code="WAM" Name="Wall not retaining Masonry" Category="Structure" />
+    <PointFeatureDefinition Code="WAN" Name="Wall not retaining Stone" Category="Structure" />
+    <PointFeatureDefinition Code="WAR" Name="Wall not retaining Brick" Category="Structure" />
+    <PointFeatureDefinition Code="WAS" Name="Wall not retaining  Steel" Category="Structure" />
+    <PointFeatureDefinition Code="WAT" Name="Wall not retaining Timber " Category="Structure" />
+    <PointFeatureDefinition Code="WDE" Name="Wooded Edge" Category="Vegetation" />
+    <PointFeatureDefinition Code="WEL" Name="Well _ water" Category="Utilities" />
+    <PointFeatureDefinition Code="WET" Name="Wetland" Category="Water" />
+    <PointFeatureDefinition Code="WTR" Name="Water _ Top Elevation" Category="Water" />
+    <PointFeatureDefinition Code="TS2" Name="TEST2" Category="Test" IncludeInSurface="true" Color="FE000000" Layer="0" PointLabelStyle="" />
+  </FeatureDefinitions>
+</FeatureCodingDefinitions>
