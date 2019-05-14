@@ -176,6 +176,7 @@ our %legalCodes = (
  "HWL" => "311 311", #Headwall
  "HYD" => "323 323", #Hydrant
  "INL" => "339 339", #Inlet - Rectangular
+ "JNT" => "623 623", #Bridge Expansion Joint
  "JUE" => "285 285", #QL-B Paint Mark Line - Electric
  "JUF" => "289 289", #QL-B Paint Mark Line - Fiber Optic
  "JUG" => "942 942", #QL-B Paint Mark Line - Gas
