@@ -22,6 +22,7 @@ our %legalCodes = (
  "BDB" => "619 619", #Bridge Deck Edge – Bit
  "BDC" => "619 619", #Bridge Deck Edge – Conc
  "BDT" => "619 619", #Bridge Deck Edge – Timber
+ "BDP" => "621 621", #Bridge Deck Plate
  "BEX" => "623 623", #Bridge Expansion Joint
  "BHR" => "624 624", #Bridge Handrail
  "BLC" => "626 626", #Bridge Low Element Elevation – Concrete - The bottom of the concrete bridge
