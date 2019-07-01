@@ -189,7 +189,8 @@ while (<IN>) {
 		}
 	if ($civil3d eq "1") {
 		if ($fullComment) {
-			$fullComment=";$fullComment";
+#			$fullComment=";$fullComment";
+			$fullComment="$fullComment";
 		}
 		if ($liningSymbol) {
 			print OUT2 "$in[0],$in[1],$in[2],$in[3],$civil3dCode$lineNumber^$ACADlineSymbol $fullComment\n";
