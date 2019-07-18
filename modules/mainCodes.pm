@@ -217,6 +217,7 @@ our %legalCodes = (
  "PDE" => "282 282", #Pedestal/Riser – Electric
  "PDF" => "283 283", #Pedestal/Riser – Fiber
  "PDT" => "283 283", #Pedestal/Riser – Telephone
+ "PDR" => "281 281", #Pedestal/Riser – Traffic
  "PDV" => "284 284", #Pedestal/Riser – TV
  "PHB" => "298 298", #Phone Booth
  "PLF" => "691 691", #Flag Pole
