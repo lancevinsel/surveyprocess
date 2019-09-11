@@ -1774,7 +1774,7 @@
 ###############################################################################################3
 %idotcommands = (
   # "(" => "BL*", # Begin Line 20110615   removed process_09.pl
- # "%" => "OC*", # PC or PT 20110615     removed process_09.pl
+ "%" => "OC", # PC or PT 20110615     removed process_09.pl
  # "+" => "CL*", # Close Figure 20110615 removed process_09.pl
  # "." => "L", # Begin Line #H
  "(" => "B", # Begin Line #H
