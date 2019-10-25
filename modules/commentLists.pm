@@ -80,6 +80,7 @@ our %addedComments = (
  "FDW" => "BRASS MONUMENT",
  "FDX" => "IRON ROD",
  "FDY" => "CUT NOTCH",
+ "FD1" => "TIE POINT",
  "SWA" => "AGG",
  "SWB" => "HMA",
  "FFL" => "FINISH FLOOR",

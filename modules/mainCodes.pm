@@ -127,6 +127,7 @@ our %legalCodes = (
  "FDX" => "207 FDX", #Found Survey Evidence - Iron Rod/Pin
  "FDY" => "103 FDY", #Found Survey Evidence - Notch
  "FDZ" => "207 FDZ", #Found Survey Evidence - Other
+ "FD1" => "207 FD1", #Found Survey Evidence - Tie Point
  "FES" => "309 309", #Flared End Section
  "FFL" => "650 650", #Finish Floor Elevation
  "FNG" => "418 418", #Fence - Gate post
