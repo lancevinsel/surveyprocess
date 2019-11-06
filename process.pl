@@ -85,7 +85,7 @@
  "C60" => "D60", #H Hoellsher Tree Codes - these need to be changes in the .TXT file and then just pass through
  "C66" => "D66", #H Hoellsher Tree Codes - these need to be changes in the .TXT file and then just pass through
  "C72" => "D72", #H Hoellsher Tree Codes - these need to be changes in the .TXT file and then just pass through
- "CBM" => "943", #H Catch Basin Grate
+ "CBM" => "950", #H Catch Basin Grate
  "CDE" => "400", #H Conduit Electrical
  "CDF" => "600", #H Conduit Telephone
  "CKH" => "120", #H Check Horizontal Control
@@ -158,7 +158,7 @@
  "FFL" => "354", #H Finish Floor/Threshold Elevation
  #"FLO" => "363", # Flowline / Ditch
  "FNC" => "375", #H Fence
- "FND" => "100", #H
+ "FND" => "108", #H
  "FNG" => "381", #H Gate Post
  "FNI" => "376", # Fence - Iron
  "FNL" => "375", # Fence - Chain Link
