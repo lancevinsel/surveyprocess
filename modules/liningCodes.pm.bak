@@ -6,9 +6,9 @@ our %lineSymbols = (
  "."  => ". B",			# Begin Line
  ".." => ".. E",			# End Line
  "+"  => "_ CLS",		# Close Figure
- "@"  => "SC BC",		# Begin Curve
+ "-"  => "SC BC",		# Begin Curve
  "!"  => "PT EC",		# End Curve
- "-"  => "/ OC",		# Point On Curve
+ "@"  => "/ OC",		# Point On Curve
 );
 
 1;
