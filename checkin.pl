@@ -55,14 +55,16 @@ if ($#ARGV<0) {
 }
 # $ARGV[0] is the first item following the command - in our case the filename to be processed
 $filename=$ARGV[0];
-	# print OUT "filename with extension	= $filename\n";
+	# print OUT1 "filename with extension	= $filename\n";
 # This next line removes the extension (normally .txt) from the entered filename
 $filename =~ s/\.[^.]*$//;
-	# print OUT "filename without extension	= $filename\n";
+	# print OUT1 "filename without extension	= $filename\n";
 # This opens the file for reading
 open(IN,$ARGV[0]);
-# This open the output file for writing
-open(OUT,">${filename}.csv");
+# This opens the output file for writing
+open(OUT1,">${filename}.csv");
+# This opens the output file for the Meta-data
+open(OUT2,">${filename}.meta");
 # eliminate specific warnings - this is needed to prevent error messages in this code 
 {
 	no warnings 'uninitialized';
@@ -81,91 +83,91 @@ while (<IN>) {
 # need to parse the fullComment for:
 # multiCodeDelimiter
 # 
-#  print OUT "\n";
- # print OUT "fieldCode		= @in\n";
+#  print OUT1 "\n";
+ # print OUT1 "fieldCode		= @in\n";
 	my @codeCommentSplit = split(/\s+/,$in[4],2); # this separates the fullCode from the fullComment
 		# using the first whitespace as the separator.
-		# print OUT "codeCommentSplit[0] 	= $codeCommentSplit[0]\n";
-		# print OUT "codeCommentSplit[1] 	= $codeCommentSplit[1]\n";
+		# print OUT1 "codeCommentSplit[0] 	= $codeCommentSplit[0]\n";
+		# print OUT1 "codeCommentSplit[1] 	= $codeCommentSplit[1]\n";
 	$fullCode = $codeCommentSplit[0];
-		# print OUT "fullCode		= $fullCode\n";
+		# print OUT1 "fullCode		= $fullCode\n";
 	$fullComment = $codeCommentSplit[1];
-		# print OUT "fullComment		= $fullComment\n";
+		# print OUT1 "fullComment		= $fullComment\n";
 	my @fullCodeSplit = ($fullCode =~ /(\w+)*(\W+)/); # this separates the 3 character MPSCode and
 		# line number from the line coding symbol liningSymbol;
 		# \w is alpha or numeric - \W is non alpha or numeric
-		#  print OUT "fullCodeSplit[0]	= $fullCodeSplit[0]\n";
-		#  print OUT "fullCodeSplit[1]	= $fullCodeSplit[1]\n";
+		#  print OUT1 "fullCodeSplit[0]	= $fullCodeSplit[0]\n";
+		#  print OUT1 "fullCodeSplit[1]	= $fullCodeSplit[1]\n";
 	$lineCode = $fullCodeSplit[0];
-	#  print OUT "lineCode		= $lineCode\n";
+	#  print OUT1 "lineCode		= $lineCode\n";
 	$liningSymbol = $fullCodeSplit[1];
-	#  print OUT "liningSymbol		= $liningSymbol\n";
+	#  print OUT1 "liningSymbol		= $liningSymbol\n";
 	if ($liningSymbol) { # This checks for a lining symbol
 		if ($liningCodes::lineSymbols{$liningSymbol}) {
-			# print OUT "liningSymbol		= This lining symbol \"$liningSymbol\" is OK\n";
+			# print OUT1 "liningSymbol		= This lining symbol \"$liningSymbol\" is OK\n";
 		} else {
 			$illegalLiningSymbolCount++;
-			# print OUT "liningSymbol		= This lining symbol \"$liningSymbol\" is ILLEGAL!!!!\n";
+			# print OUT1 "liningSymbol		= This lining symbol \"$liningSymbol\" is ILLEGAL!!!!\n";
 		}
 	} else {
 		$lineCode = $fullCode;
 		$liningSymbol = "";
 	}
-		# print OUT "lineCode		= $lineCode\n";
-		# print OUT "liningSymbol		= $liningSymbol\n";
+		# print OUT1 "lineCode		= $lineCode\n";
+		# print OUT1 "liningSymbol		= $liningSymbol\n";
 	my @lineNumberSplit = ($lineCode =~ /(\w\w\w)(\d*)/); # this separates the MPScode from the line number
-		# print OUT "lineNumberSplit[0]	= $lineNumberSplit[0]\n";
-		# print OUT "lineNumberSplit[1]	= $lineNumberSplit[1]\n";
+		# print OUT1 "lineNumberSplit[0]	= $lineNumberSplit[0]\n";
+		# print OUT1 "lineNumberSplit[1]	= $lineNumberSplit[1]\n";
 	$MPScode = $lineNumberSplit[0];
-		# print OUT "MPScode			= $MPScode\n";
+		# print OUT1 "MPScode			= $MPScode\n";
 	$lineNumber = $lineNumberSplit[1];
-		# print OUT "lineNumber		= $lineNumber\n";
+		# print OUT1 "lineNumber		= $lineNumber\n";
 	if ($mainCodes::legalCodes{$MPScode}) {
-		#print OUT "MPScode check		= $MPScode is a legal code\n";
+		#print OUT1 "MPScode check		= $MPScode is a legal code\n";
 	} else {
 		$illegalCodeCount++;
 		$commentFlag = $codeFlag;
-		#print OUT "MPScode check		= $MPScode is an ILLEGAL CODE!!!!! DAMN!!\n";
+		#print OUT1 "MPScode check		= $MPScode is an ILLEGAL CODE!!!!! DAMN!!\n";
 	}
 	my @fullCommentSplit = (split(/\s+/,$fullComment,2)); # This separates the full code by the first
 		# whitespace
-		# print OUT "fullCommentSplit[0]	= $fullCommentSplit[0]\n";
-		# print OUT "fullCommentSplit[1]	= $fullCommentSplit[1]\n";
+		# print OUT1 "fullCommentSplit[0]	= $fullCommentSplit[0]\n";
+		# print OUT1 "fullCommentSplit[1]	= $fullCommentSplit[1]\n";
 	$numericComment = $fullCommentSplit[0];
-		# print OUT "numericComment		= $numericComment\n";
+		# print OUT1 "numericComment		= $numericComment\n";
 	$textComment = $fullCommentSplit[1];
-		# print OUT "textComment		= $textComment\n";
+		# print OUT1 "textComment		= $textComment\n";
 	if ($numericComment =~ /\d{3}/)  { # This checks if the numericCode is in fact numeric 
 		$IDOTtext = $miscCodes::IDOTmiscCodes{$numericComment};  # If it is numeric it checks it against the 
 		# IDOT misc code and then replaces the number with the IDOT text.
-		# print OUT "IDOTtext		= $IDOTtext\n";
+		# print OUT1 "IDOTtext		= $IDOTtext\n";
 		if ($IDOTtext) {
 			$fullComment = "$IDOTtext $textComment";
-		# print OUT "fullComment w/IDOT IDOTtext	= $fullComment\n";
+		# print OUT1 "fullComment w/IDOT IDOTtext	= $fullComment\n";
 		}
 	}
 	if ($flagCodes::controlFlags{$numericComment}) { # This checks for control flags and issues the error messages
 		$commentFlag = "$commentFlag $flagCodes::controlFlags{$numericComment}";
 		$controlPointCount++;
-		# print OUT "commentFlag		= $commentFlag\n";
+		# print OUT1 "commentFlag		= $commentFlag\n";
 		} else {
-		# print OUT "commentFlag		= This is not a control check or resection point\n";
+		# print OUT1 "commentFlag		= This is not a control check or resection point\n";
 	}
 	if ($commentLists::addedComments{$MPScode}) { # This checks for comments that are required by the code
 		$commentText = $commentLists::addedComments{$MPScode};
-		# print OUT "commentText-		= $commentText\n";
+		# print OUT1 "commentText-		= $commentText\n";
 		} else {
-		# print OUT "commentText-		= There are no added comments for this code\n";
+		# print OUT1 "commentText-		= There are no added comments for this code\n";
 	}
 	$finalComment = join " ", $commentText, $fullComment, $commentFlag;
-	# print OUT "finalComment		= $finalComment\n";
+	# print OUT1 "finalComment		= $finalComment\n";
 	$checkInCode = "$lineCode$liningSymbol $finalComment";
-	# print OUT "checkInCode		= $checkInCode\n";
+	# print OUT1 "checkInCode		= $checkInCode\n";
 	$checkInCode =~ s/  / /g;
 	$checkInCode =~ s/  / /g;
 ########################### Print Section
 
- print OUT "$in[0],$in[1],$in[2],$in[3],$checkInCode\n";
+ print OUT1 "$in[0],$in[1],$in[2],$in[3],$checkInCode\n";
 
  #prepare for next loop
  $IDOTtext="";
@@ -174,21 +176,25 @@ while (<IN>) {
 }
 }
 if ($illegalCodeCount > 0) {
-	print "\nThere are $illegalCodeCount illegal point codes in this file\n";
-	# print OUT "\nThere are $illegalCodeCount illegal point codes in this file\n";
+	print  "\nThere are $illegalCodeCount illegal point codes in this file\n";
+	print OUT2 "\nThere are $illegalCodeCount illegal point codes in this file\n";
+	# print OUT1 "\nThere are $illegalCodeCount illegal point codes in this file\n";
 }
 if ($illegalLiningSymbolCount > 0) {
-	print "\nThere are $illegalLiningSymbolCount illegal lining symbols in this file\n";
-	# print OUT "\nThere are $illegalLiningSymbolCount illegal lining symbols in this file\n";
+	print  "\nThere are $illegalLiningSymbolCount illegal lining symbols in this file\n";
+	print OUT2 "\nThere are $illegalLiningSymbolCount illegal lining symbols in this file\n";
+	# print OUT1 "\nThere are $illegalLiningSymbolCount illegal lining symbols in this file\n";
 }
 if ($controlPointCount > 0) {
-	print "\nThere are $controlPointCount control-point-checks or resection positions in this file\n";
-	# print OUT "\nThere are $controlPointCount control-point-checks or resection positions in this file\n";
+	print  "\nThere are $controlPointCount control-point-checks or resection positions in this file\n";
+	print OUT2 "\nThere are $controlPointCount control-point-checks or resection positions in this file\n";
+	# print OUT1 "\nThere are $controlPointCount control-point-checks or resection positions in this file\n";
 }
 if ($illegalCodeCount < 1 && $illegalLiningSymbolCount < 1 && $controlPointCount < 1) {
-	print "\nCheckin found no errors in this file. Good job!\n";
+	print  "\nCheckin found no errors in this file. Good job!\n";
+	print OUT2 "\nCheckin found no errors in this file. Good job!\n";
 }
 print "\n";
 close(IN);
-close(OUT);
-
+close(OUT1);
+close(OUT2);
