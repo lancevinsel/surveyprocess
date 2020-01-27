@@ -193,9 +193,9 @@ while (<IN>) {
 			$fullComment="$fullComment";
 		}
 		if ($liningSymbol) {
-			print OUT2 "$in[0],$in[1],$in[2],$in[3],$ACADlineSymbol $civil3dCode$lineNumber $fullComment\n";
+			print OUT2 "$in[0],$in[1],$in[2],$in[3],$civil3dCode$lineNumber $ACADlineSymbol/$fullComment\n";
 		} else {
-			print OUT2 "$in[0],$in[1],$in[2],$in[3],$civil3dCode$lineNumber $fullComment\n";
+			print OUT2 "$in[0],$in[1],$in[2],$in[3],$civil3dCode$lineNumber /$fullComment\n";
 		}
 	}
 
