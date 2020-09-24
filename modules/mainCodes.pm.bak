@@ -12,7 +12,7 @@ our %legalCodes = (
  "BBA" => "619 206", #Bridge Deck Spot – Aggregate
  "BBB" => "619 206", #Bridge Deck Spot – HMA
  "BBC" => "619 206", #Bridge Deck Spot – Concrete
- "BBG" => "319 319", #Buffalo Box - Gas
+ "BBG" => "319 520", #Buffalo Box - Gas
  "BBR" => "619 206", #Bridge Deck Spot – Brick
  "BBS" => "620 200", #Bridge Beam Seat Elevation - The bridge seat elevation.  For elevation only.
 			# Usually collected with the "hook".
@@ -29,6 +29,7 @@ our %legalCodes = (
 			# beams.  Usually taken at the beginning middle and end of each span of
 			# the bridge beams. Usually only required on the outside (upstream and 
 			# downstream) beams.
+ "BLD" => "600 300", # Generic Building 
  "BLS" => "627 205", #Bridge Low Element Elevation – Steel - The bottom of the steel bridge beams.
 			# Usually taken at the beginning middle and end oof each span of the
 			# bridge beams. Usually only required on the outside (upstream and
@@ -88,10 +89,11 @@ our %legalCodes = (
  "DPB" => "656 241", #Driveway – Public – HMA
  "DPC" => "656 243", #Driveway – Public – Concrete
  "DPR" => "656 242", #Driveway – Public – Brick
- "DRA" => "649 246", #Driveway – Residential – Aggregate
- "DRB" => "649 241", #Driveway – Residential – HMA
- "DRC" => "649 243", #Driveway – Residential – Concrete
- "DRR" => "649 242", #Driveway – Residential – Brick
+ "DRA" => "649 246", #Driveway – Aggregate
+ "DRB" => "649 241", #Driveway – HMA
+ "DRC" => "649 243", #Driveway – Concrete
+ "DRG" => "649 243", #Driveway – Ground - Field Entrance
+ "DRR" => "649 242", #Driveway – Brick
  "DSP" => "304 946", #Downspout
  "DTH" => "363 151", #Ditch - Flowline
  "DTP" => "359 948", #Paved Ditch Centerline
@@ -130,6 +132,7 @@ our %legalCodes = (
  "FD1" => "207 118", #Found Survey Evidence - Tie Point
  "FES" => "309 948", #Flared End Section
  "FFL" => "650 354", #Finish Floor Elevation
+ "FND" => "207 118", # Generic Found Survey Evidence - requires type and size comment
  "FNG" => "418 381", #Fence - Gate post
  "FNI" => "414 376", #Fence – Iron
  "FNL" => "414 375", #Fence – Chain Link
@@ -349,6 +352,7 @@ our %legalCodes = (
  "VNN" => "354 901", #Vent – Sanitary
  "WAC" => "294 343", #Wall – not retaining –  Concrete
  "WAF" => "294 348", #Wall – not retaining – Frame
+ "WAL" => "294 342", # Generic Wall - not retaining
  "WAM" => "294 342", #Wall – not retaining – Masonry
  "WAN" => "294 347", #Wall – not retaining – Stone
  "WAR" => "294 342", #Wall – not retaining – Brick
